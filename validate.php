@@ -208,8 +208,8 @@ if($validation=="add_stock")
         $sql="INSERT INTO inv_stock (item_name,category_id,sub_category_id,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,item_code,section_id,supplier,order_no,order_date,invoice_date)
         VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$item_code','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
 
-        $sql="INSERT INTO inv_purchase_log (item_name,total_cost,invoice_no,section_id,supplier)
-        VALUES ('$item_name','$total_cost','$invoice_no','$section','$item_supplier')";
+        $sql="INSERT INTO inv_purchase_log (total_cost,invoice_no,section_id,supplier)
+        VALUES ('$total_cost','$invoice_no','$section','$item_supplier')";
         if ($conn->query($sql) === TRUE) {
             echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
         } else {
