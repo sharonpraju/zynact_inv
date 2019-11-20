@@ -17,6 +17,7 @@ $dist_issued_to=$_POST['dist_issued_to'];
 $dist_place=$_POST['dist_place'];
 $dist_issued_on=$_POST['invoice_date'];
 $dist_remarks=$_POST['Remarks'];
+$indent=$_POST['intent'];
 
 $sql="SELECT branch FROM user_details WHERE user_name='$dist_user_id'";
 $result = mysqli_query($conn, $sql);
@@ -103,8 +104,9 @@ $total=0;
     $row = mysqli_fetch_assoc($result);
     $bill_no=$row['bill_no'];
 
-    $sql="INSERT INTO inv_distribution (dist_user_id,dist_bill_no,section_id,dist_issued_to,dist_place,dist_issued_by,dist_issued_on,place,remarks,department)
-    VALUES ('$dist_user_id','$bill_no','$section','$dist_issued_to','$dist_place','$admin','$dist_issued_on','$dist_place','$dist_remarks','$department')";
+
+    $sql="INSERT INTO inv_distribution (dist_user_id,dist_bill_no,section_id,dist_issued_to,dist_place,dist_issued_by,dist_issued_on,place,remarks,department,dist_indent_no)
+    VALUES ('$dist_user_id','$bill_no','$section','$dist_issued_to','$dist_place','$admin','$dist_issued_on','$dist_place','$dist_remarks','$department','$indent')";
     $conn->query($sql);
 
     $sql = "TRUNCATE TABLE inv_current_bill";

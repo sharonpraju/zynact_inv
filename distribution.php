@@ -45,6 +45,7 @@ $conn = OpenCon();
         <input type="text" class="input_txt_distribution_1" id="department_txt" placeholder="Department" readonly>
         <input type="text" class="input_txt_distribution_2" name="dist_place" placeholder=Place id="Place" class="ui-autocomplete-input">
         <input type="text" class="input_txt_distribution_3" name="Remarks" placeholder=Remarks id="Remarks" class="ui-autocomplete-input">
+        
         <script src="js/jquery.min.js"></script>
         <select class="input_txt_distribution_4" name=dist_issued_to id="AutoType" require>
         <option value="">Select</option>
@@ -61,12 +62,15 @@ $conn = OpenCon();
         </select>
         <br><br>
         <span class="span_date">Issued Date</span><input type="date" class="input_txt_distribution_5" name="invoice_date" value="<?php echo date("Y-m-d"); ?>" require placeholder="" style="margin-left:15px;">
+        <input type="text" class="input_txt_distribution_6" name="intent" placeholder='Intent No' id="Remarks" class="ui-autocomplete-input">
         <input type=submit class="link_submit" value="Save and Print">
         </form>
+        
 </div>
 
 </div>
 <br><br>
+
 
 <?php
 
