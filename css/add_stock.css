@@ -118,6 +118,20 @@ margin: 0;
         top: 100px;
         left: 300px;
     }
+    .input_txt_distribution_7{
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        padding: 5px 0;
+        width: 125px;
+        height: 20px;
+        transition: border .5s;
+        position: fixed;
+        top: 100px;
+        left: 450px;
+    }
 .span_date{
     position: fixed;
     top: 70px;

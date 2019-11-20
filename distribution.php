@@ -63,6 +63,7 @@ $conn = OpenCon();
         <br><br>
         <span class="span_date">Issued Date</span><input type="date" class="input_txt_distribution_5" name="invoice_date" value="<?php echo date("Y-m-d"); ?>" require placeholder="" style="margin-left:15px;">
         <input type="text" class="input_txt_distribution_6" name="intent" placeholder='Intent No' id="Remarks" class="ui-autocomplete-input">
+        <input type="text" class="input_txt_distribution_7" name="stock_no" placeholder='Stock No' id="Remarks" class="ui-autocomplete-input">
         <input type=submit class="link_submit" value="Save and Print">
         </form>
         
