@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2019 at 05:15 PM
+-- Generation Time: Nov 20, 2019 at 06:05 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -246,6 +246,7 @@ CREATE TABLE `inv_current_bill` (
 
 CREATE TABLE `inv_distribution` (
   `sl_no` int(11) NOT NULL,
+  `stock_no` int(11) NOT NULL,
   `dist_bill_no` int(11) NOT NULL,
   `section_id` int(11) NOT NULL,
   `dist_user_id` varchar(100) NOT NULL,
@@ -255,7 +256,7 @@ CREATE TABLE `inv_distribution` (
   `dist_issued_by` varchar(100) NOT NULL,
   `dist_issued_on` date NOT NULL DEFAULT current_timestamp(),
   `dist_indent_no` int(11) NOT NULL,
-  `dist_indent_date` int(11) NOT NULL,
+  `dist_indent_date` datetime NOT NULL DEFAULT current_timestamp(),
   `dist_created_on` datetime NOT NULL DEFAULT current_timestamp(),
   `place` varchar(20) NOT NULL,
   `remarks` varchar(20) NOT NULL
@@ -265,38 +266,43 @@ CREATE TABLE `inv_distribution` (
 -- Dumping data for table `inv_distribution`
 --
 
-INSERT INTO `inv_distribution` (`sl_no`, `dist_bill_no`, `section_id`, `dist_user_id`, `department`, `dist_issued_to`, `dist_place`, `dist_issued_by`, `dist_issued_on`, `dist_indent_no`, `dist_indent_date`, `dist_created_on`, `place`, `remarks`) VALUES
-(1, 54, 0, 'Tibin Sunny', '', 'Lab', 'CSE LAB', 'admin', '2019-11-14', 0, 0, '2019-11-13 00:11:51', '', ''),
-(2, 55, 0, 'Tibin Sunny', '', 'Lab', 'CSE LAB', 'admin', '2016-06-22', 0, 0, '2019-11-13 00:12:46', '', ''),
-(3, 56, 0, 'Tibin Sunny', '', 'Department', 'CS', 'admin', '2019-12-31', 0, 0, '2019-11-17 15:03:00', '', ''),
-(4, 57, 0, 'Tibin Sunny', '', 'LAB', 'CSE LAB', 'admin', '2019-11-01', 0, 0, '2019-11-17 16:03:55', '', ''),
-(5, 58, 0, 'Tibin Sunny', '', 'asdada', 'd', 'admin', '2019-11-05', 0, 0, '2019-11-17 18:10:03', '', ''),
-(6, 59, 0, 'Tibin', '', 'LAB', 'pp', 'admin', '2019-11-05', 0, 0, '2019-11-17 18:10:55', 'pp', 'ppp'),
-(7, 60, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:16:31', 'asd', 'asd'),
-(8, 61, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:17:16', 'asd', 'asd'),
-(9, 62, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:17:41', 'asd', 'asd'),
-(10, 63, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:18:30', 'asd', 'asd'),
-(11, 64, 0, 'Tibin Sunny', '', 'asdada', 'nbn', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:19:12', 'nbn', 'bnbn'),
-(12, 65, 0, 'Tibin Sunny', '', 'asdada', ' mnm', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:20:49', ' mnm', 'nmnm'),
-(13, 66, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:21:25', 'ssdf', 'uyuy'),
-(14, 67, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:21:59', 'ssdf', 'uyuy'),
-(15, 68, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:24:30', 'ssdf', 'uyuy'),
-(16, 69, 0, 'Jinta Thankam Jacob', 'EC', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:27:52', 'ssdf', 'uyuy'),
-(17, 70, 0, 'Tibin Sunny', 'CS', 'LAB', 'ipoP', 'admin', '0000-00-00', 0, 0, '2019-11-19 00:40:59', 'ipoP', 'OPO'),
-(18, 71, 0, 'Tibin Sunny', 'CS', 'LAB', 'asd', 'admin', '2019-11-18', 0, 0, '2019-11-19 00:47:38', 'asd', 'zx'),
-(19, 8, 1, 'Christina Stantly', 'EC', 'LAB', 'lab', 'test', '2019-11-19', 0, 0, '2019-11-19 18:51:04', 'lab', 'rerfd'),
-(20, 9, 1, 'Vineetha Vijayan', 'EE', 'LAB', '', 'test', '2019-11-19', 0, 0, '2019-11-19 18:52:34', '', 'qw'),
-(21, 10, 1, 'Vineetha Vijayan', 'EE', 'LAB', 'qw', 'test', '2019-11-19', 0, 0, '2019-11-19 18:53:08', 'qw', 'qw'),
-(22, 11, 1, 'Vineetha Vijayan', '', 'LAB', 'qw', 'test', '2019-11-19', 0, 0, '2019-11-19 18:53:42', 'qw', 'qw'),
-(23, 12, 1, 'Vineetha Vijayan', 'EE', 'LAB', 'qw', 'test', '2019-11-19', 0, 0, '2019-11-19 18:56:11', 'qw', 'qw'),
-(24, 13, 1, 'Sharon P Raju', 'CS', 'LAB', 'test', 'test', '2019-11-19', 0, 0, '2019-11-19 18:58:25', 'test', 'test'),
-(25, 15, 1, 'Sharon P Raju', 'CS', 'LAB', 'test', 'Admin', '2019-11-19', 0, 0, '2019-11-19 19:12:08', 'test', 'test'),
-(26, 16, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, 0, '2019-11-20 00:22:09', '', ''),
-(27, 17, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, 0, '2019-11-20 00:23:04', '', ''),
-(28, 18, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, 0, '2019-11-20 00:23:47', '', ''),
-(29, 19, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, 0, '2019-11-20 00:25:12', '', ''),
-(30, 20, 1, 'Sharon P Raju', 'CS', '', '', 'Admin', '2019-11-19', 0, 0, '2019-11-20 00:53:48', '', ''),
-(31, 21, 1, 'Pradeep P. Mathew', 'CS', 'LAB', 'adsd', 'Admin', '2019-11-20', 0, 0, '2019-11-20 10:23:45', 'adsd', 'dssf');
+INSERT INTO `inv_distribution` (`sl_no`, `stock_no`, `dist_bill_no`, `section_id`, `dist_user_id`, `department`, `dist_issued_to`, `dist_place`, `dist_issued_by`, `dist_issued_on`, `dist_indent_no`, `dist_indent_date`, `dist_created_on`, `place`, `remarks`) VALUES
+(1, 0, 54, 0, 'Tibin Sunny', '', 'Lab', 'CSE LAB', 'admin', '2019-11-14', 0, '0000-00-00 00:00:00', '2019-11-13 00:11:51', '', ''),
+(2, 0, 55, 0, 'Tibin Sunny', '', 'Lab', 'CSE LAB', 'admin', '2016-06-22', 0, '0000-00-00 00:00:00', '2019-11-13 00:12:46', '', ''),
+(3, 0, 56, 0, 'Tibin Sunny', '', 'Department', 'CS', 'admin', '2019-12-31', 0, '0000-00-00 00:00:00', '2019-11-17 15:03:00', '', ''),
+(4, 0, 57, 0, 'Tibin Sunny', '', 'LAB', 'CSE LAB', 'admin', '2019-11-01', 0, '0000-00-00 00:00:00', '2019-11-17 16:03:55', '', ''),
+(5, 0, 58, 0, 'Tibin Sunny', '', 'asdada', 'd', 'admin', '2019-11-05', 0, '0000-00-00 00:00:00', '2019-11-17 18:10:03', '', ''),
+(6, 0, 59, 0, 'Tibin', '', 'LAB', 'pp', 'admin', '2019-11-05', 0, '0000-00-00 00:00:00', '2019-11-17 18:10:55', 'pp', 'ppp'),
+(7, 0, 60, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:16:31', 'asd', 'asd'),
+(8, 0, 61, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:17:16', 'asd', 'asd'),
+(9, 0, 62, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:17:41', 'asd', 'asd'),
+(10, 0, 63, 0, 'Tibin Sunny', '', 'asdada', 'asd', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:18:30', 'asd', 'asd'),
+(11, 0, 64, 0, 'Tibin Sunny', '', 'asdada', 'nbn', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:19:12', 'nbn', 'bnbn'),
+(12, 0, 65, 0, 'Tibin Sunny', '', 'asdada', ' mnm', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:20:49', ' mnm', 'nmnm'),
+(13, 0, 66, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:21:25', 'ssdf', 'uyuy'),
+(14, 0, 67, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:21:59', 'ssdf', 'uyuy'),
+(15, 0, 68, 0, 'Jinta Thankam Jacob', '', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:24:30', 'ssdf', 'uyuy'),
+(16, 0, 69, 0, 'Jinta Thankam Jacob', 'EC', 'LAB', 'ssdf', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:27:52', 'ssdf', 'uyuy'),
+(17, 0, 70, 0, 'Tibin Sunny', 'CS', 'LAB', 'ipoP', 'admin', '0000-00-00', 0, '0000-00-00 00:00:00', '2019-11-19 00:40:59', 'ipoP', 'OPO'),
+(18, 0, 71, 0, 'Tibin Sunny', 'CS', 'LAB', 'asd', 'admin', '2019-11-18', 0, '0000-00-00 00:00:00', '2019-11-19 00:47:38', 'asd', 'zx'),
+(19, 0, 8, 1, 'Christina Stantly', 'EC', 'LAB', 'lab', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:51:04', 'lab', 'rerfd'),
+(20, 0, 9, 1, 'Vineetha Vijayan', 'EE', 'LAB', '', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:52:34', '', 'qw'),
+(21, 0, 10, 1, 'Vineetha Vijayan', 'EE', 'LAB', 'qw', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:53:08', 'qw', 'qw'),
+(22, 0, 11, 1, 'Vineetha Vijayan', '', 'LAB', 'qw', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:53:42', 'qw', 'qw'),
+(23, 0, 12, 1, 'Vineetha Vijayan', 'EE', 'LAB', 'qw', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:56:11', 'qw', 'qw'),
+(24, 0, 13, 1, 'Sharon P Raju', 'CS', 'LAB', 'test', 'test', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 18:58:25', 'test', 'test'),
+(25, 0, 15, 1, 'Sharon P Raju', 'CS', 'LAB', 'test', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-19 19:12:08', 'test', 'test'),
+(26, 0, 16, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-20 00:22:09', '', ''),
+(27, 0, 17, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-20 00:23:04', '', ''),
+(28, 0, 18, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-20 00:23:47', '', ''),
+(29, 0, 19, 1, 'Pradeep P. Mathew', 'CS', '', '', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-20 00:25:12', '', ''),
+(30, 0, 20, 1, 'Sharon P Raju', 'CS', '', '', 'Admin', '2019-11-19', 0, '0000-00-00 00:00:00', '2019-11-20 00:53:48', '', ''),
+(31, 0, 21, 1, 'Pradeep P. Mathew', 'CS', 'LAB', 'adsd', 'Admin', '2019-11-20', 0, '0000-00-00 00:00:00', '2019-11-20 10:23:45', 'adsd', 'dssf'),
+(32, 0, 22, 1, 'Tomina Thomas', 'EE', 'LAB', 'asdad', 'Admin', '2019-11-20', 0, '0000-00-00 00:00:00', '2019-11-20 22:14:46', 'asdad', ',m,m,'),
+(33, 0, 23, 1, 'Tomina Thomas', 'EE', 'LAB', 'asdad', 'Admin', '2019-11-20', 0, '0000-00-00 00:00:00', '2019-11-20 22:15:43', 'asdad', ',m,m,'),
+(34, 0, 24, 1, 'Tibin Sunny', 'CS', 'LAB', 'asdad', 'Admin', '2019-11-20', 333, '0000-00-00 00:00:00', '2019-11-20 22:17:03', 'asdad', 'asd'),
+(35, 0, 25, 1, 'Tibin Sunny', 'CS', 'asdada', 'asdad', 'Admin', '2019-11-20', 3330, '2019-11-20 22:24:19', '2019-11-20 22:24:19', 'asdad', 'asd'),
+(36, 999, 26, 1, 'Tibin Sunny', 'CS', 'LAB', 'asdad', 'Admin', '2019-11-20', 12, '2019-11-20 22:32:31', '2019-11-20 22:32:31', 'asdad', 'asd');
 
 -- --------------------------------------------------------
 
@@ -487,7 +493,12 @@ INSERT INTO `inv_sales_log` (`bill_no`, `item_name`, `item_code`, `client_id`, `
 (18, '', 0, '', 1, 0, 0, 0, 0, '2019-11-20 00:23:47', 'Admin', 0),
 (19, '', 0, '', 1, 0, 0, 0, 0, '2019-11-20 00:25:11', 'Admin', 0),
 (20, '', 0, '', 1, 0, 0, 0, 0, '2019-11-20 00:53:48', 'Admin', 0),
-(21, 'Pen', 1234, '', 1, 1, 10, 10, 10, '2019-11-20 10:23:45', 'Admin', 0);
+(21, 'Pen', 1234, '', 1, 1, 10, 10, 10, '2019-11-20 10:23:45', 'Admin', 0),
+(22, 'test', 0, '', 1, 1, 10, 10, 10, '2019-11-20 22:14:46', 'Admin', 0),
+(23, '', 0, '', 1, 0, 0, 0, 0, '2019-11-20 22:15:43', 'Admin', 0),
+(24, 'test', 0, '', 1, 1, 10, 10, 10, '2019-11-20 22:17:03', 'Admin', 0),
+(25, 'test', 0, '', 1, 1, 10, 10, 10, '2019-11-20 22:24:19', 'Admin', 0),
+(26, 'test', 0, '', 1, 1, 10, 10, 10, '2019-11-20 22:32:31', 'Admin', 0);
 
 -- --------------------------------------------------------
 
@@ -587,7 +598,7 @@ INSERT INTO `inv_stock` (`sl_no`, `item_name`, `item_code`, `category_id`, `sub_
 (35, 'test', NULL, '1', 4, 1, '12113', '2019-11-11 00:08:20', 1234567890, 100, 100, '10', 10, 10, 10, '', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 0, '1234567890', 'test'),
 (36, 'test', NULL, '1', 4, 1, '12113', '2019-11-11 00:08:59', 1234567890, 99, 100, '10', 10, 10, 10, 'test', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 0, '1234567890', 'test'),
 (37, 'Pen', NULL, '1', 4, 1, '12113', '2019-11-11 01:58:47', 12113, 0, 12113, '12113', 12113, 12113, 12113, 'pen', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 0, '1234', '12113'),
-(38, 'test', 'test', '1', 4, 1, '12113', '2019-11-11 01:59:18', 1234567890, 98, 100, '10', 10, 10, 10, 'test', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 1, NULL, 'test'),
+(38, 'test', 'test', '1', 4, 1, '12113', '2019-11-11 01:59:18', 1234567890, 94, 100, '10', 10, 10, 10, 'test', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 1, NULL, 'test'),
 (39, 'Pen', '1234', '1', 4, 1, '12113', '2019-11-17 17:05:38', 1234, 394, 100, '10', 10, 10, 100, 'pen', 0, 0, 0, 0, 'test', '12113', '2019-11-20', '2019-11-15', 12113, 1, NULL, '1234');
 
 -- --------------------------------------------------------
@@ -2228,7 +2239,7 @@ ALTER TABLE `inv_current_bill`
 -- AUTO_INCREMENT for table `inv_distribution`
 --
 ALTER TABLE `inv_distribution`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `inv_history`
@@ -2252,7 +2263,7 @@ ALTER TABLE `inv_purchase_log`
 -- AUTO_INCREMENT for table `inv_sales_log`
 --
 ALTER TABLE `inv_sales_log`
-  MODIFY `bill_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `bill_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `inv_stock`
