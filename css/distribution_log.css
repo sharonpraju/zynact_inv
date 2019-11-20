@@ -1,0 +1,35 @@
+body{
+    background: #ffffff;
+}
+
+td{
+    padding-left: 50px;
+}
+
+.input_txt
+{
+    border: 0.5 solid;
+    border-color: #ff7510;
+}
+
+.input_txt_btn{
+    height: 40px;
+    width: 100px;
+    border: 0px;
+    color: #ffffff;
+    background: #ff7510;
+    margin-left: 10px;
+}
+
+@media print {
+    .submit_dist,.submit_dist1 {
+        display: none;
+    }
+
+    * {padding: 0; margin: 0}
+
+    @page
+    {
+        padding: 0; margin: 0;
+    }
+  }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>MBC Inventory</title>
+<link rel="stylesheet" href="css/index.css">
+
+<script src='js/tweenmax.min.js'></script>
+</head>
+<body>
+  <body>
+		<center>
+		<div class="preloader" id="preloader">
+				<h2 class="zynact_title">Zynact Inventory</h2>
+				<br><br>
+				<div id="wrapper">
+				<div id="bar"></div>
+				</div>
+				<br><br>
+				<input class="preloader_txt" id="preloader_txt"  type="text" value="Setting up environment" readonly>
+		</div>
+	</center>
+	<div id="main_div">
+		<center><img src="img/mbc_logo.png"></center>
+	<div id="inventory_login" class="Inventory login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1 id="login_title">Login</h1>
+			</div>
+			<div class="login-form">
+			<div class="control-group">
+			<form class="login_form" action="validate.php" method="post">
+				<input type="text" class="login-field" name="validation" value="login" readonly hidden>
+				<input type="text" class="login-field" name="admin" placeholder="username" id="login-name" required>
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+				<input type="password" class="login-field"  name="password" placeholder="password" id="login-pass" required>
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+				<input type="submit" class="btn btn-primary btn-large btn-block" value="Login">
+				<a class="login-link" href="#">Lost your password?</a>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+	<script id="rendered-js">
+		document.getElementById('main_div').style.visibility = 'hidden';
+		TweenMax.set('#bar', { xPercent: -100 });
+		TweenMax.to('#bar', 7, { xPercent: 0, delay: 1 });
+
+		var delayInMilliseconds = 4000;
+		setTimeout(function() {
+			document.getElementById("preloader_txt").value = "Validating Database Connection";
+		}, delayInMilliseconds);
+
+		var delayInMilliseconds = 8000;
+		setTimeout(function() {
+			document.getElementById("preloader_txt").value = "Loading Resources";
+		}, delayInMilliseconds);
+
+		var delayInMilliseconds = 10000;
+		setTimeout(function() {
+  		document.getElementById('preloader').style.display = 'none';
+			document.getElementById('main_div').style.visibility = 'visible';
+		}, delayInMilliseconds);
+	</script>
+</body>
+</body>
+</html>

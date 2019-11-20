@@ -1,0 +1,67 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #2c3338;
+    background: #ffffff;
+}
+
+@media print {
+
+    .print_btn{
+        display: none;
+    }
+
+
+    @page
+    {
+        padding: 0px; margin: 0px;
+    }
+  }
+  
+.div_sales_report{
+    float: left;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+.div_purchase_report{
+    float: left;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+button{
+    background: #ff7510;
+    color: #ffffff;
+    border: hidden;
+    width: 100px;
+    height: 50px;
+}
+
+.submit_btn{
+    background: #ff7510;
+    color: #ffffff;
+    border: hidden;
+    width: 100px;
+    height: 50px;
+}
+
+.print_btn{
+    background: #ff7510;
+    color: #ffffff;
+    border: hidden;
+    width: 100px;
+    height: 50px;
+}
+
+.error_div{
+    margin-top: 200px;
+    color: #2c3338;
+}
+
+.alert_level_1_div{
+    float:left;
+    margin-left: 100px;
+}
+
+.alert_level_2_div{
+    float:left;
+    margin-left: 100px;
+}

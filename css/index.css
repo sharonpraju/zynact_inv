@@ -1,0 +1,108 @@
+* {
+box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #2c3338;
+padding: 50px;
+overflow: hidden;
+}
+.login {
+margin: 20px auto;
+width: 300px;
+}
+.login-screen {
+padding: 20px;
+border-radius: 5px
+}
+
+.app-title {
+text-align: center;
+color: #ffffff;
+}
+
+.login-form {
+text-align: center;
+}
+.control-group {
+margin-bottom: 10px;
+}
+
+input {
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 250px;
+transition: border .5s;
+}
+
+input:focus {
+border: 1px solid #464646;
+box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #ff7510;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #e96100;
+}
+
+.login-link {
+  font-size: 12px;
+  color: #ffffff;
+  display: block;
+	margin-top: 12px;
+}
+
+.preloader{
+  align-items: center;
+  margin-top: 300px;
+}
+#wrapper{
+  width: 50%;
+  height: 4px;
+  top: 50%;
+  background: #efefef;
+  overflow: hidden;
+}
+
+#bar{
+  width: 100%;
+  height: 5px;
+  background: #ff7510;
+}
+
+.preloader_txt{
+  border:0px;
+  color:#ffffff;
+  background: #2c3338;
+  width:100%;
+}
+
+.zynact_title{
+  color:#ffffff;
+  margin-top:-100px; 
+}

@@ -1,0 +1,20 @@
+.input_txt{
+    height: 50px;
+    width: 300px;
+    border: 0.5px solid #ff7510;
+    margin-top: 20px;
+}
+
+.submit_btn{
+    height: 50px;
+    width: 200px;
+    background: #ff7510;
+    color: #ffffff;
+    border: hidden;
+}
+.input_txt_alert{
+    height: 50px;
+    width: 150px;
+    border: 0.5px solid #ff7510;
+    margin-top: 20px;
+}

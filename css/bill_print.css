@@ -1,0 +1,90 @@
+body{
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;  
+    }
+        ::-webkit-scrollbar {
+            background: transparent;  
+        }
+
+        
+
+        .submit_dist{
+            position: fixed;
+            top: 200px;
+            right: 100px;
+            color:#ffffff;
+            background: #ff7510;
+            border:0px;
+            border-radius:2em;
+            width: 150px;
+            height: 40px;
+        }
+        .submit_dist1{
+            position: fixed;
+            top: 250px;
+            right: 100px;
+            color:#ffffff;
+            background: #ff7510;
+            border:0px;
+            border-radius:2em;
+            width: 150px;
+            height: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            max-width: 200px;
+            min-width: 200px;
+            }
+
+        th, td {
+                border-collapse: collapse;
+                border-bottom: 1px solid rgb(20, 20, 20);
+                text-align: center;
+                padding: 5px;
+                }
+
+        th{
+            padding-bottom: 5px;
+        }
+        .item_name{
+            width:100px;
+        }
+
+        .main_title{
+            position: fixed;
+            top: 40px;
+            right:500px;
+        }
+
+        img{
+            width:50px;
+            height:50px;
+        }
+
+        .bill_title{
+            text-align: left;
+        }
+
+        .bill_shop_name{
+            text-align: right;
+        }
+
+        .main_div{
+            margin-top: -100px; 
+        }
+
+        @media print {
+            .submit_dist,.submit_dist1 {
+                display: none;
+            }
+
+            * {padding: 0; margin: 0}
+
+            @page
+            {
+                padding: 0; margin: 0;
+            }
+          }

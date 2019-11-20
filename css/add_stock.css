@@ -1,0 +1,528 @@
+body{
+background: #ffffff;
+padding: 0;
+margin: 0;   
+}
+.input_txt{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 250px;
+    height: 30px;
+    transition: border .5s;
+    margin-left: 70px;
+}
+
+.input_txt_top{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 250px;
+    height: 30px;
+    transition: border .5s;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.input_txt_distribution_1{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 200px;
+    height: 20px;
+    transition: border .5s;
+    position: fixed;
+    top: 35px;
+    left: 10px;
+}
+
+.input_txt_distribution_2{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 200px;
+    height: 20px;
+    transition: border .5s;
+    position: fixed;
+    top: 70px;
+    left: 10px;
+}
+
+.input_txt_distribution_3{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 200px;
+    height: 20px;
+    transition: border .5s;
+    position: fixed;
+    top: 100px;
+    left: 10px;
+}
+
+.input_txt_distribution_4{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 200px;
+    height: 50px;
+    transition: border .5s;
+    position: fixed;
+    top: 10px;
+    left: 250px;
+}
+
+.input_txt_distribution_5{
+    color: #000000;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-radius: 1px;
+    border-color:#ff7510;
+    padding: 5px 0;
+    width: 125px;
+    height: 20px;
+    transition: border .5s;
+    position: fixed;
+    top: 70px;
+    left: 310px;
+}
+
+.span_date{
+    position: fixed;
+    top: 70px;
+    left: 250px;
+}
+
+.submit{
+        color:#ffffff;
+        background: #ff7510;
+        border:0px;
+        border-radius:2em;
+        width: 200px;
+        height: 50px;
+        position: fixed;
+        top: 40px;
+        right: 10px;
+}
+
+.submit_dist{
+        position: fixed;
+        top: 70px;
+        right: 10px;
+        color:#ffffff;
+        background: #ff7510;
+        border:0px;
+        border-radius:2em;
+        width: 150px;
+        height: 40px;
+}
+
+.left{
+        width:100%;
+        float: left;
+        margin-top: 100px;
+}
+
+.top_div{
+        position: fixed;
+        top: 0px;
+        background: #ffffff;
+        padding: 10px;
+}
+    
+.right{
+        height: 80px;
+        width:100%;
+        margin-right: 50px;
+        position: fixed;
+        top: 0px;
+}
+
+::-webkit-scrollbar {
+        width: 0px;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.search{
+        position: fixed;
+        top: 40px;
+        right: 20px;
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        font-size: 16px;
+        font-weight: 200;
+        padding: 10px 0;
+        width: 150px;
+        height: 40px;
+        transition: border .5s;
+        margin-right: 150px;
+}
+
+.search_input_bill{
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        font-size: 16px;
+        font-weight: 200;
+        padding: 10px 0;
+        width: 150px;
+        height: 40px;
+        transition: border .5s;
+        margin-right: 155px;
+}
+
+.search_dist{
+        position: fixed;
+        right: 200px;
+        color: #000000;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        font-size: 16px;
+        font-weight: 200;
+        padding: 10px 0;
+        width: 160px;
+        height: 40px;
+        transition: border .5s;
+}
+
+.search_submit{
+        position: fixed;
+        top: 40px;
+        right: 10px;
+        color:#ffffff;
+        background: #ff7510;
+        border:0px;
+        border-radius:2em;
+        width: 150px;
+        height: 35px;
+}
+
+.search_submit_dist{
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        color:#ffffff;
+        background: #ff7510;
+        border:0px;
+        border-radius:2em;
+        width: 150px;
+        height: 40px;
+}
+
+.search_div_dist{
+        position: fixed;
+        top: 10px;
+        right: 10px;
+}
+
+.customer{
+        height:50px;
+        width:50px;
+        position: fixed;
+        top: 50px;
+        left: 10px;
+}
+
+.tbl_div{
+        border: #ff7510;
+        width: 79%;
+}
+
+table {
+        table-layout:fixed;
+}
+
+table td {
+        max-width:200px;
+        word-wrap:break-word;
+        padding-left: 20px;
+        overflow: hidden;
+}
+
+.input_code{
+        margin-left: 230px;
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        padding: 10px 0;
+        width: 250px;
+        height: 30px;
+        transition: border .5s; 
+}
+
+.typeahead dropdown-menu{
+        margin-top: 50px;
+
+}
+
+.bottom_div{
+        background: #ff7510;
+        width: 100%;
+        height: 1px;
+        position: fixed;
+        top:125px;
+}
+
+.user_txt{
+        border: 0.5px solid transparent;
+        border-color: #ff7510;
+        height: 20px;
+        width: 200px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+}
+
+.bill_txt{
+        height:25px;
+        width:100px;
+        margin-left: 20px;
+}
+
+.bill_txt_qty{
+        height:25px;
+        width:100px;
+        margin-left: 20px;
+}
+
+.bill_txt_sl_no{
+        height:25px;
+        width:40px;
+        margin-left: 20px;
+}
+
+.bill_txt_name{
+        height:25px;
+        width:300px;
+        margin-left: 20px;
+}
+
+.bill_txt_title1{
+        float: left;
+        margin-left: 20px;
+}
+
+.bill_txt_title2{
+        float: left;
+        margin-left: 30px;
+}
+
+.bill_txt_title3{
+        float: left;
+        margin-left: 255px;
+}
+
+.bill_txt_title4{
+        float: left;
+        margin-left: 55px;
+}
+
+.bill_txt_title5{
+        float: left;
+        margin-left: 70px;
+}
+
+.bill_txt_title6{
+        float: left;
+        margin-left: 95px;
+}
+
+.bill_txt_title7{
+        float: left;
+        margin-left: 45px;
+}
+
+.link_submit{
+        background: #ff7510;
+        color: #ffffff;
+        width: 150px;
+        height: 50px;
+        position: fixed;
+        top: 70px;
+        right: 10px;
+        border:0px;
+        border-radius:2em;
+        text-decoration: none !important;
+}
+
+.input_total{
+        position: fixed;
+        top:30px;
+        margin-left: 370px;
+        height: 40px;
+        width: 100px;
+        border: 0.5px solid #ff7510;
+        font-size: 20px;
+}
+
+.input_cash{
+        position: fixed;
+        top:20px;
+        margin-left: 500px;
+        width: 100px;
+        border: 0.5px solid #ff7510;
+}
+
+.output_cash{
+        position: fixed;
+        top:50px;
+        margin-left: 500px;
+        width: 100px;
+        border: 0.5px solid #ff7510;
+}
+
+.total_txt{
+        position: fixed;
+        top:35px;
+        margin-left: 300px;
+        font-size: 20px;
+}
+
+.bill_txt_total{
+        height:25px;
+        width:70px;
+        margin-left: 20px;
+}
+
+.background{
+        background: #ffffff;
+        height: 125px;
+        width: 100%;
+        position: fixed;
+        top: 0px;
+}
+
+.title_div{
+        background: #ffffff;
+        height: 20px;
+        position: fixed;
+        top:130px;
+}
+
+#toast {
+        visibility: hidden;
+        max-width: 50px;
+        height: 50px;
+        margin: auto;
+        margin-bottom: 100px;
+        background-color: #333333;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 2px;
+        position: fixed;
+        z-index: 1;
+        left: 0;right:0;
+        bottom: 30px;
+        font-size: 17px;
+        white-space: nowrap;
+}
+
+#toast #img{
+        width: 50px;
+        height: 50px;
+        
+        float: left;
+        
+        padding-top: 16px;
+        padding-bottom: 16px;
+        
+        box-sizing: border-box;
+    
+        
+        background-color: #111;
+        color: #fff;
+}
+
+#toast #desc{
+    
+        
+        color: #fff;
+       
+        padding: 16px;
+        
+        overflow: hidden;
+        white-space: nowrap;
+}
+    
+#toast.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 2s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+    
+@-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+}
+    
+@keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+}
+    
+@-webkit-keyframes expand {
+        from {min-width: 50px} 
+        to {min-width: 350px}
+}
+    
+@keyframes expand {
+        from {min-width: 50px}
+        to {min-width: 350px}
+}
+
+@-webkit-keyframes stay {
+        from {min-width: 350px} 
+        to {min-width: 350px}
+}
+    
+@keyframes stay {
+        from {min-width: 350px}
+        to {min-width: 350px}
+}
+
+@-webkit-keyframes shrink {
+        from {min-width: 350px;} 
+        to {min-width: 50px;}
+}
+    
+@keyframes shrink {
+        from {min-width: 350px;} 
+        to {min-width: 50px;}
+}
+    
+@-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 60px; opacity: 0;}
+}
+    
+@keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 60px; opacity: 0;}
+}
