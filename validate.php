@@ -230,7 +230,6 @@ if($validation=="add_stock")
             }
         }
         }
-    }
 
     }
     else
