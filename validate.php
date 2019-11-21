@@ -909,31 +909,29 @@ else {
 }
 if($validation=='stock_report')
 {
-    $sql="SELECT * FROM inv_stock ";
-        
+    $sql="SELECT * FROM inv_stock where section_id='$section' and status=1 ";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
                 echo "<table>";
                     echo "<tr>";
                         echo "<th>Sl No</th>";
                         echo "<th>Item Name</th>";
+                        echo "<th>Item Code</th>";
                         echo "<th>Invoice No</th>";
-                        echo "<th>Date Updated</th>";
-                        echo "<th>Total Cost</th>";
+                        echo "<th>Date Updated</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        
                         echo "<th>Units</th>";
-                        echo "<th>Alert Level 1</th>";
-                        echo "<th>Alert Level 2</th>";
+                
                     echo "</tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
                         echo "<td>" . $row['sl_no'] . "</td>";
                         echo "<td>" . $row['item_name'] . "</td>";
+                        echo "<td>" . $row['item_code'] . "</td>";
                         echo "<td>" . $row['invoice_no'] . "</td>";
-                        echo "<td>" . $row['date_updated'] . "</td>";
-                        echo "<td>" . $row['total_cost'] . "</td>";
+                        echo "<td>" . $row['date_updated'] . "</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        
                         echo "<td>" . $row['unit'] . "</td>";
-                        echo "<td>" . $row['alert_level_1'] . "</td>";
-                        echo "<td>" . $row['alert_level_2'] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
