@@ -112,12 +112,12 @@ margin: 0;
         border-radius: 1px;
         border-color:#ff7510;
         padding: 5px 0;
-        width: 125px;
+        width: 100px;
         height: 20px;
         transition: border .5s;
         position: fixed;
-        top: 70px;
-        left: 310px;
+        top: 100px;
+        left: 250px;
 }
 
 .input_txt_distribution_7{
@@ -127,12 +127,12 @@ margin: 0;
         border-radius: 1px;
         border-color:#ff7510;
         padding: 5px 0;
-        width: 50px;
+        width: 100px;
         height: 20px;
         transition: border .5s;
         position: fixed;
         top: 100px;
-        left: 300px;
+        left: 350px;
 }
 
 .span_date{
