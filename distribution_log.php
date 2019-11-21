@@ -189,7 +189,7 @@ if(isset($_POST['category_type']))
     if($_POST['category_type']==2)
     {
         echo "<form method='post' action='#'>
-        <input  id='bill' class='input_txt' type='text' name='search_date' placeholder='Date'>
+        <input  id='bill' class='input_txt' type='date' name='search_date' placeholder='Date'>
         <input type='submit' class='input_txt_btn' value='Submit'>
         </form>";
         
@@ -226,7 +226,7 @@ if($result = mysqli_query($conn, $sql)){
         mysqli_free_result($result);
     } 
 } else{
-    echo "ERROR: Could not able to execute. " . mysqli_error($conn);
+    echo "ERROR" . mysqli_error($conn);
 }
 }
 ?>

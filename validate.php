@@ -223,12 +223,7 @@ if($validation=="add_stock")
         {
             $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,total_tax,supplier,section_id,remarks)
             VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
-            //$conn->query($sql);
-            if ($conn->query($sql) === TRUE) {
-                echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+            $conn->query($sql);
         }
     }
 
@@ -298,15 +293,10 @@ if($validation=="conformation")
     {
         $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,total_tax,supplier,section_id,remarks)
         VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
-        if ($conn->query($sql) === TRUE) {
-            echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
+        $conn->query($sql);
     }
 
-    //header("location:add_stock.php");
+    header("location:add_stock.php");
 }
 
 if($validation=="add_category")
