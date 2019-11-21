@@ -122,6 +122,9 @@ if($validation=="add_stock")
     $_SESSION['item_supplier']=$_POST['item_supplier'];
     $_SESSION['order_no']=$_POST['order_no'];
     $_SESSION['order_date']=$_POST['order_date'];
+    $_SESSION['total_tax']=$_POST['total_tax'];
+    $_SESSION['bill_remarks']=$_POST['bill_remarks'];
+    $_SESSION['total_bill_cost']=$_POST['$total_bill_cost'];
     $_SESSION['total_cost']=$_POST['total_cost'];
     $_SESSION['item_unit']=$_POST['item_unit'];
     $_SESSION['item_price']=$_POST['item_price'];
@@ -143,6 +146,9 @@ if($validation=="add_stock")
     $item_supplier=$_SESSION['item_supplier'];
     $order_no=$_SESSION['order_no'];
     $order_date=$_SESSION['order_date'];
+    $total_tax=$_SESSION['total_tax'];
+    $bill_remarks=$_SESSION['bill_remarks'];
+    $total_bill_cost=$_SESSION['$total_bill_cost'];
     $total_cost=$_SESSION['total_cost'];
     $item_unit=$_SESSION['item_unit'];
     $item_price=$_SESSION['item_price'];
@@ -207,7 +213,8 @@ if($validation=="add_stock")
         //Adding New Stocks
         $sql="INSERT INTO inv_stock (item_name,category_id,sub_category_id,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,item_code,section_id,supplier,order_no,order_date,invoice_date)
         VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$item_code','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
-
+        $conn->query($sql);
+        }
         $sql="INSERT INTO inv_purchase_log (total_cost,invoice_no,section_id,supplier)
         VALUES ('$total_cost','$invoice_no','$section','$item_supplier')";
         if ($conn->query($sql) === TRUE) {

@@ -52,12 +52,13 @@
             <input type="date" class="input_txt_top" name="order_date" value="'.$row['order_date'].'">
             <input type="date" class="input_txt_top" name="invoice_date" value="'.$row['invoice_date'].'">';
             $invoice_no=$row['invoice_no'];
-            $sql = "SELECT total_tax, remarks FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
+            $sql = "SELECT total_cost, total_tax, remarks FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             echo'
+            <input type="text" class="input_txt_top" name="total_bill_cost" value="'.$row['total_cost'].'">
             <input type="text" class="input_txt_top" name="total_tax" value="'.$row['total_tax'].'">
-            <input type="text" class="input_txt_top" name="remarks" value="'.$row['remarks'].'">';
+            <input type="text" class="input_txt_top" name="bill_remarks" value="'.$row['remarks'].'">';
     }
     else
     {
