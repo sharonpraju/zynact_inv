@@ -11,8 +11,7 @@
      </select>
      
     
-     <?php
-     
+     <?php  
      include 'db_connection.php';
      $conn = OpenCon();
      session_start();
@@ -28,7 +27,87 @@
                 echo " <option value=".$row['cat_type'].">".$row['cat_type']."</option>"; 
                 }
 echo "</select><input type='button' class='input_txt_btn' value='Print' onclick='javascript:window.print()'>";
-     if(isset($_POST['user_name']))
+   
+
+
+if(isset($_POST['search_bill']))
+     {
+        $bill_no=$_POST['search_bill'];
+        $sql="SELECT * FROM inv_distribution where dist_bill_no='$bill_no' ";
+        if($result = mysqli_query($conn, $sql)){
+            if(mysqli_num_rows($result) > 0){
+                echo "<table>";
+                    echo "<tr>";
+                        echo "<th>Sl No</th>";
+                        echo "<th>Bill No</th>";
+                        echo "<th>Name</th>";
+                        echo "<th>Department</th>";
+                        echo "<th>Location</th>";
+                        echo "<th>Place</th>";
+                        echo "<th>Issued By</th>";
+                        echo "<th>Date</th>";
+                    echo "</tr>";
+                while($row = mysqli_fetch_array($result)){
+                    echo "<tr>";
+                        echo "<td>" . $row['sl_no'] . "</td>";
+                        echo "<td>" . $row['dist_bill_no'] . "</td>";
+                        echo "<td>" . $row['dist_user_id'] . "</td>";
+                        echo "<td>" . $row['department'] . "</td>";
+                        echo "<td>" . $row['dist_issued_to'] . "</td>";
+                        echo "<td>" . $row['dist_place'] . "</td>";
+                        echo "<td>" . $row['dist_issued_by'] . "</td>";
+                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+              
+                mysqli_free_result($result);
+            }
+        }
+        
+        unset($bill_no);
+        unset($_POST['search_date']);
+     }
+
+     if(isset($_POST['search_date']))
+     {
+        $search_date=$_POST['search_date'];
+        $sql="SELECT * FROM inv_distribution where dist_issued_on='$search_date' ";
+        if($result = mysqli_query($conn, $sql)){
+            if(mysqli_num_rows($result) > 0){
+                echo "<table>";
+                    echo "<tr>";
+                        echo "<th>Sl No</th>";
+                        echo "<th>Bill No</th>";
+                        echo "<th>Name</th>";
+                        echo "<th>Department</th>";
+                        echo "<th>Location</th>";
+                        echo "<th>Place</th>";
+                        echo "<th>Issued By</th>";
+                        echo "<th>Date</th>";
+                    echo "</tr>";
+                while($row = mysqli_fetch_array($result)){
+                    echo "<tr>";
+                        echo "<td>" . $row['sl_no'] . "</td>";
+                        echo "<td>" . $row['dist_bill_no'] . "</td>";
+                        echo "<td>" . $row['dist_user_id'] . "</td>";
+                        echo "<td>" . $row['department'] . "</td>";
+                        echo "<td>" . $row['dist_issued_to'] . "</td>";
+                        echo "<td>" . $row['dist_place'] . "</td>";
+                        echo "<td>" . $row['dist_issued_by'] . "</td>";
+                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+              
+                mysqli_free_result($result);
+            }
+        }
+        
+        unset($bill_no);
+        unset($_POST['search_date']);
+     }
+if(isset($_POST['user_name']))
      {
         $user_name=$_POST['user_name'];
         if(strlen($user_name)==2)
@@ -98,12 +177,26 @@ if(isset($_POST['category_type']))
     
     if($_POST['category_type']==1)
     {
-    $sql = "SELECT * FROM inv_distribution WHERE section_id='$section'  ORDER by 'dist_bill_no'; ";
+        echo "<form method='post' action='#'>
+        <input  id='bill' class='input_txt' type='text' name='search_bill' placeholder='Bill No'>
+        <input type='submit' class='input_txt_btn' value='Submit'>
+        </form>";
+        
+    $sql = "SELECT * FROM inv_distribution WHERE section_id='$section'  ORDER by 'dist_bill_no'";
+        
+    
     }
     if($_POST['category_type']==2)
     {
-    $sql="SELECT * FROM inv_distribution WHERE section_id='$section' ORDER by 'dist_issued_on'";
-    }
+        echo "<form method='post' action='#'>
+        <input  id='bill' class='input_txt' type='text' name='search_date' placeholder='Date'>
+        <input type='submit' class='input_txt_btn' value='Submit'>
+        </form>";
+        
+    $sql = "SELECT * FROM inv_distribution WHERE section_id='$section'  ORDER by 'dist_bill_no'";
+
+    
+}
 if($result = mysqli_query($conn, $sql)){
     if(mysqli_num_rows($result) > 0){
         echo "<table>";

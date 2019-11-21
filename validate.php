@@ -959,6 +959,41 @@ if($validation=='stock_report')
         }
         
      }
+     if($validation=='purchase_report')
+{
+    $sql="SELECT * FROM inv_purchase_log where section_id='$section' ";
+        if($result = mysqli_query($conn, $sql)){
+            if(mysqli_num_rows($result) > 0){
+                echo "<table>";
+                    echo "<tr>";
+                        echo "<th>Sl No</th>";
+                        echo "<th>Invoice no</th>";
+                        echo "<th>Date</th>";
+                        echo "<th>Supplier</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        
+                        echo "<th>Total Cost</th>";
+                        echo "<th>Total Tax</th>";
+                
+                    echo "</tr>";
+                while($row = mysqli_fetch_array($result)){
+                    echo "<tr>";
+                        echo "<td>" . $row['sl_no'] . "</td>";
+                        echo "<td>" . $row['invoice_no'] . "</td>";
+                        echo "<td>" . $row['section_id'] . "</td>";
+                        echo "<td>" . $row['date'] . "</td>";
+                        echo "<td>" . $row['supplier'] . "</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        echo "<td>" . $row['total_cost'] . "</td>";
+
+                        echo "<td>" . $row['total_tax'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+              
+                mysqli_free_result($result);
+            }
+        }
+        
+     }
 CloseCon($conn);
 
 
