@@ -225,6 +225,8 @@ if($validation=="add_stock")
             VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
             $conn->query($sql);
         }
+
+        header("location:add_stock.php");
     }
 
     }
