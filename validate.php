@@ -294,7 +294,6 @@ if($validation=="conformation")
     $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    echo"2232";
     if($result->num_rows == 0)
     {
         $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,total_tax,supplier,section_id,remarks)
