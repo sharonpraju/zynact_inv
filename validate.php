@@ -215,12 +215,19 @@ if($validation=="add_stock")
         VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$item_code','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
         $conn->query($sql);
         }
-        $sql="INSERT INTO inv_purchase_log (total_cost,invoice_no,section_id,supplier)
-        VALUES ('$total_cost','$invoice_no','$section','$item_supplier')";
-        if ($conn->query($sql) === TRUE) {
+
+        $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        if($row['invoice_no']==NULL)
+        {
+            $sql="INSERT INTO inv_purchase_log (total_cost,invoice_no,section_id,supplier)
+            VALUES ('$total_bill_cost','$invoice_no','$section','$item_supplier')";
+            if ($conn->query($sql) === TRUE) {
             echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
-        } else {
+            } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
         }
     }
