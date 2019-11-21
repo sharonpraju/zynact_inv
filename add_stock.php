@@ -57,7 +57,7 @@
             $row = mysqli_fetch_assoc($result);
             echo'
             <input type="text" class="input_txt_top" name="total_tax" value="'.$row['total_tax'].'">
-            <input type="text" class="input_txt_top" name="remarks" value="'.$row['remarks'].'">';
+            <input type="text" class="input_txt_top" name="bill_remarks" value="'.$row['remarks'].'">';
     }
     else
     {
