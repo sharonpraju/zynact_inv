@@ -124,7 +124,7 @@ if($validation=="add_stock")
     $_SESSION['order_date']=$_POST['order_date'];
     $_SESSION['total_tax']=$_POST['total_tax'];
     $_SESSION['bill_remarks']=$_POST['bill_remarks'];
-    $_SESSION['total_bill_cost']=$_POST['$total_bill_cost'];
+    $_SESSION['total_bill_cost']=$_POST['total_bill_cost'];
     $_SESSION['total_cost']=$_POST['total_cost'];
     $_SESSION['item_unit']=$_POST['item_unit'];
     $_SESSION['item_price']=$_POST['item_price'];
@@ -148,7 +148,7 @@ if($validation=="add_stock")
     $order_date=$_SESSION['order_date'];
     $total_tax=$_SESSION['total_tax'];
     $bill_remarks=$_SESSION['bill_remarks'];
-    $total_bill_cost=$_SESSION['$total_bill_cost'];
+    $total_bill_cost=$_SESSION['total_bill_cost'];
     $total_cost=$_SESSION['total_cost'];
     $item_unit=$_SESSION['item_unit'];
     $item_price=$_SESSION['item_price'];
@@ -219,17 +219,18 @@ if($validation=="add_stock")
         $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
-        if($row['invoice_no']==NULL)
+        if($result->num_rows == 0)
         {
-            $sql="INSERT INTO inv_purchase_log (total_cost,invoice_no,section_id,supplier)
-            VALUES ('$total_bill_cost','$invoice_no','$section','$item_supplier')";
+            $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,total_tax,supplier,section_id,remarks)
+            VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
+            //$conn->query($sql);
             if ($conn->query($sql) === TRUE) {
-            echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
+                echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
             } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-        }
+    }
 
     }
     else
@@ -252,6 +253,9 @@ if($validation=="conformation")
     $item_supplier=$_SESSION['item_supplier'];
     $order_no=$_SESSION['order_no'];
     $order_date=$_SESSION['order_date'];
+    $total_tax=$_SESSION['total_tax'];
+    $bill_remarks=$_SESSION['bill_remarks'];
+    $total_bill_cost=$_SESSION['total_bill_cost'];
     $total_cost=$_SESSION['total_cost'];
     $item_unit=$_SESSION['item_unit'];
     $item_price=$_SESSION['item_price'];
@@ -287,19 +291,21 @@ if($validation=="conformation")
     WHERE item_code='$item_code' AND section_id='$section' AND status='1'";
     $conn->query($sql);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,supplier,section_id)
-        VALUES ('$invoice_no','$total_cost','$item_supplier','$section')";
+    $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    echo"2232";
+    if($result->num_rows == 0)
+    {
+        $sql="INSERT INTO inv_purchase_log (invoice_no,total_cost,total_tax,supplier,section_id,remarks)
+        VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
         if ($conn->query($sql) === TRUE) {
             echo "<center><br><br><br><br><br><br><br><br>New Item Added Successfully</center>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+
+    }
 
     //header("location:add_stock.php");
 }
