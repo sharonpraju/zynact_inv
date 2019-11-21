@@ -124,6 +124,7 @@ if($validation=="add_stock")
     $_SESSION['order_date']=$_POST['order_date'];
     $_SESSION['total_tax']=$_POST['total_tax'];
     $_SESSION['bill_remarks']=$_POST['bill_remarks'];
+    $_SESSION['total_bill_cost']=$_POST['$total_bill_cost'];
     $_SESSION['total_cost']=$_POST['total_cost'];
     $_SESSION['item_unit']=$_POST['item_unit'];
     $_SESSION['item_price']=$_POST['item_price'];
@@ -147,6 +148,7 @@ if($validation=="add_stock")
     $order_date=$_SESSION['order_date'];
     $total_tax=$_SESSION['total_tax'];
     $bill_remarks=$_SESSION['bill_remarks'];
+    $total_bill_cost=$_SESSION['$total_bill_cost'];
     $total_cost=$_SESSION['total_cost'];
     $item_unit=$_SESSION['item_unit'];
     $item_price=$_SESSION['item_price'];
