@@ -52,9 +52,9 @@ do
 }while ($row = $result->fetch_assoc());
 
 echo'
-Stocks Under Warning Limit :'.$alert_level.'
+Stocks Under Warning Limit : '.$alert_level.'
 <br><br>
-Out Of Stock :'.$out_of_stock.'
+Out Of Stock : '.$out_of_stock.'
 <br><br>
 Stock Requests :';
 ?>
