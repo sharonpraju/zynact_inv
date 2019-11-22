@@ -47,7 +47,6 @@ while ($row = mysqli_fetch_array($result))
         echo $alert_level_1;
         if($total_units<$alert_level_1)
         {
-            echo"ew";
             $alert_level++;
         }
     }
