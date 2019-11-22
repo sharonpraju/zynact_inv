@@ -218,9 +218,19 @@ if($validation=="add_stock")
         else
         {
         //Adding New Stocks
-        $sql="INSERT INTO inv_stock (item_name,category_id,sub_category_id,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,item_code,section_id,supplier,order_no,order_date,invoice_date)
-        VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$item_code','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
+        $sql="INSERT INTO inv_stock (item_name,category_id,sub_category_id,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,section_id,supplier,order_no,order_date,invoice_date)
+        VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
         $conn->query($sql);
+
+        $sql = "SELECT sl_no FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $sl_no=$row['sl_no'];
+
+        $sql="UPDATE inv_stock
+        SET item_code='$sl_no' WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
+        $conn->query($sql);
+
         }
 
         $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
@@ -291,7 +301,7 @@ if($validation=="conformation")
     $new_units=$row['total_units']+$total_units;
 
     $sql="UPDATE inv_stock
-    SET item_name='$item_name', category_id='$item_category',sub_category_id='$sub_category', total_units='$new_units',total_cost='$total_cost', barcode='$barcode', unit='$item_unit', mrp='$item_price', selling_price='$item_selling_price', tax_percent='$item_tax', item_code='$item_code',transportation_cost='$transportation_cost',section_id='$section',supplier='$item_supplier',order_no='$order_no',order_date='$order_date',invoice_no='$invoice_no',invoice_date='$invoice_date',status='1',reference_no=NULL,remarks='$remarks'
+    SET item_name='$item_name', category_id='$item_category',sub_category_id='$sub_category', total_units='$new_units',total_cost='$total_cost', barcode='$barcode', unit='$item_unit', mrp='$item_price', selling_price='$item_selling_price', tax_percent='$item_tax', transportation_cost='$transportation_cost',section_id='$section',supplier='$item_supplier',order_no='$order_no',order_date='$order_date',invoice_no='$invoice_no',invoice_date='$invoice_date',status='1',reference_no=NULL,remarks='$remarks'
     WHERE item_code='$item_code' AND section_id='$section' AND status='1'";
     $conn->query($sql);
 
