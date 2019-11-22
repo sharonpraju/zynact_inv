@@ -1,13 +1,13 @@
 <?php
 session_start();
-if(!isset($_SESSION['section']))
-header("location:index.html");
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
 $section=$_SESSION['section'];
-
 include 'db_connection.php';
 $conn = OpenCon();
 ?>
-
 <link href="css/bootstrap.min.css" rel="stylesheet">
  <link rel="stylesheet" href="css/add_stock.css">
  <script src="js/jquery.min.js"></script>
@@ -24,7 +24,6 @@ $conn = OpenCon();
     </div>
  <br><br>
 <div class='background'>
-
 </div>
  <div>
 <br>
@@ -69,20 +68,14 @@ $conn = OpenCon();
         <input type="text" class="input_txt_distribution_7" name="stock_no" placeholder='Stock No' id="Remarks" class="ui-autocomplete-input">
         <input type=submit class="link_submit" value="Save and Print">
         </form>
-        
 </div>
-
 </div>
 <br><br>
-
-
 <?php
-
 $sql = "SELECT * FROM inv_current_bill";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $id=0;
-
 echo"
 <span></span>
     <form method='post' action='validate.php' style='overflow:hidden' ng-app=''>
@@ -118,21 +111,15 @@ echo"
 <br><br>
 <br><br>
 </div>
-
 <div id="toast"><div id="img">INFO</div><div id="desc">Press Enter To Get Balance Amount</div></div>
-
-
 <script src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/typeahead.js"></script>
 </head>
 <script>
-
     window.onload = function(){
         window.total_price();
     }
-
-    function change_name(val,code) {
-        
+    function change_name(val,code) { 
         $.post("validate.php",
        {validation: 'bill_update_name',item_name: val, item_code: code},
        function(response){
@@ -140,7 +127,6 @@ echo"
        }
     );
 }
-
 function change_code(val,code) {
     $.post("validate.php",
        {validation: 'bill_update_code',item_code_new: val, item_code: code},
@@ -149,7 +135,6 @@ function change_code(val,code) {
        }
     );
 }
-
 function change_quantity(val,code) {
     $.post("validate.php",
        {validation: 'bill_update_quantity',item_quantity: val, item_code: code},
@@ -160,7 +145,6 @@ function change_quantity(val,code) {
 
     window.total_price();
 }
-
 function change_mrp(val,code) {
     $.post("validate.php",
        {validation: 'bill_update_mrp',item_mrp: val, item_code: code},
@@ -169,7 +153,6 @@ function change_mrp(val,code) {
        }
     );
 }
-
 function change_selling_price(val,code) {
     $.post("validate.php",
        {validation: 'bill_update_selling_price',item_selling_price: val, item_code: code},
@@ -180,7 +163,6 @@ function change_selling_price(val,code) {
 
     window.total_price();
 }
-
 function total_price() {
     var i,x,total=0;
     var id=document.getElementById('id').value;
@@ -195,20 +177,17 @@ function total_price() {
     
     
 }
-
 function change_output_cash(value){
     var x=document.getElementById('total_price').value;
     sum=value-x;
     x = document.getElementById('output_cash');
     x.value=sum;
 }
-
 function show_toast(){
     var x = document.getElementById("toast")
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10000);
 }
-
 function update(user_name) {
         $.ajax({
                     url: "search_item.php",
@@ -221,7 +200,6 @@ function update(user_name) {
     }
 
 </script>
-
 <style>
 	.typeahead { border: 2px solid #FFF;border-radius: 4px;padding: 8px 12px;max-width: 300px;min-width: 290px;background: rgba(66, 52, 52, 0.5);color: #FFF;}
 	.tt-menu { width:300px; }
@@ -254,7 +232,6 @@ function update(user_name) {
             }
         });
     });
-
     $(document).ready(function(){
     $('.bill_btn').click(function(){
         var item_code = $(this).attr('id');
@@ -266,7 +243,6 @@ function update(user_name) {
         });
     });
 });
-
 $(document).ready(function () {
         $('#search_name').typeahead({
             source: function (query, result) {
@@ -284,7 +260,6 @@ $(document).ready(function () {
             }
         });
     });
-
 $( ".bill_txt_qty" ).on('input', function() {
     var max=parseInt($(this).attr('name'));
     if ($(this).val()>parseInt($(this).attr('name'))){

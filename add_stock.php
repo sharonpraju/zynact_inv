@@ -12,13 +12,16 @@
 <div class="top_div">
 <input type="text" name="validation" value="add_stock" hidden readonly>
 
-    <?php 
-        include 'db_connection.php';
-        $conn = OpenCon();
-        session_start();
-        if(!isset($_SESSION['section']))
-header("location:index.html");die();
-        $section=$_SESSION['section'];
+<?php
+    session_start();
+    if(!isset($_SESSION['admin']))
+    {
+    header("location:index.html");
+    }
+    
+    include 'db_connection.php';
+    $conn = OpenCon();
+    $section=$_SESSION['section'];
 
     $sql = "SELECT MAX(sl_no) FROM inv_stock WHERE section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);

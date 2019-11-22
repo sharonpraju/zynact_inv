@@ -1,8 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['section']))
-
-header("location:index.html");
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" >

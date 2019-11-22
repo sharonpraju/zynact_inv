@@ -1,8 +1,11 @@
 <?php
 session_start();
-if(!isset($_SESSION['section']))
-header("location:index.html");
-die();
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+else
+{
 $section=$_SESSION['section'];
 $admin=$_SESSION['admin'];
 include 'db_connection.php';
@@ -115,27 +118,26 @@ $total=0;
 
     $sql = "TRUNCATE TABLE inv_current_bill";
     $result = mysqli_query($conn, $sql);
-   
 
-    ?>
-
-        <tr>
-            <td colspan='2'><br><br>Discount</td>
-            <td colspan='4'><br><br><?php echo $item_discount; ?></td>
-        </tr>
-        <tr>
-            <td colspan='2'>Tax Amount</td>
-            <td colspan='4'>#demo</td>
-        </tr>
-        <tr>
-            <td colspan='2'>Total</td>
-            <td colspan='4'><?php echo $total; ?></td>
-        </tr>
-        <tr>
-            <td colspan='6'>..Thanks for shopping..<br>.Visit Again.</td>
-        </tr>
-        </center>
+echo"<tr>
+<td colspan='2'><br><br>Discount</td>
+<td colspan='4'><br><br>".$item_discount."</td>
+</tr>
+<tr>
+<td colspan='2'>Tax Amount</td>
+<td colspan='4'>#demo</td>
+</tr>
+<tr>
+<td colspan='2'>Total</td>
+<td colspan='4'>".$total."</td>
+</tr>
+<tr>
+<td colspan='6'>..Thanks for shopping..<br>.Visit Again.</td>
+</tr>
+</center>
 </div>
-        <input type='button' class='submit_dist' value='Print' onclick="javascript:window.print()">
-        <br>
-        <input type='submit' class='submit_dist1' value='Back' onclick="window.location.href='distribution.php'">
+<input type='button' class='submit_dist' value='Print' onclick='javascript:window.print()'>
+<br>
+<input type='submit' class='submit_dist1' value='Back' onclick='window.location.href='distribution.php'">
+}
+?>

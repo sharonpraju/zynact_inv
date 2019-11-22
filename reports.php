@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+?>
 <link rel="stylesheet" href="css/reports.css">
 <div><br><br><br><br>
     <form method="post" action="validate.php">

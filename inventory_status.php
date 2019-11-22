@@ -11,8 +11,12 @@
 include 'db_connection.php';
 $conn = OpenCon();
 session_start();
-if(!isset($_SESSION['section']))
-header("location:index.html");
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+else
+{
 $section=$_SESSION['section'];
 $admin=$_SESSION['admin'];
 $out_of_stock=0;
@@ -59,6 +63,7 @@ Stocks Under Warning Limit : '.$alert_level.'
 Out Of Stock : '.$out_of_stock.'
 <br><br>
 Stock Requests :';
+}
 ?>
 </div>
 <script src="js/chart.min.js"></script>

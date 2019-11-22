@@ -6,11 +6,14 @@
     <input type='button' class='add_btn' value='Add Supplier' onclick='hide_div()'>
     <?php
 // connect to the database
+session_start();
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
 include('db_connection.php');
 $conn = OpenCon();
-session_start();
-if(!isset($_SESSION['section']))
-header("location:index.html");
+
 $section=$_SESSION['section'];
 
 // get the records from the database

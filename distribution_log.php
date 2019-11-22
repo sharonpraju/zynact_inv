@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="css/distribution_log.css">
 <script src="js/angular.min.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/typeahead.js"></script>
+<div class="manage_cat_div">
 <form name='filterform' method='POST'>
      <select class='input_txt' name='category_type' id='autotype' onchange="this.form.submit()" >
      <option value=0 >Select</option>
@@ -16,8 +20,12 @@
      $conn = OpenCon();
 
      session_start();
-     if(!isset($_SESSION['section']))
-header("location:index.html");
+     if(!isset($_SESSION['admin']))
+     {
+         header("location:index.html");
+     }
+     else
+     {
      $section=$_SESSION['section'];
      echo " <select class='input_txt' name='sub_type' id='autotype'; onchange=this.form.submit() >
      <option value=0 >All</option>";
@@ -29,11 +37,11 @@ header("location:index.html");
                 {
                 echo " <option value=".$row['cat_type'].">".$row['cat_type']."</option>"; 
                 }
-echo "</select><input type='button' class='input_txt_btn' value='Print' onclick='javascript:window.print()'>";
+        echo "</select><input type='button' class='input_txt_btn' value='Print' onclick='javascript:window.print()'>";
    
 
 
-if(isset($_POST['search_bill']))
+    if(isset($_POST['search_bill']))
      {
         $bill_no=$_POST['search_bill'];
         $sql="SELECT * FROM inv_distribution where dist_bill_no='$bill_no' ";
@@ -232,8 +240,25 @@ if($result = mysqli_query($conn, $sql)){
     echo "ERROR" . mysqli_error($conn);
 }
 }
+
+}
 ?>
- 
+
+<style>
+	.typeahead { border: 2px solid #FFF;border-radius: 4px;padding: 8px 12px;max-width: 300px;min-width: 290px;background: rgba(66, 52, 52, 0.5);color: #FFF;}
+	.tt-menu { width:300px; }
+	ul.typeahead{margin:0px;padding:10px 0px;}
+	ul.typeahead.dropdown-menu li a {padding: 10px !important;	border-bottom:#CCC 1px solid;color:#FFF;}
+	ul.typeahead.dropdown-menu li:last-child a { border-bottom:0px !important; }
+	.bgcolor {max-width: 550px;min-width: 290px;max-height:340px;}
+	.demo-label {font-size:1.5em;color: #686868;font-weight: 500;color:#FFF;}
+	.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+		text-decoration: none;
+		background-color: #1f3f41;
+		outline: 0;
+	}
+</style>
+    
  <script>
     $(document).ready(function () {
         $('#search_name').typeahead({

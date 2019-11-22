@@ -27,9 +27,14 @@ if($validation=="login")
     }
 }
 
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+else
+{
+    
 $section=$_SESSION['section'];
-if(!isset($_SESSION['section']))
-header("location:index.html");
 $admin=$_SESSION['admin'];
 
 if($validation=="chng_color")
@@ -995,5 +1000,7 @@ function conformation($conformation)
 {
     $conformation=1;
     return $conformation;
+}
+
 }
 ?>

@@ -1,4 +1,10 @@
 
+<?php
+if(!isset($_SESSION['admin']))
+{
+  header("location:index.html");
+}
+?>
 <link rel="stylesheet" href="css/add_item.css">
 <center>
 <form method="post" action="validate.php">

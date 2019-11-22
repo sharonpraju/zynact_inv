@@ -6,8 +6,8 @@
     
         <span class="top_span">
             <center>
-          <form action="server.php" method="post">
-            <input type="text" id="search" class="search_txt_1" placeholder=" Search">
+          <form action="#" method="post">
+            <input type="text" id="search" class="search_txt_1" name="search" placeholder=" Search">
             <input type="submit" class="btn_search" value="Search">
           </form>
         <div class="bottom_line"></div>
@@ -19,7 +19,7 @@
           $('#search').typeahead({
             source: function (query, result) {
                 $.ajax({
-                    url: "server.php",
+                    url: "search_item.php",
 					          data: 'query=' + query,            
                     dataType: "json",
                     type: "POST",
@@ -39,14 +39,29 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['section']))
-header("location:index.html");
+if(!isset($_SESSION['admin']))
+{
+  header("location:index.html");
+}
+else
+{
 $section=$_SESSION['section'];
 include 'db_connection.php';
 $conn = OpenCon();
-$sql = "SELECT * FROM inv_stock WHERE section_id='$section' AND status='1'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
+if(isset($_POST['search']))
+{
+  $item_name=$_POST['search'];
+  $sql = "SELECT * FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+}
+else
+{
+  $sql = "SELECT * FROM inv_stock WHERE section_id='$section' AND status='1'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
+}
+
 $id=0;
 do{
   $id++;
@@ -102,9 +117,10 @@ do{
             </div>';
   }while($row = mysqli_fetch_array($result));
   echo '<input id="total_items" value="'.$id.'" type="text" readonly hidden>';
+  echo'</div>';
+}
 ?>
-    </div>
-    <style>
+<style>
 	.typeahead { border: 2px solid #FFF;border-radius: 4px;padding: 8px 12px;max-width: 300px;min-width: 290px;background: rgba(66, 52, 52, 0.5);color: #FFF;}
 	.tt-menu { width:300px; }
 	ul.typeahead{margin:0px;padding:10px 0px;}
@@ -117,8 +133,8 @@ do{
 		background-color: #1f3f41;
 		outline: 0;
 	}
-	</style>
-    <script>
+</style>
+<script>
 
     window.onload = function(){
       var x = document.getElementById("total_items");
@@ -147,4 +163,4 @@ do{
           x.style.display = "none";
         }
       }
-    </script>
+</script>

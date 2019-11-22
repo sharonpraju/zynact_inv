@@ -1,3 +1,10 @@
+  <?php
+  session_start();
+  if(!isset($_SESSION['admin']))
+  {
+      header("location:index.html");
+  }
+  ?>
   <link rel="stylesheet" href="css/settings.css">
   <script src="js/modernizr.min.js" type="text/javascript"></script>
   <link rel="stylesheet" href="css/normalize.min.css">
@@ -13,11 +20,11 @@
 <div class="a_btn"><button onclick="go('user_credentials.php')">User Credentials</button></div>
 <div class="a_btn"><button onclick="go('add_category.php')">Manage Category</button></div>
 <div class="a_btn"><button onclick="go('manage_supplier.php')">Manage Supplier</button></div>
-<div class="a_btn"><button onclick="go('add_item.html')">Add Item</button></div>
-<div class="a_btn"><button onclick="go('reports.html')">Reports</button></div>
+<div class="a_btn"><button onclick="go('add_item.php')">Add Item</button></div>
+<div class="a_btn"><button onclick="go('reports.php')">Reports</button></div>
 <div class="a_btn"><button onclick="go('department_sub_section.php')">Department Sub Section</button></div>
 </div>
-<iframe id="content_frame" src="inv_theme.html"></iframe>
+<iframe id="content_frame" src="inv_theme.php"></iframe>
 </div>
 <script>
   function go(url) {

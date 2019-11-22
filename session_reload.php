@@ -1,7 +1,14 @@
 <?php
 session_start();
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+else
+{
 $admin=$_SESSION['admin'];
 $section=$_SESSION['section'];
 $_SESSION['admin']=$admin;
 $_SESSION['section']=$section;
+}
 ?>

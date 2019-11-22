@@ -1,16 +1,18 @@
 <link rel="stylesheet" href="css/add_supplier.css">
 <link rel="stylesheet" href="css/settings.css">
-
-
 <div class="manage_cat_div">
-    <?php
-// connect to the database
+
+<?php
+session_start();
+if(!isset($_SESSION['admin']))
+{
+    header("location:index.html");
+}
+else
+{
 include('db_connection.php');
 $conn = OpenCon();
-session_start();
 $section=$_SESSION['section'];
-if(!isset($_SESSION['section']))
-header("location:index.html");
 
 // get the records from the database
 if ($result = $conn->query("SELECT * FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'"))
@@ -43,16 +45,15 @@ echo '<input type="text" class="input_txt" value=" Supplier Remarks :' . $row->s
 }
 echo "</h4></center>";
 }
-// if there are no records in the database, display an alert message
 else
 {
   echo "<center>Supplier Not Found</center>";
 }
 }
-// show an error if there is an issue with the database query
 else
 {
 echo "Error: " . $conn->error;
 }
 echo"<center><br><button class='btn_submit' onclick='history.go(-1);'>Back</button></center>";
+}
 ?>
