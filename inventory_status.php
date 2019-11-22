@@ -32,26 +32,24 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $alert_level=0;
 
-while ($row = mysqli_fetch_array($result))
+do
 {
-    if($row['item_name']!=NULL)
-    {
-        $item_name=$row['item_name'];
-        $total_units=$row['total_units'];
-        $sql = "SELECT item_alert1 FROM inv_items WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-
-        $alert_level_1=$row['item_alert1'];
-        echo $total_units;
-        echo $alert_level_1;
-        if($total_units<$alert_level_1)
+        if($row['item_name']!=NULL)
         {
-            $alert_level++;
-        }
-    }
+            $item_name=$row['item_name'];
+            $total_units=$row['total_units'];
+            $sql_1 = "SELECT item_alert1 FROM inv_items WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
+            $result_1 = mysqli_query($conn, $sql_1);
+            $row_1 = mysqli_fetch_assoc($result_1);
 
-}
+            $alert_level_1=$row_1['item_alert1'];
+            if($total_units<$alert_level_1)
+            {
+                $alert_level++;
+            }
+        }
+
+}while ($row = $result->fetch_assoc());
 
 echo'
 Stocks Under Warning Limit :'.$alert_level.'
