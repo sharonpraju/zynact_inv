@@ -27,12 +27,13 @@ do{
 
 }while ($row = $result->fetch_assoc());
 
-$sql = "SELECT * FROM inv_stock WHERE section_id='$section' AND status='1'";
+$sql = "SELECT item_name, total_units FROM inv_stock WHERE section_id='$section' AND status='1'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $alert_level=0;
 
-do{
+while ($row = mysqli_fetch_array($result))
+{
     if($row['item_name']!=NULL)
     {
         $item_name=$row['item_name'];
@@ -42,14 +43,16 @@ do{
         $row = mysqli_fetch_assoc($result);
 
         $alert_level_1=$row['item_alert1'];
-
+        echo $total_units;
+        echo $alert_level_1;
         if($total_units<$alert_level_1)
         {
+            echo"ew";
             $alert_level++;
         }
     }
 
-}while ($row = $result->fetch_assoc());
+}
 
 echo'
 Stocks Under Warning Limit :'.$alert_level.'
