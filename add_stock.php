@@ -16,6 +16,8 @@
         include 'db_connection.php';
         $conn = OpenCon();
         session_start();
+        if(!isset($_SESSION['section']))
+header("location:index.html");die();
         $section=$_SESSION['section'];
 
     $sql = "SELECT MAX(sl_no) FROM inv_stock WHERE section_id='$section' AND status='1'";

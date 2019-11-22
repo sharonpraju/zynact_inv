@@ -28,6 +28,8 @@ if($validation=="login")
 }
 
 $section=$_SESSION['section'];
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $admin=$_SESSION['admin'];
 
 if($validation=="chng_color")

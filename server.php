@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['section']))
+	header("location:index.html");
 	$section=$_SESSION['section'];	
 	$keyword = strval($_POST['query']);
 	$search_param = "{$keyword}%";

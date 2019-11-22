@@ -9,6 +9,8 @@ include('db_connection.php');
 $conn = OpenCon();
 session_start();
 $section=$_SESSION['section'];
+if(!isset($_SESSION['section']))
+header("location:index.html");
 
 // get the records from the database
 if ($result = $conn->query("SELECT * FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'"))

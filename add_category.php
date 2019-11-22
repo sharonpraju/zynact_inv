@@ -1,8 +1,15 @@
 <!--add category-->
+
 <div class="manage_cat_div">
 <?php
-
+session_start();
+if(!isset($_SESSION['section']))
+{
+header("location:index.html");
+die();
+}
 ?>
+
 
 <link rel="stylesheet" href="css/settings.css">
 <script  src="js/dashboard.js"></script>
@@ -16,7 +23,6 @@
 <?php
 // connect to the database
 include('db_connection.php');
-session_start();
 $conn = OpenCon();
 $section=$_SESSION['section'];
 

@@ -37,6 +37,8 @@
 
 <?php
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $section=$_SESSION['section'];
 include 'db_connection.php';
 $conn = OpenCon();

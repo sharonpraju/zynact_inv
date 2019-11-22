@@ -10,7 +10,7 @@
     }
   </style>
   <div class="btn_div">
-<div class="a_btn"><button onclick="go('user_credentials.html')">User Credentials</button></div>
+<div class="a_btn"><button onclick="go('user_credentials.php')">User Credentials</button></div>
 <div class="a_btn"><button onclick="go('add_category.php')">Manage Category</button></div>
 <div class="a_btn"><button onclick="go('manage_supplier.php')">Manage Supplier</button></div>
 <div class="a_btn"><button onclick="go('add_item.html')">Add Item</button></div>

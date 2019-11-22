@@ -11,6 +11,8 @@
 include 'db_connection.php';
 $conn = OpenCon();
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $section=$_SESSION['section'];
 $admin=$_SESSION['admin'];
 $out_of_stock=0;

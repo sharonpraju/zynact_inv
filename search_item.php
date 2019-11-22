@@ -3,6 +3,8 @@
 include 'db_connection.php';
 $conn = OpenCon();
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $section=$_SESSION['section'];
 
 if(isset($_POST['validation']))

@@ -4,6 +4,8 @@
 include('db_connection.php');
 $conn = OpenCon();
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $section=$_SESSION['section'];
 $id=$_GET['id'];
 $id=preg_replace('/[^A-Za-z0-9_\-]/', '', $id);

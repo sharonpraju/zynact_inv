@@ -14,7 +14,10 @@
      <?php  
      include 'db_connection.php';
      $conn = OpenCon();
+
      session_start();
+     if(!isset($_SESSION['section']))
+header("location:index.html");
      $section=$_SESSION['section'];
      echo " <select class='input_txt' name='sub_type' id='autotype'; onchange=this.form.submit() >
      <option value=0 >All</option>";
