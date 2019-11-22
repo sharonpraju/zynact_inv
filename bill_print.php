@@ -23,7 +23,7 @@ $dist_issued_to=$_POST['dist_issued_to'];
 $dist_place=$_POST['dist_place'];
 $dist_issued_on=$_POST['invoice_date'];
 $dist_remarks=$_POST['Remarks'];
-$indent=$_POST['intent'];
+$indent=$_POST['indent'];
 $stock_no=$_POST['stock_no'];
 
 $sql="SELECT branch FROM user_details WHERE user_name='$dist_user_id'";
@@ -43,11 +43,8 @@ echo"
         </tr>
         <tr>
             <td class='bill_title' colspan='6'>
-            ".$address."<br>
-            <b>Phone No:</b>&nbsp;".$phone."<br>
-            <b>Email:</b>&nbsp;".$email."<br>
-            <b>GST IN:</b>&nbsp;".$gst_in."<br>
-            <b>Invoice No:</b> xxxxxx
+            <b>Indent No:</b> xxxxxx &nbsp; &nbsp; &nbsp; &nbsp;
+            <b>Date:</b> xxxxxx
             </td>
         </tr>
         <tr> 
@@ -57,10 +54,9 @@ echo"
         <tr>
             <th>Sl No</th>
             <th>Item Name</th>
-            <th>Qty</th>
-            <th>MRP</th>
-            <th>Rate</th>
-            <th>Total</th>
+            <th>Qty Intended</th>
+            <th>Qty Intended</th>
+            <th>Remarks</th>
         </tr>";
 ?>
 <?php
@@ -90,9 +86,7 @@ $total=0;
             <td>".$id."</td>
             <td class='item_name'>".$row['item_name']."</td>
             <td>".$row['item_quantity']."</td>
-            <td>".$row['item_mrp']."</td>
-            <td>".$row['item_selling_price']."</td>
-            <td>".$total_cost."</td>
+            <td>".$row['item_quantity']."</td>
         </tr>
         <span></span>";
 
@@ -120,24 +114,26 @@ $total=0;
     $result = mysqli_query($conn, $sql);
 
 echo"<tr>
-<td colspan='2'><br><br>Discount</td>
-<td colspan='4'><br><br>".$item_discount."</td>
+<td colspan='3'><br><br>Name And Designation of staff member</td>
 </tr>
 <tr>
-<td colspan='2'>Tax Amount</td>
-<td colspan='4'>#demo</td>
+<td colspan='7'>Signature of HOD ................................</td>
 </tr>
 <tr>
-<td colspan='2'>Total</td>
-<td colspan='4'>".$total."</td>
+<td colspan='7'>Signature of Principal ................................</td>
 </tr>
 <tr>
-<td colspan='6'>..Thanks for shopping..<br>.Visit Again.</td>
+<td colspan='7'>Issued...................
+Received......................</td>
+</tr>
+<tr>
+<td colspan='7'>Store Keeper...............
+Staff Member.................</td>
 </tr>
 </center>
 </div>
 <input type='button' class='submit_dist' value='Print' onclick='javascript:window.print()'>
 <br>
-<input type='submit' class='submit_dist1' value='Back' onclick='window.location.href='distribution.php'">
+<input type='submit' class='submit_dist1' value='Back' onclick='window.location.href='distribution.php'>";
 }
 ?>

@@ -73,40 +73,40 @@ do{
             <div id="main_category">
                 <form method="post" action="validate.php">
           
-                  Item Code<input class="category_select" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_code'].'"  placeholder="">
-                  Item Name<input class="cat_txt"type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_name'].'" placeholder="" style="margin-left:10px;">
+                  Item Code<input class="category_select" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_code'].'"  placeholder="" readonly>
+                  Item Name<input class="cat_txt"type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_name'].'" placeholder="" style="margin-left:10px;" readonly>
                   <input type="button" class="div_hidden_'.$id.'" value="Show Details" name="div_hidden_'.$id.'" onclick="hide_div(this.name)">
                   <a href="edit_contents.php?id='.$row['item_code'].'&page=stock"><img class="img_btn" src="img/edit_icon.png"></a>
                   <a href="delete_contents.php?id='.$row['item_code'].'&page=stock"><img class="img_btn" src="img/delete_icon.ico"></a>
                   <br><br><br>
                   <div id="div_hidden_'.$id.'" class="div_hidden">
-                  Description<input class="discription_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_description'].'"  placeholder="">
+                  Description<input class="discription_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['item_description'].'"  placeholder="" readonly>
                   <br><br>
-                  Category<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['category_id'].'"  placeholder="" style="margin-left:37px;">
-                  Sub-Categorys<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['sub_category_id'].'"  placeholder="" style="margin-left:10px;">
-                  Unit<input type="text" class="cat_txt" name="item_unit" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['unit'].'"  placeholder="" style="margin-left:25px;">
+                  Category<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['category_id'].'"  placeholder="" style="margin-left:37px;" readonly>
+                  Sub-Categorys<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['sub_category_id'].'"  placeholder="" style="margin-left:10px;" readonly>
+                  Unit<input type="text" class="cat_txt" name="item_unit" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['unit'].'"  placeholder="" style="margin-left:25px;" readonly>
                   <br><br>
-                  Alert Level 1<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_alert_level_1'.$id.'" value="'.$row_1['item_alert1'].'"  placeholder="" style="margin-left:10px;">
-                  Alert Level 2  <input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_alert_level_2'.$id.'" value="'.$row_1['item_alert2'].'"  placeholder="" style="margin-left:15px;">
-                  Max Expected<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row_1['max_expected'].'"  placeholder="" style="margin-left:10px; width:130px;">
+                  Alert Level 1<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_alert_level_1'.$id.'" value="'.$row_1['item_alert1'].'"  placeholder="" style="margin-left:10px;" readonly>
+                  Alert Level 2  <input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_alert_level_2'.$id.'" value="'.$row_1['item_alert2'].'"  placeholder="" style="margin-left:15px;" readonly>
+                  Max Expected<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row_1['max_expected'].'"  placeholder="" style="margin-left:10px; width:130px;" readonly>
                   <br><br>
-                  Supplied By<input type="text" class="cat_txt" name="item_supplier" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['supplier'].'"  placeholder="" style="margin-left:17px;">
-                  Order No<input type="text" class="cat_txt" name="order_no" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['order_no'].'"  placeholder="" style="margin-left:47px;">
-                  Order Date<input type="date" class="cat_txt" name="order_date" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['order_date'].'"  placeholder="" style="margin-left:10px; width:157px;">
+                  Supplied By<input type="text" class="cat_txt" name="item_supplier" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['supplier'].'"  placeholder="" style="margin-left:17px;" readonly>
+                  Order No<input type="text" class="cat_txt" name="order_no" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['order_no'].'"  placeholder="" style="margin-left:47px;" readonly>
+                  Order Date<input type="date" class="cat_txt" name="order_date" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['order_date'].'"  placeholder="" style="margin-left:10px; width:157px;" readonly>
                   <br><br>
-                  Total Units<input type="text" class="cat_txt" name="total_units" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['total_units'].'"  placeholder="" style="margin-left:25px;">
-                  Total Cost (including tax)<input type="text" class="cat_txt" name="total_cost" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['total_cost'].'"  placeholder="" style="margin-left:10px; width:107px;">
-                  MRP<input type="text" class="cat_txt" name="item_price" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['mrp'].'"  placeholder="" style="margin-left:20px;">
+                  Total Units<input type="text" class="cat_txt" name="total_units" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['total_units'].'"  placeholder="" style="margin-left:25px;" readonly>
+                  Total Cost (including tax)<input type="text" class="cat_txt" name="total_cost" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['total_cost'].'"  placeholder="" style="margin-left:10px; width:107px;" readonly>
+                  MRP<input type="text" class="cat_txt" name="item_price" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['mrp'].'"  placeholder="" style="margin-left:20px;" readonly>
                   <br><br>
-                  Selling Price<input type="text" class="cat_txt" name="item_selling_price" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['selling_price'].'"  placeholder="" style="margin-left:15px;">
-                  Tax Amount<input type="text" class="cat_txt" name="item_tax" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['tax_percent'].'"  placeholder="" style="margin-left:20px;">
-                  Invoice No<input type="text" class="cat_txt" name="invoice_no" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['invoice_no'].'"  placeholder="" style="margin-left:10px; width:155px;">
+                  Selling Price<input type="text" class="cat_txt" name="item_selling_price" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['selling_price'].'"  placeholder="" style="margin-left:15px;" readonly>
+                  Tax Amount<input type="text" class="cat_txt" name="item_tax" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['tax_percent'].'"  placeholder="" style="margin-left:20px;" readonly>
+                  Invoice No<input type="text" class="cat_txt" name="invoice_no" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['invoice_no'].'"  placeholder="" style="margin-left:10px; width:155px;" readonly>
                   <br><br>
-                  Invoice Date<input type="date" class="cat_txt" name="invoice_date" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['invoice_date'].'"  placeholder="" style="margin-left:15px;">
-                  Transportation Cost<input type="text" class="cat_txt" name="transportation_cost" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['transportation_cost'].'"  placeholder="" style="margin-left:10px; width:145px;">
+                  Invoice Date<input type="date" class="cat_txt" name="invoice_date" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['invoice_date'].'"  placeholder="" style="margin-left:15px;" readonly>
+                  Transportation Cost<input type="text" class="cat_txt" name="transportation_cost" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['transportation_cost'].'"  placeholder="" style="margin-left:10px; width:145px;" readonly>
                   <br><br>
-                  Status<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['status'].'"  placeholder="" style="margin-left:55px;">
-                  Remarks<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['remarks'].'"  placeholder="" style="margin-left:50px;">
+                  Status<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['status'].'"  placeholder="" style="margin-left:55px;" readonly>
+                  Remarks<input class="cat_txt" type="text" id="'.$row['item_code'].' name="item_name'.$id.'" value="'.$row['remarks'].'"  placeholder="" style="margin-left:50px;" readonly>
                
                   <br><br>
                   </div>

@@ -3953,7 +3953,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.stackedMap', 'ui.bootstrap.p
         };
         scope.$broadcast($modalStack.NOW_CLOSING_EVENT, setIsAsync);
 
-        // Note that it's intentional that asyncPromise might be null.
+        // Note that it's indentional that asyncPromise might be null.
         // That's when setIsAsync has not been called during the
         // NOW_CLOSING_EVENT broadcast.
         return $q.when(asyncPromise).then(afterAnimating);
@@ -5352,7 +5352,7 @@ function ($animate, $sce, $compile, $templateRequest) {
 }])
 
 /**
- * Note that it's intentional that these classes are *not* applied through $animate.
+ * Note that it's indentional that these classes are *not* applied through $animate.
  * They must not be animated as they're expected to be present on the tooltip on
  * initialization.
  */

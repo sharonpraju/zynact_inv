@@ -64,6 +64,7 @@
             <input type="text" class="input_txt_top" name="total_bill_cost" value="'.$row['total_cost'].'">
             <input type="text" class="input_txt_top" name="total_tax" value="'.$row['total_tax'].'">
             <input type="text" class="input_txt_top" name="bill_remarks" value="'.$row['remarks'].'">';
+            
     }
     else
     {
@@ -89,6 +90,9 @@
             <input type="text" class="input_txt_top" name="transportation_cost" placeholder=" Transportation Cost">
             <input type="date" class="input_txt_top" name="order_date" placeholder=" Oder Date">
             <input type="date" class="input_txt_top" name="invoice_date" placeholder=" Invoice Date">
+            <input type="text" class="input_txt_top" name="total_bill_cost" placeholder="Total Bill Cost">
+            <input type="text" class="input_txt_top" name="total_tax" placeholder="Total Tax">
+            <input type="text" class="input_txt_top" name="bill_remarks" placeholder="Bill Remarks">
             ';
     }
 
@@ -143,7 +147,7 @@
 <input type="text" class="input_txt" name="remarks" placeholder=" Remarks">
 <br><br>
 <input type="text" class="input_txt" name="barcode" placeholder=" barcode">
-<input id="item_code" class="input_txt" type="text" name="item_code"placeholder=" Item Code">
+<input id="item_code" class="input_txt" type="text" name="item_code"placeholder=" Item Code" readonly hidden>
 <br><br>
 </form>
 </div>

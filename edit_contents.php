@@ -133,7 +133,7 @@ echo'
         echo'
         <br><br>
         <input type="text" name="validation" value="edit_stock" hidden readonly>
-        Item Code<input class="category_select" type="text"  name="item_code_new"  value="'.$row['item_code'].'"  placeholder="">
+        Item Code<input class="category_select" type="text"  name="item_code_new"  value="'.$row['item_code'].'"  placeholder="" readonly>
         <input type="text"  name="item_code"  value="'.$row['item_code'].'" readonly hidden>
         Item Name<input class="cat_txt" type="text"  name="item_name_new" value="'.$row['item_name'].'" placeholder="" style="margin-left:10px;">
         <input type="text"  name="item_name" value="'.$row['item_name'].'" readonly hidden>

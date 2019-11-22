@@ -187,7 +187,7 @@ if($validation=="add_stock")
     
 
 
-    $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE AND item_name='$item_name' AND section_id='$section' AND status='1'";
+    $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -242,7 +242,7 @@ if($validation=="add_stock")
             $conn->query($sql);
         }
 
-        //header("location:add_stock.php");
+        header("location:add_stock.php");
     }
 
     }
@@ -293,7 +293,7 @@ if($validation=="conformation")
     $row = mysqli_fetch_assoc($result);
     $sub_category=$row['category_id'];
 
-    $sql = "SELECT total_units FROM inv_stock WHERE item_code='$item_code' OR item_name='$item_name' AND section_id='$section' AND status='1'";
+    $sql = "SELECT total_units FROM inv_stock WHERE (item_code='$item_code' OR item_name='$item_name') AND section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
