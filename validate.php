@@ -187,14 +187,14 @@ if($validation=="add_stock")
     
 
 
-    $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE item_code='$item_code' AND item_name='$item_name' AND section_id='$section' AND status='1'";
+    $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE AND item_name='$item_name' AND section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
     if($result->num_rows > 0)
     {
         $conformation=0;
-        echo"<div class='error_div'><center>Item With Same Item Name and Item Code Already Exist<br> Do you want to update the item.</div>
+        echo"<div class='error_div'><center>Item With Same Item Name Already Exist<br> Do you want to update the item.</div>
         <br><br><br><br><br><br>
         <center>
         <form method='post' action='validate.php'>
@@ -205,14 +205,13 @@ if($validation=="add_stock")
     }
     else
     {
-        $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE item_code='$item_code' OR item_name='$item_name' AND section_id='$section' AND status='1'";
+        $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE OR item_name='$item_name' AND section_id='$section' AND status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
-        if($row['item_name']==$item_name OR $row['item_code']==$item_code OR $row['barcode']==$barcode)
+        if($row['item_name']==$item_name OR $row['barcode']==$barcode)
         {
             
             if($row['item_name']==$item_name){echo"<center><div class='error_div'>Item With Same Item Name Already Exist</div><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";}
-            if($row['item_code']==$item_code){echo"<center><div class='error_div'>Item With Same Item Code Already Exist</div><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";}
             if($row['barcode']==$barcode){echo"<center><div class='error_div'>Item With Same Barcode Already Exist</div><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";}
         }
         else
@@ -243,7 +242,7 @@ if($validation=="add_stock")
             $conn->query($sql);
         }
 
-        header("location:add_stock.php");
+        //header("location:add_stock.php");
     }
 
     }
