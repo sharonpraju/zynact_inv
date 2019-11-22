@@ -3,6 +3,8 @@
 // connect to the database
 include('db_connection.php');
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 $admin=$_SESSION['admin'];
 $section=$_SESSION['section'];
 

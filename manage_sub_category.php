@@ -16,6 +16,8 @@
 // connect to the database
 include('db_connection.php');
 $conn = OpenCon();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 session_start();
 $section=$_SESSION['section'];
 

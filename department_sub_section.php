@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
 <link rel="stylesheet" href="css/settings.css">
 
 

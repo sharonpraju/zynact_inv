@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['section']))
+header("location:index.html");
+die();
 $section=$_SESSION['section'];
 $admin=$_SESSION['admin'];
 include 'db_connection.php';
