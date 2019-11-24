@@ -40,17 +40,17 @@ $conn = OpenCon();
             <br>
         </form>
     </div>
-        <form method="post" action="bill_print.php">
+        <form method="post" action="bill_print_a4.php">
         <input type="text" class="user_txt" id="search_name" name="dist_user_id" placeholder="Name" onchange='update(this.value)' required>
         <br>
         <div class="customer">
-        <input type="text" class="input_txt_distribution_1" id="department_txt" placeholder="Department" readonly>
-        <input type="text" class="input_txt_distribution_2" name="dist_place" placeholder=Place id="Place" class="ui-autocomplete-input">
-        <input type="text" class="input_txt_distribution_3" name="Remarks" placeholder=Remarks id="Remarks" class="ui-autocomplete-input">
+        <input type="text" class="input_txt_distribution_1" id="department_txt" name="department" placeholder="Department" readonly>
+        <input type="text" class="input_txt_distribution_2" name="dist_place" placeholder="Place" id="Place" class="ui-autocomplete-input">
+        <input type="text" class="input_txt_distribution_3" name="Remarks" placeholder="Remarks" id="Remarks" class="ui-autocomplete-input">
         
         <script src="js/jquery.min.js"></script>
-        <select class="input_txt_distribution_4" name=dist_issued_to id="AutoType" require>
-        <option value="">Select</option>
+        <select class="input_txt_distribution_4" name=dist_issued_to id="AutoType" required>
+        <option value="">Select Sub Section</option>
 
         <?php
         $sql="SELECT cat_type FROM inv_type where section=$section";
@@ -64,8 +64,16 @@ $conn = OpenCon();
         </select>
         <br><br>
         <span class="span_date">Issued Date</span><input type="date" class="input_txt_distribution_5" name="invoice_date" value="<?php echo date("Y-m-d"); ?>" require placeholder="" style="margin-left:15px;">
-        <input type="text" class="input_txt_distribution_6" name="indent" placeholder='Indent No' id="Remarks" class="ui-autocomplete-input">
-        <input type="text" class="input_txt_distribution_7" name="stock_no" placeholder='Stock No' id="Remarks" class="ui-autocomplete-input">
+        <?php
+        $sql = "SELECT MAX(bill_no) FROM inv_sales_log WHERE section_id='$section'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $max=$row['MAX(bill_no)'];
+        $max++;
+        echo'
+        <span class="span_1">Indent No</span><input type="text" class="input_txt_distribution_6" name="indent" placeholder="Indent No" value="'.$max.'" class="ui-autocomplete-input"><br>
+        <span class="span_2">Stock No</span><input type="text" class="input_txt_distribution_7" name="stock_no" placeholder="Stock No" value="'.$max.'" class="ui-autocomplete-input">';
+        ?>
         <input type=submit class="link_submit" value="Save and Print">
         </form>
 </div>

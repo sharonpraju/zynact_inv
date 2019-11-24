@@ -13,12 +13,14 @@ $conn = OpenCon();
 $sql = "SELECT * FROM inv_config";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$name=$row['organisation'];
+$organisation=$row['organisation'];
+$location=$row['location'];
 $address=$row['address'];
 $phone=$row['phone_number'];
 $email=$row['email'];
 $gst_in=$row['gst_in'];
 $dist_user_id=$_POST['dist_user_id'];
+$user_department=$_POST['department'];
 $dist_issued_to=$_POST['dist_issued_to'];
 $dist_place=$_POST['dist_place'];
 $dist_issued_on=$_POST['invoice_date'];
@@ -32,30 +34,34 @@ $row = mysqli_fetch_assoc($result);
 $department=$row['branch'];
 
 echo"
-<link rel='stylesheet' href='css/bill_print.css'>
+<link rel='stylesheet' href='css/bill_print_a4.css'>
 <br><br><br><br><br><br>
 <div class='main_div' id='main_div'>
 <center>
 <table>
         <tr class='bill_title'>
             <th class='bill_title'><img src='img/mbc_logo.png' alt='logo'></th>
-            <th colspan='5' >".$name."<br></th>
+            <th colspan='5' >".$organisation."<br>".$location."</th>
         </tr>
         <tr>
             <td class='bill_title' colspan='6'>
-            <b>Indent No:</b> xxxxxx &nbsp; &nbsp; &nbsp; &nbsp;
-            <b>Date:</b> xxxxxx
+            Indent No: ".$indent." <br>
+            <span class='date_txt'>Date: ".$dist_issued_on."</span>
             </td>
         </tr>
         <tr> 
 
         </tr>
 
+        <tr> 
+        <td colspan='5'>Please sanction the issue of the following materials for use in the ...................................</td>
+        </tr>
+
         <tr>
-            <th>Sl No</th>
+            <th class='bil_item'>Sl No</th>
             <th>Item Name</th>
-            <th>Qty Intended</th>
-            <th>Qty Intended</th>
+            <th>Qty. Intended</th>
+            <th>Qty. Issued</th>
             <th>Remarks</th>
         </tr>";
 ?>
@@ -83,10 +89,11 @@ $total=0;
         $id++;
         echo"
         <tr>
-            <td>".$id."</td>
+            <td class='item_row'>".$id."</td>
             <td class='item_name'>".$row['item_name']."</td>
-            <td>".$row['item_quantity']."</td>
-            <td>".$row['item_quantity']."</td>
+            <td class='item_row'>".$row['item_quantity']."</td>
+            <td class='item_row'>".$row['item_quantity']."</td>
+            <td class='item_row'>".$dist_remarks."</td>
         </tr>
         <span></span>";
 
@@ -113,27 +120,33 @@ $total=0;
     $sql = "TRUNCATE TABLE inv_current_bill";
     $result = mysqli_query($conn, $sql);
 
-echo"<tr>
-<td colspan='3'><br><br>Name And Designation of staff member</td>
+    $sql = "SELECT semester FROM user_details WHERE user_name='$dist_user_id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    $user_designation=$row['semester'];
+
+echo"
+<tr><td colspan='5' class='bill_bottom'><br><br>Name : ".$dist_user_id."</td></tr>
+<tr><td colspan='5' class='bill_bottom'>Designation :".$user_designation."</td></tr>
+<tr><td colspan='5'>Department : ".$user_department."<br><br></td></tr>
+<tr class='bill_bottom'>
+<td class='bill_bottom' colspan='3'>Signature of HOD</td>
+<td class='bill_bottom' colspan='4'>Signature of Principal</td>
 </tr>
-<tr>
-<td colspan='7'>Signature of HOD ................................</td>
+<tr class='bill_bottom'>
+<td class='bill_bottom' colspan='3'>Issued</td>
+<td class='bill_bottom' colspan='3'>Received</td>
 </tr>
-<tr>
-<td colspan='7'>Signature of Principal ................................</td>
-</tr>
-<tr>
-<td colspan='7'>Issued...................
-Received......................</td>
-</tr>
-<tr>
-<td colspan='7'>Store Keeper...............
-Staff Member.................</td>
-</tr>
+<tr class='bill_bottom'>
+<td class='bill_bottom' colspan='3'>Store Keeper</td>
+<td class='bill_bottom' colspan='3'>Staff Member</td>
+</tr></table>
 </center>
 </div>
 <input type='button' class='submit_dist' value='Print' onclick='javascript:window.print()'>
 <br>
-<input type='submit' class='submit_dist1' value='Back' onclick='window.location.href='distribution.php'>";
+<a class='submit_dist1' href='distribution.php'><br>Back</a>";
 }
 ?>
+<img class='img_1' src='img/mbc_logo.png' alt='logo'>

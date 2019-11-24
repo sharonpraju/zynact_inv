@@ -3,10 +3,7 @@ include 'db_connection.php';
 $conn = OpenCon();
 session_start();
 $validation = $_POST['validation'];
-
 echo"<link rel='stylesheet' href='css/validate.css'>";
-
-
 if($validation=="login")
 {
     $id = $_POST['admin'];
@@ -26,17 +23,14 @@ if($validation=="login")
         echo"Invalid Username/Password";
     }
 }
-
 if(!isset($_SESSION['admin']))
 {
     header("location:index.html");
 }
 else
-{
-    
+{   
 $section=$_SESSION['section'];
 $admin=$_SESSION['admin'];
-
 if($validation=="chng_color")
 {
     $primary_color=$_POST['primary_color'];
@@ -46,8 +40,6 @@ if($validation=="chng_color")
     SET primary_clr='$primary_color',secondary_clr='$secondary_color',component_color='$component_color'"; 
     $conn->query($sql);
 }
-
-
 if($validation=="add_supplier")
 {
 
@@ -88,7 +80,6 @@ if($validation=="add_supplier")
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
 if($validation=="chng_pass")
 {
     
@@ -145,7 +136,6 @@ if($validation=="add_stock")
     $_SESSION['remarks']=$_POST['remarks'];
     $_SESSION['item_code']=$_POST['item_code'];
     $_SESSION['barcode']=$_POST['barcode'];
-
     $item_name = $_SESSION['item_name'];
     $item_category = $_SESSION['item_category'];
     $item_supplier = $_SESSION['item_supplier'];
@@ -169,28 +159,21 @@ if($validation=="add_stock")
     $remarks=$_SESSION['remarks'];
     $item_code=$_SESSION['item_code'];
     $barcode=$_SESSION['barcode'];
-
     if($conformation==1)
     {
         goto update;
     }
-
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$item_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $item_category=$row['category_id'];
-
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$sub_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $sub_category=$row['category_id'];
-    
-
-
     $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
     if($result->num_rows > 0)
     {
         $conformation=0;
@@ -220,18 +203,14 @@ if($validation=="add_stock")
         $sql="INSERT INTO inv_stock (item_name,category_id,sub_category_id,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,section_id,supplier,order_no,order_date,invoice_date)
         VALUES ('$item_name','$item_category','$sub_category','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
         $conn->query($sql);
-
         $sql = "SELECT sl_no FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $sl_no=$row['sl_no'];
-
         $sql="UPDATE inv_stock
         SET item_code='$sl_no' WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
         $conn->query($sql);
-
         }
-
         $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
@@ -241,24 +220,19 @@ if($validation=="add_stock")
             VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
             $conn->query($sql);
         }
-
         header("location:add_stock.php");
     }
-
     }
     else
     {
         echo "<center><br><br><br><br>Item Does Not Exist!<br>Go To Settings And Create New Item</center>";
     }
 }
-
 if($validation=="conformation")
 {
     //Updating Stocks
     $conformation=1;
-    //goto add_stock;
     update:
-
     $item_name = $_SESSION['item_name'];
     $item_category = $_SESSION['item_category'];
     $item_supplier = $_SESSION['item_supplier'];
@@ -282,28 +256,22 @@ if($validation=="conformation")
     $remarks=$_SESSION['remarks'];
     $item_code=$_SESSION['item_code'];
     $barcode=$_SESSION['barcode'];
-
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$item_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $item_category=$row['category_id'];
-
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$sub_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $sub_category=$row['category_id'];
-
     $sql = "SELECT total_units FROM inv_stock WHERE (item_code='$item_code' OR item_name='$item_name') AND section_id='$section' AND status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
     $new_units=$row['total_units']+$total_units;
-
     $sql="UPDATE inv_stock
     SET item_name='$item_name', category_id='$item_category',sub_category_id='$sub_category', total_units='$new_units',total_cost='$total_cost', barcode='$barcode', unit='$item_unit', mrp='$item_price', selling_price='$item_selling_price', tax_percent='$item_tax', transportation_cost='$transportation_cost',section_id='$section',supplier='$item_supplier',order_no='$order_no',order_date='$order_date',invoice_no='$invoice_no',invoice_date='$invoice_date',status='1',reference_no=NULL,remarks='$remarks'
     WHERE item_code='$item_code' AND section_id='$section' AND status='1'";
     $conn->query($sql);
-
     $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -313,20 +281,15 @@ if($validation=="conformation")
         VALUES ('$invoice_no','$total_bill_cost','$total_tax','$item_supplier','$section','$bill_remarks')";
         $conn->query($sql);
     }
-
     header("location:add_stock.php");
 }
-
 if($validation=="add_category")
-{
-    
+{  
 $category_name=$_POST['category_name'];
 $category_description=$_POST['category_description'];
 $category_remarks=$_POST['category_remarks'];
 $category_status=1;
 $category_type=$_POST['category_type'];
-
-
     $sql = "SELECT * FROM inv_category WHERE category_name = '$category_name' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -371,42 +334,29 @@ $category_type=$_POST['category_type'];
     }
     }
 }
-/* Edit page on the main category works on the following code*/
 if($validation=="edit_category")
 {
     $edit_name=$_POST['edit_name'];
     $edit_category_id=$_POST['sl'];
     $edit_description=$_POST['edit_description'];
     $edit_remarks=$_POST['edit_remarks'];
-
     $sql = "SELECT category_type, category_prefix FROM inv_category
     WHERE category_id = '$edit_category_id' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $category_type=$row['category_type'];
     $category_prefix=$row['category_prefix'];
-
     $sql="INSERT INTO inv_category (category_name,category_description,category_remarks,category_status,category_type,section_id)
     VALUES ('$edit_name','$edit_description','$edit_remarks','1','$category_type','$section')";
     $conn->query($sql);
-
     $sql="UPDATE inv_category
     SET category_id=NULL, reference_no='$edit_category_id', category_status='0'
     WHERE category_id='$edit_category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
-    /*if ($conn->query($sql) === TRUE) {
-       
-    }
-    else
-    {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }*/
-
     $sql="UPDATE inv_category
     SET category_id = sl_no
     WHERE category_name = '$edit_name' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
-
     if($category_type==1)
     {
         $sql="UPDATE inv_category
@@ -414,47 +364,33 @@ if($validation=="edit_category")
         WHERE category_name = '$edit_name' AND section_id='$section' AND category_status='1'";
         $conn->query($sql);
     }
-
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$edit_category_id','inv_category','$admin','$section','edited')";
     $conn->query($sql);
     header("location:add_category.php");
 }
-
 if($validation=="edit_sub_category")
 {
     $edit_name=$_POST['edit_name'];
     $edit_category_id=$_POST['sl'];
     $edit_description=$_POST['edit_description'];
     $edit_remarks=$_POST['edit_remarks'];
-
     $sql = "SELECT category_type, category_prefix FROM inv_category
     WHERE category_id = '$edit_category_id' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $category_type=$row['category_type'];
     $category_prefix=$row['category_prefix'];
-
     $sql="INSERT INTO inv_category (category_name,category_description,category_remarks,category_status,category_type,section_id)
     VALUES ('$edit_name','$edit_description','$edit_remarks','1','$category_type','$section')";
     $conn->query($sql);
-
     $sql="UPDATE inv_category
     SET category_id=NULL, reference_no='$edit_category_id', category_status='0'
     WHERE category_id='$edit_category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
-    /*if ($conn->query($sql) === TRUE) {
-       
-    }
-    else
-    {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }*/
-
     $sql="UPDATE inv_category
     SET category_id = sl_no
     WHERE category_name = '$edit_name' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
-
     if($category_type==1)
     {
         $sql="UPDATE inv_category
@@ -462,12 +398,10 @@ if($validation=="edit_sub_category")
         WHERE category_name = '$edit_name' AND section_id='$section' AND category_status='1'";
         $conn->query($sql);
     }
-
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$edit_category_id','inv_category','$admin','$section','edited')";
     $conn->query($sql);
     header("location:manage_sub_category.php");
 }
-/*Edit page for the Supplier Works on the following code*/
 if($validation=="edit_supplier")
 {
     $supplier_name_new=$_POST['supplier_name'];
@@ -483,65 +417,52 @@ if($validation=="edit_supplier")
     $supplier_bank=$_POST['supplier_bank'];
     $supplier_branch=$_POST['supplier_branch'];
     $supplier_ifsc_no=$_POST['supplier_ifsc_no'];
-
     $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_email,supplier_contact_name,supplier_mob_no,section_id,supplier_status,supplier_remarks)
     VALUES ('$supplier_name_new','$supplier_address','$supplier_email','$supplier_contact_name','$supplier_mob_no','$section','1','$supplier_remarks')";
     $conn->query($sql);
-
     $sql="UPDATE inv_supplier
     SET supplier_id= sl_no
     WHERE supplier_name='$supplier_name_new' AND section_id='$section' AND supplier_status='1'"; 
     $conn->query($sql);
-
     $sql = "SELECT supplier_id FROM inv_supplier
     WHERE supplier_name='$supplier_name' AND section_id='$section' AND supplier_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
     $supplier_id=$row['supplier_id'];
-
     $sql="UPDATE inv_supplier
     SET supplier_id=NULL, reference_no='$supplier_id', supplier_status='0'
     WHERE supplier_name='$supplier_name' AND section_id='$section' AND supplier_status='1'";
     $conn->query($sql);
-
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$supplier_id','inv_supplier','$admin','$section','edited')";
     $conn->query($sql);
     header("location:add_supplier.php");
 }
-
 if($validation=="item_distribution")
 {
     $item_name = $_POST['search'];
     $sql = "SELECT * FROM inv_stock WHERE section_id='$section' AND item_name='$item_name' AND status='1' LIMIT 1";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
     $item_name=$row['item_name'];
     $item_code=$row['item_code'];
     $item_mrp=$row['mrp'];
     $item_selling_price=$row['selling_price'];
     $item_discount=$item_mrp-$item_selling_price;
     $stock_quantity=$row['total_units'];
-
     $sql = "SELECT item_quantity FROM inv_current_bill WHERE item_name = '$item_name' AND item_code='$item_code' AND section_id='$section'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
     if($row['item_quantity']!=NULL)
     {
         $sql="UPDATE inv_current_bill
         SET item_quantity = item_quantity + 1
         WHERE item_name = '$item_name' AND item_code='$item_code' AND section_id='$section'";
         $conn->query($sql);
-
         header( "location:distribution.php" );
-        
     }
     else
     {
         if($stock_quantity>0)
-
         {
             $sql="INSERT INTO inv_current_bill (item_name,item_code,item_mrp,item_selling_price,item_discount,section_id)
             VALUES ('$item_name','$item_code','$item_mrp','$item_selling_price','$item_discount','$section')";
@@ -558,10 +479,8 @@ if($validation=="item_distribution")
                 echo "<center>Item quantity is empty in stock<br><br>
                 <input type='submit' class='back_btn' value='Back' onclick=location.href='distribution.php'></center>";
         }
-
     }
 }
-
 if($validation=="bill_update_name")
 {
     $item_name = $_POST['item_name'];
@@ -570,7 +489,6 @@ if($validation=="bill_update_name")
     SET item_name='$item_name' WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="bill_update_code")
 {
     $item_code = $_POST['item_code'];
@@ -579,7 +497,6 @@ if($validation=="bill_update_code")
     SET item_code='$item_code_new' WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="bill_update_quantity")
 {
     $item_quantity = $_POST['item_quantity'];
@@ -588,7 +505,6 @@ if($validation=="bill_update_quantity")
     SET item_quantity='$item_quantity' WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="bill_update_mrp")
 {
     $item_mrp = $_POST['item_mrp'];
@@ -597,7 +513,6 @@ if($validation=="bill_update_mrp")
     SET item_mrp='$item_mrp' WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="bill_update_selling_price")
 {
     $item_selling_price = $_POST['item_selling_price'];
@@ -606,14 +521,12 @@ if($validation=="bill_update_selling_price")
     SET item_selling_price='$item_selling_price' WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="bill_item_delete")
 {
     $item_code = $_POST['item_code'];
     $sql="DELETE FROM inv_current_bill WHERE item_code='$item_code' AND section_id='$section'";
     $conn->query($sql);  
 }
-
 if($validation=="sales_purchase_report")
 {
     $sql = "SELECT * FROM inv_sales_log"; 
@@ -621,27 +534,22 @@ if($validation=="sales_purchase_report")
     $row = mysqli_num_rows($result); 
     $sql = "SELECT SUM(`total_cost`) AS value_sum FROM inv_sales_log";
     $result = mysqli_query($conn, $sql); 
-   //to calculate total cost
+   //Total cost
     while ($row1 = $result->fetch_assoc()) {
         $total=(int)$row1['value_sum']."<br>";
         $avg=(int)$total/12;
         $avg_sale=number_format((float)$avg, 2, '.', '');
     }
-    //to calculate profit
+    //Profit
     $query = "SELECT SUM(`total_cost`) AS value_sum FROM inv_sales_log";
     $result = mysqli_query($conn, $query); 
     while ($row1 = $result->fetch_assoc()) {
         $profit=$row1['value_sum']."<br>";
     }
-
-
-
-    ///This area is to make a logs of purchased item
-
+    ///Total purchased items
     $sql = "SELECT * FROM inv_purchase_log"; 
     $result = mysqli_query($conn, $sql);
     $row_purchase = mysqli_num_rows($result);
-
     $sql = "SELECT SUM(`total_cost`) AS value_sum FROM inv_purchase_log";
     $result = mysqli_query($conn, $sql); 
     while ($row1 = $result->fetch_assoc()) {
@@ -650,45 +558,42 @@ if($validation=="sales_purchase_report")
         $avg_purchase=number_format((float)$avg_purchase, 2, '.', '');
     }
     $total_profit=(int)$total-(int)$total_purchase;
-    
-
-
     echo"
         <div class='report_div'>
         <table class='div_sales_report'>
         <th>Sales</th>
         <tr>
-            <td colspan='10'>Total Number Of Sales &nbsp; &nbsp;<br></td>
+            <td colspan='10'>Total Number Of Sales<br></td>
             <td colspan='10'> $row</td>
         </tr>
         <tr>
-            <td colspan='10'>Total Sales &nbsp; &nbsp;</td>
+            <td colspan='10'>Total Sales </td>
             <td colspan='10'>".$total."</td>
         </tr>
         <tr></tr>
         <tr>
-            <td colspan='10'>Average Sales Per Month &nbsp; &nbsp;</td>
+            <td colspan='10'>Average Sales Per Month </td>
             <td colspan='10'> $avg_sale</td>
         </tr>
         <tr></tr>
         <tr>
-            <td colspan='10'>Total Profit &nbsp; &nbsp;</td>
+            <td colspan='10'>Total Profit </td>
             <td colspan='10'> $total_profit</td>
         </tr></table>
         
         <table class='div_purchase_report'>
         <th>Purchase</th>
         <tr>
-            <td colspan='10'>Total Number Of Purchase &nbsp; &nbsp;<br></td>
+            <td colspan='10'>Total Number Of Purchase <br></td>
             <td colspan='10'> $row_purchase</td>
         </tr>
         <tr>
-            <td colspan='10'>Total Cost &nbsp; &nbsp;</td>
+            <td colspan='10'>Total Cost </td>
             <td colspan='10'> $total_purchase</td>
         </tr>
         <tr></tr>
         <tr>
-            <td colspan='10'>Average Purchase / Month &nbsp; &nbsp;</td>
+            <td colspan='10'>Average Purchase / Month </td>
             <td colspan='10'> $avg_purchase</td>
         </tr>
         </table>
@@ -696,7 +601,6 @@ if($validation=="sales_purchase_report")
         <br><center><input type='button' class='print_btn' value='Print' onclick='javascript:window.print()'></center>
         </div>";
 }
-
 if($validation=="add_item")
 {
     $item_name=$_POST['item_name'];
@@ -746,12 +650,9 @@ if($validation=="add_item")
 else
 {
     echo "<script>alert('Alert Level Must be an integer')</script>";
-    echo"<br><br><br><br><br><br><br><br><center><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";
-    
+    echo"<br><br><br><br><br><br><br><br><center><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>"; 
 }
-
 }
-
 if($validation=="edit_stock")
 {
     $item_name = $_POST['item_name'];
@@ -778,44 +679,35 @@ if($validation=="edit_stock")
     $alert_level_1=$_POST['item_alert_level_1'];
     $alert_level_2=$_POST['item_alert_level_2'];
     $max_expected=$_POST['item_max_expected'];
-
     if($alert_level_1<$alert_level_2){
         echo "<center><br><br><br><br><br><br><br><br>Alert 1 must be greater than Alert 2<br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";
-    
     }
     else{
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$item_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $item_category=$row['category_id'];
-
     $sql = "SELECT category_id FROM inv_category WHERE category_name='$sub_category' AND section_id='$section' AND category_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $sub_category=$row['category_id'];
-
     $sql="UPDATE inv_stock
     SET item_code=NULL, reference_no='$item_code', status='0'
     WHERE item_code='$item_code' AND section_id='$section' AND status='1'";
     $conn->query($sql);
-
     $sql="UPDATE inv_items
     SET item_name='$item_name_new'
     WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
     $conn->query($sql);
-
     $sql="UPDATE inv_items
     SET item_alert1=$alert_level_1, item_alert2=$alert_level_2, max_expected='$max_expected'
     WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
     $conn->query($sql);
-
     $sql="INSERT INTO inv_stock (item_name,item_code,category_id,sub_category_id,item_description,total_cost,unit,mrp,selling_price,total_units,tax_percent,transportation_cost,invoice_no,status,remarks,barcode,section_id,supplier,order_no,order_date,invoice_date)
     VALUES ('$item_name_new','$item_code_new','$item_category','$sub_category','$item_description','$total_cost','$item_unit','$item_price','$item_selling_price','$total_units','$item_tax','$transportation_cost','$invoice_no','1','$remarks','$barcode','$section','$item_supplier','$order_no','$order_date','$invoice_date')";
     $conn->query($sql);
-
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$item_code','inv_stock','$admin','$section','edited')";
     $conn->query($sql);
-
     header( "location:stock_management.php");
 }
 }
@@ -828,27 +720,19 @@ if($validation=='alert_level')
     echo "<br><br><br><br><div class='alert_level_1_div'>Below Alert level 1: <br><br><br><br>";
     while($row = $result->fetch_assoc()) 
     {
-
        $item_check=$row['Item_name'];
        $alert_level_1=$row['item_alert1'];
        $alert_level_2=$row['item_alert2'];
-      
-       
        $sql = "SELECT * FROM inv_stock WHERE item_name='$item_check' AND section_id='$section' AND status='1'";
         $result1 = $conn->query($sql);
-        
             $row1 = $result1->fetch_assoc();
-         
                if($row1['total_units']<$alert_level_1)
-               {
-                   
+               {   
                  echo $row1['item_name']."<br>";
                }
     }
-
     echo "</div>";
     }
-
     $sql = "SELECT * FROM inv_items WHERE section_id='$section' AND status='1'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
@@ -856,29 +740,19 @@ if($validation=='alert_level')
     echo "<div class='alert_level_2_div'>Below Alert level 2: <br><br><br><br>";
     while($row = $result->fetch_assoc()) 
     {
-
        $item_check=$row['Item_name'];
        $alert_level_2=$row['item_alert2'];
-      
-     
        $sql = "SELECT * FROM inv_stock where item_name='$item_check' AND section_id='$section' AND status='1'";
         $result1 = $conn->query($sql);
-        
             $row1 = $result1->fetch_assoc();
-         
-         
-         
                if($row1['total_units']<$alert_level_2)
-               {
-                   
+               {   
                  echo $row1['item_name']."<br>";
                }
     }
-
     echo"</div>";
     }
 }
-
 if($validation=='dict_log')
 {
 $user_name=$_POST['user_name'];
@@ -892,24 +766,18 @@ else
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 }
-
 if($validation=='dist_settings')
 {
-
     $type=$_POST['type'];
-   
-   
     $sql= "SELECT * FROM inv_admins where id='$admin'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $value=$row['admin_type'];
     if($value==0)
     {
- 
     $sql = "SELECT * FROM inv_type where cat_type='$type'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
         if($result->num_rows > 0)
         {
             echo "<center><br><br><br><br>Item already exist.<br><br>
@@ -929,47 +797,48 @@ if($validation=='dist_settings')
             }
         }
 }
-else {
+else
+{
     echo "<center><br><br><br><br>Permission Denied</center>";
 }
 }
 if($validation=='stock_report')
 {
     $sql="SELECT * FROM inv_stock where section_id='$section' and status=1 ";
-        if($result = mysqli_query($conn, $sql)){
-            if(mysqli_num_rows($result) > 0){
+        if($result = mysqli_query($conn, $sql))
+        {
+            if(mysqli_num_rows($result) > 0)
+            {
+                $sl_no=1;
                 echo "<table>";
+                echo "<tr>";
+                echo "<th>Sl No</th>";
+                echo "<th>Item Name</th>";
+                echo "<th>Item Code</th>";
+                echo "<th>Invoice No</th>";
+                echo "<th>Date and Time Updated</th>";
+                echo "<th>Units</th>";
+                echo "</tr>";
+                while($row = mysqli_fetch_array($result))
+                {
                     echo "<tr>";
-                        echo "<th>Sl No</th>";
-                        echo "<th>Item Name</th>";
-                        echo "<th>Item Code</th>";
-                        echo "<th>Invoice No</th>";
-                        echo "<th>Date Updated</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                        
-                        echo "<th>Units</th>";
-                
+                    echo "<td>" .$sl_no. "</td>";
+                    echo "<td>" . $row['item_name'] . "</td>";
+                    echo "<td>" . $row['item_code'] . "</td>";
+                    echo "<td>" . $row['invoice_no'] . "</td>";
+                    echo "<td>" . $row['date_updated'] . "</td>";
+                    echo "<td>" . $row['total_units'] . "</td>";
                     echo "</tr>";
-                while($row = mysqli_fetch_array($result)){
-                    echo "<tr>";
-                        echo "<td>" . $row['sl_no'] . "</td>";
-                        echo "<td>" . $row['item_name'] . "</td>";
-                        echo "<td>" . $row['item_code'] . "</td>";
-                        echo "<td>" . $row['invoice_no'] . "</td>";
-                        echo "<td>" . $row['date_updated'] . "</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                        
-                        echo "<td>" . $row['unit'] . "</td>";
-                    echo "</tr>";
+                    $sl_no++;
                 }
                 echo "</table>";
-              
                 mysqli_free_result($result);
             }
         }
-        
      }
-     if($validation=='purchase_report')
+if($validation=='purchase_report')
 {
-    $sql="SELECT * FROM inv_purchase_log where section_id='$section' ";
+    $sql="SELECT * FROM inv_purchase_log where section_id='$section'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
                 echo "<table>";
@@ -977,39 +846,33 @@ if($validation=='stock_report')
                         echo "<th>Sl No</th>";
                         echo "<th>Invoice no</th>";
                         echo "<th>Date</th>";
-                        echo "<th>Supplier</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                        
-                        echo "<th>Total Cost</th>";
+                        echo "<th>Supplier</th>";
+                        echo "<th>Total Cost (Including tax)</th>";
                         echo "<th>Total Tax</th>";
-                
+                        echo "<th>Remarks</th>";
                     echo "</tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
+                    $date=date("Y-m-d",strtotime($row['date']));
                         echo "<td>" . $row['sl_no'] . "</td>";
                         echo "<td>" . $row['invoice_no'] . "</td>";
-                        echo "<td>" . $row['section_id'] . "</td>";
-                        echo "<td>" . $row['date'] . "</td>";
-                        echo "<td>" . $row['supplier'] . "</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        echo "<td>" . $date . "</td>";
+                        echo "<td>" . $row['supplier'] . "</td>";
                         echo "<td>" . $row['total_cost'] . "</td>";
-
                         echo "<td>" . $row['total_tax'] . "</td>";
+                        echo "<td>" . $row['remarks'] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
-              
                 mysqli_free_result($result);
             }
         }
-        
      }
 CloseCon($conn);
-
-
 function conformation($conformation)
 {
     $conformation=1;
     return $conformation;
 }
-
 }
 ?>

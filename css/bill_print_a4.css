@@ -1,0 +1,126 @@
+body{
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;  
+    }
+        ::-webkit-scrollbar {
+            background: transparent;  
+        }
+
+        
+
+        .submit_dist{
+            position: fixed;
+            top: 10px;
+            right: 100px;
+            color:#ffffff;
+            background: #ff7510;
+            border:0px;
+            border-radius:2em;
+            width: 150px;
+            height: 40px;
+        }
+        .submit_dist1{
+            position: fixed;
+            top: 70px;
+            right: 100px;
+            color:#ffffff;
+            background: #ff7510;
+            border:0px;
+            border-radius:2em;
+            width: 150px;
+            height: 40px;
+        }
+
+        table {
+            margin-top: 100px;
+            border-collapse: collapse;
+            }
+
+        th, td {
+                border-collapse: collapse;
+                border-bottom: 1px solid rgb(20, 20, 20);
+                padding: 5px;
+                }
+
+        th{
+            padding-bottom: 5px;
+            text-align: center;
+        }
+
+        .item_name{
+            text-align: center;
+        }
+
+        .item_row{
+            text-align: center;
+        }
+
+        a{
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .date_txt
+        {
+            float: right;
+            margin-top: -20px;
+        }
+        .bill_bottom_1{
+            border-bottom: 1px;
+        }
+
+        .bill_bottom{
+            border-bottom: 0px;
+         }
+
+        .main_title{
+            position: fixed;
+            top: 40px;
+            right:500px;
+        }
+
+        img{
+            width:50px;
+            height:50px;
+        }
+
+        .bill_title{
+            text-align: left;
+        }
+
+        .bill_shop_name{
+            text-align: right;
+        }
+
+        .main_div{
+            margin-top: -100px; 
+        }
+
+        .img_1{
+            height: 0px;
+            width: 0px;
+        }
+
+        @media print {
+            .submit_dist,.submit_dist1 {
+                display: none;
+            }
+
+            .img_1{
+                height: 250px;
+                width: 250px;
+                opacity: 0.05;
+                position: fixed;
+                top: 250px;
+                left: 295px;
+            }
+
+            * {padding: 0; margin: 0}
+
+            @page
+            {
+                padding: 0; margin: 0;
+            }
+          }
