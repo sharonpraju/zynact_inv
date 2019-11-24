@@ -10,6 +10,7 @@
 body{
   height: 100%;
   font-family: sans-serif;
+  background: #ffffff;
 }
 .boxes {
   margin: 10px 0;
@@ -233,4 +234,24 @@ table{
   padding-right: 20px;
   padding-left: 20px;
   border-radius: 5px;
+}
+
+.input_btn{
+  background: #ff7510;
+  color: #ffffff;
+  height: 50px;
+  width: 100px;
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+.input_txt
+{
+  height: 50px;
+  width: 200px;
+  border: 0.5;
+  border-color: #ff7510;
 }

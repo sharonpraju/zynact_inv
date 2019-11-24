@@ -1,8 +1,8 @@
 <form method=POST action=validate.php>
 <input type="text" name="validation" value="stock_request" hidden readonly>
-        <input type=text name=item_name placeholder="Item Name :">
-        <input type=text name=remarks placeholder="Remarks :">
-        <input type=submit value=submit>
+        <input type="text" class="input_txt" name=item_name placeholder="Item Name :">
+        <input type="text" class="input_txt" name="remarks" placeholder="Remarks :">
+        <input type="submit" class="input_btn" value="Add">
 </form>
 <?php
 include('db_connection.php');
@@ -20,7 +20,7 @@ if ($result->num_rows > 0)
 {
     echo "<br><br><center><table border='1' cellpadding='10'>";
 
-echo "<tr><th>Sl</th><th>Item Name</th><th>Added By</th><th>Added On</th><th>Added Remarks</th><th colspan='7'></th></tr>";
+echo "<tr><th>Sl</th><th>Item Name</th><th>Added By</th><th>Added On</th><th>Added On</th><th>Remarks</th><th colspan='7'></th></tr>";
 while ($row = $result->fetch_object())
 {
 echo "<tr>";
@@ -29,11 +29,6 @@ echo "<td>" . $row->item_name . "</td>";
 echo "<td>" . $row->added_by . "</td>";
 echo "<td>" . $row->added_on . "</td>";
 echo "<td>" . $row->remarks . "</td>";
-echo "<td></td>";
-echo "<td></td>";
-echo "<td></td>";
-echo "<td></td>";
-echo "<td></td>";
 echo "<td><a class='tbl_btn' href='delete_contents.php?id=" . $row->item_name . "&page=request'><img class='img_btn' src='img/delete_icon.ico'></a></td>";
 echo "</tr>";
 }
