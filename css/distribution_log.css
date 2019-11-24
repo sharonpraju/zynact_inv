@@ -1,15 +1,21 @@
 body{
     background: #ffffff;
-}
-
-td{
-    padding-left: 50px;
+    font-family: sans-serif;
 }
 
 .input_txt
 {
-    border: 0.5 solid;
+    border: 1px;
     border-color: #ff7510;
+    height: 50px;
+}
+
+.input_txt_submit{
+    height: 40px;
+    width: 100px;
+    border: 0px;
+    color: #ffffff;
+    background: #ff7510;
 }
 
 .input_txt_btn{
@@ -18,7 +24,8 @@ td{
     border: 0px;
     color: #ffffff;
     background: #ff7510;
-    margin-left: 10px;
+    position: fixed;
+    right: 100px;
 }
 
 @media print {
@@ -26,10 +33,25 @@ td{
         display: none;
     }
 
-    * {padding: 0; margin: 0}
+    * {
+        padding: 0; margin: 0;
+    }
 
     @page
     {
         padding: 0; margin: 0;
     }
   }
+
+table{
+    max-width: 100%;
+}
+
+td,tr{
+    text-align: center;
+    width: 150px;
+}
+
+th{
+    width: 150px;
+}
