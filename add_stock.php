@@ -1,6 +1,7 @@
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/typeahead.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/add_stock.css">
 
  <br><br>
@@ -35,7 +36,7 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $current_supplier=$row['supplier'];
-        echo'<select class="input_txt_top" name="item_supplier" name="item_category" required>
+        echo'<select class="input_txt_top" data-toggle="tooltip" title="Supplier" name="item_supplier" required>
         <option value="'.$current_supplier.'">'.$current_supplier.'</option>';
 
         $sql = "SELECT supplier_name FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'";
@@ -51,25 +52,25 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         echo '
-            <input type="text" class="input_txt_top" name="order_no" value="'.$row['order_no'].'">
-            <input type="text" class="input_txt_top" name="invoice_no" value="'.$row['invoice_no'].'">
-            <input type="text" class="input_txt_top" name="transportation_cost" value="'.$row['transportation_cost'].'">
-            <input type="date" class="input_txt_top" name="order_date" value="'.$row['order_date'].'">
-            <input type="date" class="input_txt_top" name="invoice_date" value="'.$row['invoice_date'].'">';
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Order No" name="order_no" value="'.$row['order_no'].'">
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Invoice No" name="invoice_no" value="'.$row['invoice_no'].'">
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Transportation Cost" name="transportation_cost" value="'.$row['transportation_cost'].'">
+            <input type="date" class="input_txt_top" data-toggle="tooltip" title="Order Date" name="order_date" value="'.$row['order_date'].'">
+            <input type="date" class="input_txt_top" data-toggle="tooltip" title="Invoice Date" name="invoice_date" value="'.$row['invoice_date'].'">';
             $invoice_no=$row['invoice_no'];
             $sql = "SELECT total_cost, total_tax, remarks FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             echo'
-            <input type="text" class="input_txt_top" name="total_bill_cost" value="'.$row['total_cost'].'">
-            <input type="text" class="input_txt_top" name="total_tax" value="'.$row['total_tax'].'">
-            <input type="text" class="input_txt_top" name="bill_remarks" value="'.$row['remarks'].'">';
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Total Bill Cost" name="total_bill_cost" value="'.$row['total_cost'].'">
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Total Tax" name="total_tax" value="'.$row['total_tax'].'">
+            <input type="text" class="input_txt_top" data-toggle="tooltip" title="Remarks" name="bill_remarks" value="'.$row['remarks'].'">';
             
     }
     else
     {
 
-        echo'<select class="input_txt_top" name="item_supplier" name="item_category" required>
+        echo'<select class="input_txt_top" name="item_supplier" required>
         <option value="">Select a Supplier</option>';
 
         $sql = "SELECT supplier_name FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'";
@@ -167,6 +168,10 @@
 	}
 	</style>
 <script>
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
 
     $(document).ready(function () {
         $('#search_item').typeahead({
