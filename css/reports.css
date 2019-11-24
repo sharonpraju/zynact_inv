@@ -6,16 +6,4 @@ input{
     margin-top: 20px;
     margin-left: 100px;
     border: hidden;
-    float: left;
-}
-
-.input_btn{
-    height: 50px;
-    width: 200px;
-    background: #ff7510;
-    color: #ffffff;
-    margin-top: 36px;
-    margin-left: 100px;
-    border: hidden;
-    float: left;
 }

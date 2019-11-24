@@ -57,10 +57,16 @@ do
 
 }while ($row = $result->fetch_assoc());
 
-echo'
-Stocks Under Warning Limit : '.$alert_level.'
+
+echo'<link rel="stylesheet" href="css/inv_status.css">
+<form method="post" action="validate.php">
+        <input type="text" name="validation" value="alert_level" hidden readonly>
+        <input class=input_button type="submit" value="Stocks Under Warning Limit: '.$alert_level.'">
+</form>
 <br><br>
-Out Of Stock : '.$out_of_stock.'
+<form method="post" action="status_stock.php">
+        <input class=input_button type="submit" value="Out Of Stock :      '.$out_of_stock.'">
+</form>
 <br><br>
 Stock Requests :';
 }
