@@ -75,6 +75,14 @@ if($page=='stock')
     $conn->query($sql);
     header("Location: stock_management.php");
 }
+if($page=="request")
+{
+    $item_name=$id;
+    $sql="UPDATE inv_stock_request
+    SET status='0' where item_name='$item_name'";
+    $conn->query($sql);
+    header("Location: stock_request.php");
+}
 }
 $conn->close();
 }

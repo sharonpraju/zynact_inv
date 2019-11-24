@@ -861,6 +861,20 @@ if($validation=='purchase_report')
             }
         }
      }
+     if($validation=='stock_request')
+     {
+        $item_name=$_POST['item_name'];
+        $remarks=$_POST['remarks'];
+        $sql1= "SELECT * FROM inv_admins where id='$admin'";
+        $result1 = $conn->query($sql1);
+        $row1 = $result1->fetch_assoc();
+        $added_by=$row1['id'];
+        
+        $sql="INSERT INTO inv_stock_request (item_name,remarks,added_by,section) VALUES ('$item_name','$remarks','$added_by','$section')";
+        
+      $conn->query($sql);
+        header("Location: stock_request.php");
+     }
 CloseCon($conn);
 function conformation($conformation)
 {
