@@ -8,7 +8,6 @@ if(!isset($_SESSION['admin']))
 <link rel="stylesheet" href="css/add_item.css">
 <center>
 <form method="post" action="validate.php">
-    <br><br><br><br>
     <input type="text" name="validation" value="add_item" hidden readonly>
     <br>
     <input type="text" class="input_txt" name="item_name" placeholder=" Item Name">

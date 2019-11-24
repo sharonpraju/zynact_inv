@@ -49,6 +49,10 @@ button{
     border: hidden;
     width: 100px;
     height: 50px;
+    position: fixed;
+    top: 0px;
+    right: 100px;
+
 }
 
 .error_div{

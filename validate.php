@@ -561,20 +561,16 @@ if($validation=="sales_purchase_report")
     echo"
         <div class='report_div'>
         <table class='div_sales_report'>
-        <th>Sales</th>
+        <th>Sales <br></th>
         <tr>
-            <td colspan='10'>Total Number Of Sales<br></td>
-            <td colspan='10'> $row</td>
+            <td colspan='10'><br>No Of Sales<br></td>
+            <td colspan='10'><br>$row<br></td>
         </tr>
         <tr>
             <td colspan='10'>Total Sales </td>
-            <td colspan='10'>".$total."</td>
+            <td colspan='10'><br>".$total."<br></td>
         </tr>
         <tr></tr>
-        <tr>
-            <td colspan='10'>Average Sales Per Month </td>
-            <td colspan='10'> $avg_sale</td>
-        </tr>
         <tr></tr>
         <tr>
             <td colspan='10'>Total Profit </td>
@@ -584,17 +580,12 @@ if($validation=="sales_purchase_report")
         <table class='div_purchase_report'>
         <th>Purchase</th>
         <tr>
-            <td colspan='10'>Total Number Of Purchase <br></td>
-            <td colspan='10'> $row_purchase</td>
+            <td colspan='10'><br>No Of Purchase <br></td>
+            <td colspan='10'><br>$row_purchase <br></td>
         </tr>
         <tr>
             <td colspan='10'>Total Cost </td>
-            <td colspan='10'> $total_purchase</td>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td colspan='10'>Average Purchase / Month </td>
-            <td colspan='10'> $avg_purchase</td>
+            <td colspan='10'><br>$total_purchase<br></td>
         </tr>
         </table>
         <br>
@@ -804,6 +795,7 @@ else
 }
 if($validation=='stock_report')
 {
+    echo"<input type='button' class='print_btn' value='Print' onclick='javascript:window.print()'><br><br><br><br>";
     $sql="SELECT * FROM inv_stock where section_id='$section' and status=1 ";
         if($result = mysqli_query($conn, $sql))
         {
@@ -835,9 +827,10 @@ if($validation=='stock_report')
                 mysqli_free_result($result);
             }
         }
-     }
+}
 if($validation=='purchase_report')
 {
+    echo"<input type='button' class='print_btn' value='Print' onclick='javascript:window.print()'><br><br><br><br>";
     $sql="SELECT * FROM inv_purchase_log where section_id='$section'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){

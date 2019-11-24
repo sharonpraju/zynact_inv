@@ -9,7 +9,7 @@ if(!isset($_SESSION['admin']))
 <div><br><br><br><br>
     <form method="post" action="validate.php">
         <input type="text" name="validation" value="sales_purchase_report" hidden readonly>
-        <input type="submit" value="Sales / Purchase Report">
+        <input type="submit" class="input_btn" value="Sales / Purchase Report">
     </form>
     <form method="post" action="validate.php">
         <input type="text" name="validation" value="alert_level" hidden readonly>
