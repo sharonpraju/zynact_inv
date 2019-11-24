@@ -1,9 +1,8 @@
-input{
+.input_button{
     height: 50px;
     width: 200px;
-    background: #ff7510;
+    background:#2c3338;
     color: #ffffff;
     margin-top: 20px;
-    margin-left: 100px;
     border: hidden;
 }
