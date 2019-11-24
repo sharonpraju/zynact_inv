@@ -63,11 +63,9 @@ echo'<link rel="stylesheet" href="css/inv_status.css">
         <input type="text" name="validation" value="alert_level" hidden readonly>
         <input class=input_button type="submit" value="Stocks Under Warning Limit: '.$alert_level.'">
 </form>
-<br><br>
 <form method="post" action="status_stock.php">
         <input class=input_button type="submit" value="Out Of Stock :      '.$out_of_stock.'">
 </form>
-<br><br>
 Stock Requests :';
 }
 ?>

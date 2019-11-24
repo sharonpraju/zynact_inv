@@ -2,6 +2,7 @@
     width: 200px;
     background:#2c3338;
     color: #ffffff;
-    
     border: hidden;
+    padding: 0px;
+    text-align: left;
 }
