@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="css/distribution_log.css">
 <script src="js/angular.min.js"></script>
 <script src="js/jquery-2.1.4.min.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="js/typeahead.js"></script>
 <div class="manage_cat_div">
 <form name='filterform' method='POST'>
@@ -44,7 +43,7 @@
     if(isset($_POST['search_bill']))
      {
         $bill_no=$_POST['search_bill'];
-        $sql="SELECT * FROM inv_distribution where dist_bill_no='$bill_no' ";
+        $sql="SELECT * FROM inv_distribution where dist_bill_no='$bill_no'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
                 echo "<table>";
@@ -60,14 +59,14 @@
                     echo "</tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
-                        echo "<td>" . $row['sl_no'] . "</td>";
-                        echo "<td>" . $row['dist_bill_no'] . "</td>";
-                        echo "<td>" . $row['dist_user_id'] . "</td>";
-                        echo "<td>" . $row['department'] . "</td>";
-                        echo "<td>" . $row['dist_issued_to'] . "</td>";
-                        echo "<td>" . $row['dist_place'] . "</td>";
-                        echo "<td>" . $row['dist_issued_by'] . "</td>";
-                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                        echo "<td>".$row['sl_no']."</td>";
+                        echo "<td>".$row['dist_bill_no']."</td>";
+                        echo "<td>".$row['dist_user_id']."</td>";
+                        echo "<td>".$row['department']."</td>";
+                        echo "<td>".$row['dist_issued_to']."</td>";
+                        echo "<td>".$row['dist_place']."</td>";
+                        echo "<td>".$row['dist_issued_by']."</td>";
+                        echo "<td>".$row['dist_issued_on']."</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -181,7 +180,7 @@ if(isset($_POST['category_type']))
         $sql = "SELECT * FROM inv_distribution where section_id='$section' ORDER by 'dist_bill_no'  ";
         echo "<form method='post' action='#'>
         <input  id='search_name' class='input_txt' type='text' name='user_name' placeholder='Name / Department'>
-        <input type='submit' class='input_txt_btn' value='Submit'>
+        <input type='submit' class='input_txt_submit' value='Submit'>
         </form>";
         
     }
@@ -190,7 +189,7 @@ if(isset($_POST['category_type']))
     {
         echo "<form method='post' action='#'>
         <input  id='bill' class='input_txt' type='text' name='search_bill' placeholder='Bill No'>
-        <input type='submit' class='input_txt_btn' value='Submit'>
+        <input type='submit' class='input_txt_submit' value='Submit'>
         </form>";
         
     $sql = "SELECT * FROM inv_distribution WHERE section_id='$section'  ORDER by 'dist_bill_no'";
@@ -201,7 +200,7 @@ if(isset($_POST['category_type']))
     {
         echo "<form method='post' action='#'>
         <input  id='bill' class='input_txt' type='date' name='search_date' placeholder='Date'>
-        <input type='submit' class='input_txt_btn' value='Submit'>
+        <input type='submit' class='input_txt_submit' value='Submit'>
         </form>";
         
     $sql = "SELECT * FROM inv_distribution WHERE section_id='$section'  ORDER by 'dist_bill_no'";
@@ -212,13 +211,13 @@ if($result = mysqli_query($conn, $sql)){
     if(mysqli_num_rows($result) > 0){
         echo "<table>";
             echo "<tr>";
-                echo "<th>&nbsp; &nbsp; &nbsp; &nbsp; Sl No</th>";
-                echo "<th>&nbsp;Bill Number</th>";
+                echo "<th>Sl No</th>";
+                echo "<th>Bill Number</th>";
                 echo "<th>Name</th>";
                 echo "<th>Department</th>";
                 echo "<th>Location</th>";
-                echo "<th>&nbsp; &nbsp; &nbsp; &nbsp;Place</th>";
-                echo "<th>&nbsp; &nbsp; &nbsp; &nbsp;Issued By</th>";
+                echo "<th>Place</th>";
+                echo "<th>Issued By</th>";
                 echo "<th>Date</th>";
             echo "</tr>";
         while($row = mysqli_fetch_array($result)){
