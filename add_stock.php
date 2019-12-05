@@ -70,7 +70,7 @@
     else
     {
 
-        echo'<select class="input_txt_top" name="item_supplier" required>
+        echo'<select class="input_txt_top" name="item_supplier" data-toggle="tooltip" title="Supplier" required>
         <option value="">Select a Supplier</option>';
 
         $sql = "SELECT supplier_name FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'";
@@ -86,14 +86,14 @@
         echo"</select>";
 
         echo '
-            <input type="text" class="input_txt_top" name="order_no" placeholder=" Oder No">
-            <input type="text" class="input_txt_top" name="invoice_no" placeholder=" Invoice No">
-            <input type="text" class="input_txt_top" name="transportation_cost" placeholder=" Transportation Cost">
-            <input type="date" class="input_txt_top" name="order_date" placeholder=" Oder Date">
-            <input type="date" class="input_txt_top" name="invoice_date" placeholder=" Invoice Date">
-            <input type="text" class="input_txt_top" name="total_bill_cost" placeholder="Total Bill Cost">
-            <input type="text" class="input_txt_top" name="total_tax" placeholder="Total Tax">
-            <input type="text" class="input_txt_top" name="bill_remarks" placeholder="Bill Remarks">
+            <input type="text" class="input_txt_top" name="order_no" placeholder=" Oder No" data-toggle="tooltip" title="Order No">
+            <input type="text" class="input_txt_top" name="invoice_no" placeholder=" Invoice No" data-toggle="tooltip" title="Invoice No">
+            <input type="text" class="input_txt_top" name="transportation_cost" placeholder=" Transportation Cost" data-toggle="tooltip" title="Transportation Cost">
+            <input type="date" class="input_txt_top" name="order_date" placeholder=" Oder Date" data-toggle="tooltip" title="Order date">
+            <input type="date" class="input_txt_top" name="invoice_date" placeholder=" Invoice Date" data-toggle="tooltip" title="Invoice Date">
+            <input type="text" class="input_txt_top" name="total_bill_cost" placeholder="Total Bill Cost" data-toggle="tooltip" title="Total Bill Cost">
+            <input type="text" class="input_txt_top" name="total_tax" placeholder="Total Tax" data-toggle="tooltip" title="Total Tax">
+            <input type="text" class="input_txt_top" name="bill_remarks" placeholder="Bill Remarks" data-toggle="tooltip" title="Bill Remarks">
             ';
     }
 
@@ -103,8 +103,8 @@
 <input type="submit" class="submit" value=" Add / Update">
 </div>
 <br><br>
-<input type="text" class="input_txt" id="search_item" name="item_name" placeholder=" Name" required onchange='update(this.value)'>
-<select class="input_txt" name="item_category" required>
+<input type="text" class="input_txt" id="search_item" name="item_name" placeholder=" Name" data-toggle="tooltip" title="Item Name" autocomplete="off" required onchange='update(this.value)'>
+<select class="input_txt" name="item_category" data-toggle="tooltip" title="Category" required>
     <option value="">Select a Category</option>
     <?php
         $sql = "SELECT * FROM inv_category WHERE category_type='0' AND section_id='1' AND category_status='1'";
@@ -120,10 +120,10 @@
     ?>
 </select>
 <br><br>
-<select class="input_txt" name="item_sub_category" required>
+<select class="input_txt" name="item_sub_category" data-toggle="tooltip" title="Sub Category" required>
     <option value="">Select a Sub Category</option>
     <?php 
-        $sql = "SELECT category_name FROM inv_category WHERE category_type=1 AND section_id='$section' AND category_status='1'";
+        $sql = "SELECT category_name FROM inv_category WHERE category_type='1' AND section_id='$section' AND category_status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         if($row['category_name']!=NULL)
@@ -136,19 +136,29 @@
         CloseCon($conn);
     ?>
 </select>
-<input type="text" class="input_txt" name="total_units" placeholder=" Total Units">
+<input type="text" class="input_txt" name="total_units" placeholder=" Total Units" data-toggle="tooltip" title="Total Units" autocomplete="off">
 <br><br>
-<input type="text" class="input_txt" name="total_cost" placeholder=" Total Cost (including tax)">
-<input type="text" class="input_txt" name="item_unit" placeholder=" Unit">
+<input type="text" class="input_txt" name="total_cost" placeholder=" Total Cost (including tax)" data-toggle="tooltip" title="Total Cost" autocomplete="off">
+<select class="input_txt" name="item_unit" data-toggle="tooltip" title="Unit" required>
+<option value="">Select Unit</option>
+<option value="No">No</option>
+<option value="Kg">Kg</option>
+<option value="Mg">Mg</option>
+<option value="Lbs">Lbs</option>
+<option value="Pounds">Pounds</option>
+<option value="Pcs">Pcs</option>
+<option value="Ltr">Ltr</option>
+<option value="Ml">Ml</option>
+</select>
 <br><br>
-<input type="text" class="input_txt" name="item_price" placeholder=" MRP">
-<input type="text" class="input_txt" name="item_selling_price" placeholder=" Selling Price">
+<input type="text" class="input_txt" name="item_price" placeholder=" MRP" data-toggle="tooltip" title="MRP" autocomplete="off">
+<input type="text" class="input_txt" name="item_selling_price" placeholder=" Selling Price" data-toggle="tooltip" title="Selling Price" autocomplete="off">
 <br><br>
-<input type="text" class="input_txt" name="item_tax" placeholder=" Tax Amount">
-<input type="text" class="input_txt" name="remarks" placeholder=" Remarks">
+<input type="text" class="input_txt" name="item_tax" placeholder=" Tax Amount" data-toggle="tooltip" title="Tax Amount" autocomplete="off">
+<input type="text" class="input_txt" name="remarks" placeholder=" Remarks" data-toggle="tooltip" title="Remarks" autocomplete="off">
 <br><br>
-<input type="text" class="input_txt" name="barcode" placeholder=" barcode">
-<input id="item_code" class="input_txt" type="text" name="item_code"placeholder=" Item Code" readonly hidden>
+<input type="text" class="input_txt" name="barcode" placeholder=" barcode" data-toggle="tooltip" title="Barcode" autocomplete="off">
+<input id="item_code" class="input_item_code" type="text" name="item_code"placeholder=" Item Code" autocomplete="off" readonly>
 <br><br>
 </form>
 </div>

@@ -16,6 +16,13 @@ margin: 0;
     margin-left: 70px;
 }
 
+.input_item_code{
+        height: 0px;
+        width: 0px;
+        border-color: #ffffff;
+        display: none;
+}
+
 .input_txt_top{
     color: #000000;
     background-color: transparent;

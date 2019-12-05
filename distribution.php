@@ -5,6 +5,7 @@ if(!isset($_SESSION['admin']))
     header("location:index.html");
 }
 $section=$_SESSION['section'];
+$admin=$_SESSION['admin'];
 include 'db_connection.php';
 $conn = OpenCon();
 ?>
@@ -80,7 +81,7 @@ $conn = OpenCon();
 </div>
 <br><br>
 <?php
-$sql = "SELECT * FROM inv_current_bill";
+$sql = "SELECT * FROM inv_current_bill WHERE admin_id='$admin' AND section_id='$section'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $id=0;
@@ -99,7 +100,7 @@ echo"
         $total=$row['item_selling_price']*$row['item_quantity'];
         echo"<br>
         <input type='text' id='sl_no' class='bill_txt_sl_no' value='".$id."'>
-        <input type='text' id='".$row['item_code']."' class='bill_txt_name' name='item_name' value='".$row['item_name']."' onchange='change_name(this.value,this.id)'>
+        <input type='text' id='".$row['item_code']."' class='bill_txt_name' name='item_name' value='".$row['item_name']."' autocomplete='off' onchange='change_name(this.value,this.id)'>
         <input type='text' id='".$row['item_code']."' class='bill_txt' name='item_code' value='".$row['item_code']."' onchange='change_code(this.value,this.id)' readonly>
         <input type='number' id='".$row['item_code']."' class='bill_txt_qty' name='".$max_quantity."' ng-model='quantity".$id."' ng-init='quantity".$id."=".$row['item_quantity']."' onchange='change_quantity(this.value,this.id)'>
         <input type='text' id='".$row['item_code']."' class='bill_txt' name='item_mrp' value='".$row['item_mrp']."' onchange='change_mrp(this.value,this.id)' readonly>

@@ -188,10 +188,10 @@ if($validation=="add_stock")
     }
     else
     {
-        $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE OR item_name='$item_name' AND section_id='$section' AND status='1'";
+        $sql = "SELECT item_name, total_units, item_code, barcode FROM inv_stock WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
-        if($row['item_name']==$item_name OR $row['barcode']==$barcode)
+        if($row['item_name']==$item_name OR ($row['barcode']==$barcode AND $row['barcode']!=NULL))
         {
             
             if($row['item_name']==$item_name){echo"<center><div class='error_div'>Item With Same Item Name Already Exist</div><br><br><br><br><button onclick='history.go(-1);'>Back </button></center>";}
@@ -210,7 +210,6 @@ if($validation=="add_stock")
         $sql="UPDATE inv_stock
         SET item_code='$sl_no' WHERE item_name='$item_name' AND section_id='$section' AND status='1'";
         $conn->query($sql);
-        }
         $sql = "SELECT invoice_no FROM inv_purchase_log WHERE invoice_no='$invoice_no' AND section_id='$section'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
@@ -221,6 +220,7 @@ if($validation=="add_stock")
             $conn->query($sql);
         }
         header("location:add_stock.php");
+    }
     }
     }
     else
@@ -449,14 +449,14 @@ if($validation=="item_distribution")
     $item_selling_price=$row['selling_price'];
     $item_discount=$item_mrp-$item_selling_price;
     $stock_quantity=$row['total_units'];
-    $sql = "SELECT item_quantity FROM inv_current_bill WHERE item_name = '$item_name' AND item_code='$item_code' AND section_id='$section'";
+    $sql = "SELECT item_quantity FROM inv_current_bill WHERE item_name = '$item_name' AND item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if($row['item_quantity']!=NULL)
     {
         $sql="UPDATE inv_current_bill
         SET item_quantity = item_quantity + 1
-        WHERE item_name = '$item_name' AND item_code='$item_code' AND section_id='$section'";
+        WHERE item_name = '$item_name' AND item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
         $conn->query($sql);
         header( "location:distribution.php" );
     }
@@ -464,8 +464,8 @@ if($validation=="item_distribution")
     {
         if($stock_quantity>0)
         {
-            $sql="INSERT INTO inv_current_bill (item_name,item_code,item_mrp,item_selling_price,item_discount,section_id)
-            VALUES ('$item_name','$item_code','$item_mrp','$item_selling_price','$item_discount','$section')";
+            $sql="INSERT INTO inv_current_bill (item_name,item_code,item_mrp,item_selling_price,item_discount,admin_id,section_id)
+            VALUES ('$item_name','$item_code','$item_mrp','$item_selling_price','$item_discount','$admin','$section')";
             if ($conn->query($sql) === TRUE) {
                 header( "location:distribution.php" );
             }
@@ -486,7 +486,7 @@ if($validation=="bill_update_name")
     $item_name = $_POST['item_name'];
     $item_code = $_POST['item_code'];
     $sql="UPDATE inv_current_bill
-    SET item_name='$item_name' WHERE item_code='$item_code' AND section_id='$section'";
+    SET item_name='$item_name' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="bill_update_code")
@@ -494,7 +494,7 @@ if($validation=="bill_update_code")
     $item_code = $_POST['item_code'];
     $item_code_new = $_POST['item_code_new'];
     $sql="UPDATE inv_current_bill
-    SET item_code='$item_code_new' WHERE item_code='$item_code' AND section_id='$section'";
+    SET item_code='$item_code_new' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="bill_update_quantity")
@@ -502,7 +502,7 @@ if($validation=="bill_update_quantity")
     $item_quantity = $_POST['item_quantity'];
     $item_code = $_POST['item_code'];
     $sql="UPDATE inv_current_bill
-    SET item_quantity='$item_quantity' WHERE item_code='$item_code' AND section_id='$section'";
+    SET item_quantity='$item_quantity' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="bill_update_mrp")
@@ -510,7 +510,7 @@ if($validation=="bill_update_mrp")
     $item_mrp = $_POST['item_mrp'];
     $item_code = $_POST['item_code'];
     $sql="UPDATE inv_current_bill
-    SET item_mrp='$item_mrp' WHERE item_code='$item_code' AND section_id='$section'";
+    SET item_mrp='$item_mrp' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="bill_update_selling_price")
@@ -518,13 +518,13 @@ if($validation=="bill_update_selling_price")
     $item_selling_price = $_POST['item_selling_price'];
     $item_code = $_POST['item_code'];
     $sql="UPDATE inv_current_bill
-    SET item_selling_price='$item_selling_price' WHERE item_code='$item_code' AND section_id='$section'";
+    SET item_selling_price='$item_selling_price' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="bill_item_delete")
 {
     $item_code = $_POST['item_code'];
-    $sql="DELETE FROM inv_current_bill WHERE item_code='$item_code' AND section_id='$section'";
+    $sql="DELETE FROM inv_current_bill WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
 if($validation=="sales_purchase_report")
@@ -616,7 +616,7 @@ if($validation=="add_item")
     if($result->num_rows > 0)
     {
         echo "<center><br><br><br><br>Item already exist.<br><br>
-                <input type='submit' class='back_btn' value='Back' onclick=location.href='add_item.html'></center>";
+                <input type='submit' class='back_btn' value='Back' onclick=location.href='add_item.php'></center>";
     }
     else
     {
@@ -629,7 +629,7 @@ if($validation=="add_item")
         WHERE section_id='$section'";
         $conn->query($sql);
         
-        header( "location:add_item.html" );
+        header( "location:add_item.php" );
     }
     else
     {

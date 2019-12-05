@@ -101,7 +101,8 @@ echo'
         {
         echo "<option value='".$row['category_name']."'>".$row['category_name']."</option>";
         }
-        while($row=mysqli_fetch_assoc($result)){
+        while($row=mysqli_fetch_assoc($result))
+        {
         echo "<option value='".$row['category_name']."'>".$row['category_name']."</option>";
         }
         echo'</select>';
@@ -116,7 +117,8 @@ echo'
         {
             echo "<option value='".$row['supplier_name']."'>".$row['supplier_name']."</option>";
         }
-        while($row=mysqli_fetch_assoc($result)){
+        while($row=mysqli_fetch_assoc($result))
+        {
             echo "<option value='".$row['supplier_name']."'>".$row['supplier_name']."</option>";
         }
         echo'</select>';
@@ -171,6 +173,5 @@ echo'
         </div>
         </div>';
 }
-
+}
 ?>
-

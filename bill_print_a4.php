@@ -66,7 +66,7 @@ echo"
         </tr>";
 ?>
 <?php
-$sql = "SELECT * FROM inv_current_bill WHERE section_id='$section'";
+$sql = "SELECT * FROM inv_current_bill WHERE admin_id='$admin' AND section_id='$section'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $id=0;
@@ -117,7 +117,7 @@ $total=0;
     VALUES ('$dist_user_id','$bill_no','$section','$dist_issued_to','$dist_place','$admin','$dist_issued_on','$dist_place','$dist_remarks','$department','$indent','$stock_no')";
     $conn->query($sql);
 
-    $sql = "TRUNCATE TABLE inv_current_bill";
+    $sql = "DELETE FROM inv_current_bill WHERE admin_id='$admin' AND section_id='$section'";
     $result = mysqli_query($conn, $sql);
 
     $sql = "SELECT semester FROM user_details WHERE user_name='$dist_user_id'";
