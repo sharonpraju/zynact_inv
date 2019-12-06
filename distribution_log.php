@@ -65,7 +65,7 @@
                         echo "<td>".$row['dist_issued_to']."</td>";
                         echo "<td>".$row['dist_place']."</td>";
                         echo "<td>".$row['dist_issued_by']."</td>";
-                        echo "<td>".$row['dist_issued_on']."</td>";
+                        echo "<td>". substr($row['dist_issued_on'],0,10) ."</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -103,7 +103,7 @@
                         echo "<td>" . $row['dist_issued_to'] . "</td>";
                         echo "<td>" . $row['dist_place'] . "</td>";
                         echo "<td>" . $row['dist_issued_by'] . "</td>";
-                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                        echo "<td>" . substr($row['dist_issued_on'],0,10) . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -139,7 +139,7 @@
                         echo "<td>" . $row['dist_issued_to'] . "</td>";
                         echo "<td>" . $row['dist_place'] . "</td>";
                         echo "<td>" . $row['dist_issued_by'] . "</td>";
-                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                        echo "<td>" . substr($row['dist_issued_on'],0,10) . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -176,7 +176,7 @@
                         echo "<td>" . $row['dist_issued_to'] . "</td>";
                         echo "<td>" . $row['dist_place'] . "</td>";
                         echo "<td>" . $row['dist_issued_by'] . "</td>";
-                        echo "<td>" . $row['dist_issued_on'] . "</td>";
+                        echo "<td>" . substr($row['dist_issued_on'],0,10) . "</td>";
                         echo "</tr>";
                 }
                 echo "</table>";
@@ -267,7 +267,7 @@
                     echo "<td>" . $row['dist_issued_to'] . "</td>";
                     echo "<td>" . $row['dist_place'] . "</td>";
                     echo "<td>" . $row['dist_issued_by'] . "</td>";
-                    echo "<td>" . $row['dist_issued_on'] . "</td>";
+                    echo "<td>" . substr($row['dist_issued_on'],0,10) . "</td>";
                 echo "</tr>";
                 $sl_no++;
                 }

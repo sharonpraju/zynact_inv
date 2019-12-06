@@ -48,7 +48,7 @@ margin: 0;
     height: 20px;
     transition: border .5s;
     position: fixed;
-    top: 35px;
+    top: 30px;
     left: 10px;
 }
 
@@ -63,7 +63,7 @@ margin: 0;
     height: 20px;
     transition: border .5s;
     position: fixed;
-    top: 70px;
+    top: 53px;
     left: 10px;
 }
 
@@ -78,7 +78,7 @@ margin: 0;
     height: 20px;
     transition: border .5s;
     position: fixed;
-    top: 100px;
+    top: 75px;
     left: 10px;
 }
 
@@ -93,8 +93,8 @@ margin: 0;
     height: 25px;
     transition: border .5s;
     position: fixed;
-    top: 10px;
-    left: 250px;
+    top: 98px;
+    left: 10px;
 }
 
 .input_txt_distribution_5{
@@ -108,7 +108,7 @@ margin: 0;
     height: 20px;
     transition: border .5s;
     position: fixed;
-    top: 40px;
+    top: 5px;
     left: 310px;
 }
 
@@ -123,11 +123,41 @@ margin: 0;
         height: 20px;
         transition: border .5s;
         position: fixed;
-        top: 70px;
+        top: 30px;
         left: 350px;
 }
 
 .input_txt_distribution_7{
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        padding: 5px 0;
+        width: 125px;
+        height: 20px;
+        transition: border .5s;
+        position: fixed;
+        top: 53px;
+        left: 310px;
+}
+
+.input_txt_distribution_8{
+        color: #000000;
+        background-color: transparent;
+        border: 0.5px solid transparent;
+        border-radius: 1px;
+        border-color:#ff7510;
+        padding: 5px 0;
+        width: 100px;
+        height: 20px;
+        transition: border .5s;
+        position: fixed;
+        top: 75px;
+        left: 350px;
+}
+
+.input_txt_distribution_9{
         color: #000000;
         background-color: transparent;
         border: 0.5px solid transparent;
@@ -144,17 +174,29 @@ margin: 0;
 
 .span_date{
         position: fixed;
-        top: 40px;
+        top: 5px;
+        left: 250px;
+}
+
+.span_date_1{
+        position: fixed;
+        top: 53px;
         left: 250px;
 }
 
 .span_1{
         position: fixed;
-        top: 70px;
+        top: 30px;
         left: 250px;
 }
 
 .span_2{
+        position: fixed;
+        top: 75px;
+        left: 250px;
+}
+
+.span_3{
         position: fixed;
         top: 100px;
         left: 250px;
@@ -345,7 +387,7 @@ table td {
         height: 20px;
         width: 200px;
         position: fixed;
-        top: 10px;
+        top: 5px;
         left: 10px;
 }
 
@@ -370,6 +412,12 @@ table td {
 .bill_txt_name{
         height:25px;
         width:300px;
+        margin-left: 20px;
+}
+
+.bill_txt_remarks{
+        height:25px;
+        width:200px;
         margin-left: 20px;
 }
 

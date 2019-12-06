@@ -521,6 +521,15 @@ if($validation=="bill_update_selling_price")
     SET item_selling_price='$item_selling_price' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
     $conn->query($sql);  
 }
+
+if($validation=="bill_update_remarks")
+{
+    $remarks = $_POST['remarks'];
+    $item_code = $_POST['item_code'];
+    $sql="UPDATE inv_current_bill
+    SET remarks='$remarks' WHERE item_code='$item_code' AND admin_id='$admin' AND section_id='$section'";
+    $conn->query($sql);  
+}
 if($validation=="bill_item_delete")
 {
     $item_code = $_POST['item_code'];
@@ -563,29 +572,30 @@ if($validation=="sales_purchase_report")
         <table class='div_sales_report'>
         <th>Sales <br></th>
         <tr>
-            <td colspan='10'><br>No Of Sales<br></td>
-            <td colspan='10'><br>$row<br></td>
+            <td><br>No Of Sales : <br></td>
+            <td><br>$row<br></td>
         </tr>
-        <tr>
-            <td colspan='10'>Total Sales </td>
-            <td colspan='10'><br>".$total."<br></td>
+        <!--<tr>
+            <td>Total Sales : </td>
+            <td><br>".$total."<br></td>
         </tr>
         <tr></tr>
         <tr></tr>
         <tr>
-            <td colspan='10'>Total Profit </td>
-            <td colspan='10'> $total_profit</td>
-        </tr></table>
+            <td>Total Profit : </td>
+            <td> $total_profit</td>
+        </tr>-->
+        </table>
         
         <table class='div_purchase_report'>
         <th>Purchase</th>
         <tr>
-            <td colspan='10'><br>No Of Purchase <br></td>
-            <td colspan='10'><br>$row_purchase <br></td>
+            <td><br>No Of Purchase :<br></td>
+            <td><br>$row_purchase <br></td>
         </tr>
         <tr>
-            <td colspan='10'>Total Cost </td>
-            <td colspan='10'><br>$total_purchase<br></td>
+            <td>Total Purchase Cost : </td>
+            <td><br>$total_purchase<br></td>
         </tr>
         </table>
         <br>
@@ -808,7 +818,7 @@ if($validation=='stock_report')
                 echo "<th>Item Name</th>";
                 echo "<th>Item Code</th>";
                 echo "<th>Invoice No</th>";
-                echo "<th>Date and Time Updated</th>";
+                echo "<th>Date Updated</th>";
                 echo "<th>Units</th>";
                 echo "</tr>";
                 while($row = mysqli_fetch_array($result))
@@ -818,7 +828,7 @@ if($validation=='stock_report')
                     echo "<td>" . $row['item_name'] . "</td>";
                     echo "<td>" . $row['item_code'] . "</td>";
                     echo "<td>" . $row['invoice_no'] . "</td>";
-                    echo "<td>" . $row['date_updated'] . "</td>";
+                    echo "<td>" . substr($row['date_updated'],0,10) . "</td>";
                     echo "<td>" . $row['total_units'] . "</td>";
                     echo "</tr>";
                     $sl_no++;

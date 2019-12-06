@@ -24,8 +24,10 @@ $user_department=$_POST['department'];
 $dist_issued_to=$_POST['dist_issued_to'];
 $dist_place=$_POST['dist_place'];
 $dist_issued_on=$_POST['invoice_date'];
-$dist_remarks=$_POST['Remarks'];
-$indent=$_POST['indent'];
+$dist_remarks=$_POST['remarks'];
+$indent_no=$_POST['indent_no'];
+$indent_date=$_POST['indent_date'];
+$book_no=$_POST['book_no'];
 $stock_no=$_POST['stock_no'];
 
 $sql="SELECT branch FROM user_details WHERE user_name='$dist_user_id'";
@@ -45,8 +47,8 @@ echo"
         </tr>
         <tr>
             <td class='bill_title' colspan='6'>
-            Indent No : ".$indent." <br>
-            Book No :".$indent."
+            Indent No : ".$indent_no." <br>
+            Book No :".$book_no."
             <span class='date_txt'>Date: ".$dist_issued_on."</span>
             </td>
         </tr>
@@ -114,8 +116,8 @@ $total=0;
     $bill_no=$row['bill_no'];
 
 
-    $sql="INSERT INTO inv_distribution (dist_user_id,dist_bill_no,section_id,dist_issued_to,dist_place,dist_issued_by,dist_issued_on,place,remarks,department,dist_indent_no,stock_no)
-    VALUES ('$dist_user_id','$bill_no','$section','$dist_issued_to','$dist_place','$admin','$dist_issued_on','$dist_place','$dist_remarks','$department','$indent','$stock_no')";
+    $sql="INSERT INTO inv_distribution (dist_user_id,dist_bill_no,section_id,dist_issued_to,dist_place,dist_issued_by,dist_issued_on,place,remarks,department,dist_indent_no,dist_indent_date,book_no,stock_no)
+    VALUES ('$dist_user_id','$bill_no','$section','$dist_issued_to','$dist_place','$admin','$dist_issued_on','$dist_place','$dist_remarks','$department','$indent_no','$indent_date','$book_no','$stock_no')";
     $conn->query($sql);
 
     $sql = "DELETE FROM inv_current_bill WHERE admin_id='$admin' AND section_id='$section'";

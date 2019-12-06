@@ -19,9 +19,11 @@ $conn = OpenCon();
     <div class='bill_txt_title2'>Item Name</div>
     <div class='bill_txt_title3'>Item Code</div>
     <div class='bill_txt_title4'>&nbsp;Quantity</div>
-    <div class='bill_txt_title5'>&nbsp;MRP</div>
+    <div class='bill_txt_title5'>&nbsp;Remarks</div>
+    <!--<div class='bill_txt_title5'>&nbsp;MRP</div>
     <div class='bill_txt_title6'>Selling Price</div>
-    <div class='bill_txt_title7'>Total</div><br><br>
+    <div class='bill_txt_title7'>Total</div>-->
+    <br><br>
     </div>
  <br><br>
 <div class='background'>
@@ -47,7 +49,7 @@ $conn = OpenCon();
         <div class="customer">
         <input type="text" class="input_txt_distribution_1" id="department_txt" name="department" placeholder="Department" readonly>
         <input type="text" class="input_txt_distribution_2" name="dist_place" placeholder="Place" id="Place" class="ui-autocomplete-input">
-        <input type="text" class="input_txt_distribution_3" name="Remarks" placeholder="Remarks" id="Remarks" class="ui-autocomplete-input">
+        <input type="text" class="input_txt_distribution_3" name="remarks" placeholder="Remarks" id="Remarks" class="ui-autocomplete-input">
         
         <script src="js/jquery.min.js"></script>
         <select class="input_txt_distribution_4" name=dist_issued_to id="AutoType" required>
@@ -64,17 +66,18 @@ $conn = OpenCon();
         ?>
         </select>
         <br><br>
-        <span class="span_date">Issued Date</span><input type="date" class="input_txt_distribution_5" name="invoice_date" value="<?php echo date("Y-m-d"); ?>" require placeholder="" style="margin-left:15px;">
+        <span class="span_date">Issued Date</span><input type="date" class="input_txt_distribution_5" name="invoice_date" value="<?php echo date("Y-m-d"); ?>" required placeholder="" style="margin-left:15px;">
         <?php
         $sql = "SELECT MAX(bill_no) FROM inv_sales_log WHERE section_id='$section'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $max=$row['MAX(bill_no)'];
         $max++;
-        echo'
-        <span class="span_1">Indent No</span><input type="text" class="input_txt_distribution_6" name="indent" placeholder="Indent No" value="'.$max.'" class="ui-autocomplete-input"><br>
-        <span class="span_2">Stock No</span><input type="text" class="input_txt_distribution_7" name="stock_no" placeholder="Stock No" value="'.$max.'" class="ui-autocomplete-input">';
         ?>
+        <span class="span_1">Indent No</span><input type="text" class="input_txt_distribution_6" name="indent_no" placeholder="Indent No" class="ui-autocomplete-input" required><br>
+        <span class="span_date_1">Indent Date</span><input type="date" class="input_txt_distribution_7" name="indent_date" value="<?php echo date("Y-m-d"); ?>" required placeholder="" style="margin-left:15px;">
+        <span class="span_2">Book No</span><input type="text" class="input_txt_distribution_8" name="book_no" placeholder="Book No" class="ui-autocomplete-input"><br>
+        <span class="span_3">Stock No</span><input type="text" class="input_txt_distribution_9" name="stock_no" placeholder="Stock No" value="<?php echo $max; ?>" class="ui-autocomplete-input">
         <input type=submit class="link_submit" value="Save and Print">
         </form>
 </div>
@@ -103,9 +106,10 @@ echo"
         <input type='text' id='".$row['item_code']."' class='bill_txt_name' name='item_name' value='".$row['item_name']."' autocomplete='off' onchange='change_name(this.value,this.id)'>
         <input type='text' id='".$row['item_code']."' class='bill_txt' name='item_code' value='".$row['item_code']."' onchange='change_code(this.value,this.id)' readonly>
         <input type='number' id='".$row['item_code']."' class='bill_txt_qty' name='".$max_quantity."' ng-model='quantity".$id."' ng-init='quantity".$id."=".$row['item_quantity']."' onchange='change_quantity(this.value,this.id)'>
-        <input type='text' id='".$row['item_code']."' class='bill_txt' name='item_mrp' value='".$row['item_mrp']."' onchange='change_mrp(this.value,this.id)' readonly>
+        <input type='text' id='".$row['item_code']."' class='bill_txt_remarks' name='remarks' placeholder='Remarks' onchange='change_remarks(this.value,this.id)'>
+        <!--<input type='text' id='".$row['item_code']."' class='bill_txt' name='item_mrp' value='".$row['item_mrp']."' onchange='change_mrp(this.value,this.id)' readonly>
         <input type='number' id='".$row['item_code']."' class='bill_txt' name='item_seling_price' ng-model='selling_price".$id."' ng-init='selling_price".$id."=".$row['item_selling_price']."' onchange='change_selling_price(this.value,this.id)'>
-        <input type='number' id='total".$id."' class='bill_txt_total' name='item_total' value='{{selling_price".$id."*quantity".$id."}}'> <input type='button' id='".$row['item_code']."' class='bill_btn' value='X'>
+        <input type='number' id='total".$id."' class='bill_txt_total' name='item_total' value='{{selling_price".$id."*quantity".$id."}}'> <input type='button' id='".$row['item_code']."' class='bill_btn' value='X'>-->
         <span></span>";
     }while($row = mysqli_fetch_array($result));
     echo "<input type='text' id='id' name='id' value='".$id."' hidden readonly>";
@@ -128,7 +132,7 @@ echo"
     window.onload = function(){
         window.total_price();
     }
-    function change_name(val,code) { 
+function change_name(val,code) { 
         $.post("validate.php",
        {validation: 'bill_update_name',item_name: val, item_code: code},
        function(response){
@@ -172,6 +176,16 @@ function change_selling_price(val,code) {
 
     window.total_price();
 }
+
+function change_remarks(val,code) { 
+        $.post("validate.php",
+       {validation: 'bill_update_remarks',remarks: val, item_code: code},
+       function(response){
+           console.log(response);
+       }
+    );
+}
+
 function total_price() {
     var i,x,total=0;
     var id=document.getElementById('id').value;
