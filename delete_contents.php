@@ -18,7 +18,7 @@ $page=$_GET['page'];
 preg_replace('/[^A-Za-z0-9\-]/', '', $page);
 if($page=='supplier')
 {
-    $sql = "SELECT supplier_id FROM inv_supplier WHERE supplier_name = '$id' AND section_id='$section' AND supplier_status='1'";
+    $sql = "SELECT supplier_id FROM inv_supplier WHERE supplier_id='$id' AND section_id='$section' AND supplier_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $supplier_id=$row['supplier_id'];
@@ -34,7 +34,7 @@ if($page=='supplier')
     }
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$supplier_id','inv_supplier','$admin','$section','deleted')";
     $conn->query($sql);
-    header("Location: add_supplier.php");
+    header("Location: manage_supplier.php");
 }
 if($page=='category')
 {

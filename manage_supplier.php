@@ -34,9 +34,9 @@ while ($row = $result->fetch_object())
 echo "<tr>";
 echo "<td>" . $row->supplier_name . "</td>";
 echo "<td>" . $row->supplier_address . "</td>";
-echo "<td><a class='btn_link' href='view_supplier.php'>View</a></td>";
-echo "<td><a class='tbl_btn' href='edit_contents.php?id=" . $row->supplier_name . "&page=supplier'><img class='img_btn' src='img/edit_icon.png'></a></td>";
-echo "<td><a class='tbl_btn' href='delete_contents.php?id=" . $row->supplier_name . "&page=supplier'><img class='img_btn' src='img/delete_icon.ico'></a></td>";
+echo "<td><a class='btn_link' href='view_supplier.php?id=" . $row->supplier_id . "'>View</a></td>";
+echo "<td><a class='tbl_btn' href='edit_contents.php?id=" . $row->supplier_id . "&page=supplier'><img class='img_btn' src='img/edit_icon.png'></a></td>";
+echo "<td><a class='tbl_btn' href='delete_contents.php?id=" . $row->supplier_id . "&page=supplier'><img class='img_btn' src='img/delete_icon.ico'></a></td>";
 /*echo "<td><a href='records.php?id=" . $row->category_name . "'>Edit</a></td>";
 echo "<td><a href='delete_contents.php?id=" . $row->category_name . "'>Delete</a></td>";*/
 echo "</tr>";

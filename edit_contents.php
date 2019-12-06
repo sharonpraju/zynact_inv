@@ -17,7 +17,7 @@ $page=$_GET['page'];
 preg_replace('/[^A-Za-z0-9\-]/', '', $page);
 if($page=="supplier")
 {
-        $sql="SELECT * FROM inv_supplier WHERE supplier_name = '$id' AND section_id='$section' AND supplier_status='1'";
+        $sql="SELECT * FROM inv_supplier WHERE supplier_id='$id' AND section_id='$section' AND supplier_status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         echo "<br><br><center><form action=validate.php method=post> 
@@ -30,7 +30,7 @@ if($page=="supplier")
         Supplier Email: <input name=supplier_email type=text value=".$row['supplier_email'].">
         Supplier Contact Name: <input name=supplier_contact_name type=text value=".$row['supplier_contact_name'].">
         <br><br>
-        Supplier Mobile Number: <input name=supplier_mob_no type=text value=".$row['supplier_mob_no'].">
+        Supplier Phone Number: <input name=supplier_phone_no type=text value=".$row['supplier_phone_no'].">
         <br><br>
         Supplier Remarks: <input name=supplier_remarks type=text value=".$row['supplier_remarks'].">
         <br><br>

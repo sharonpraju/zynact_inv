@@ -55,6 +55,16 @@ if($validation=="add_supplier")
     $supplier_bank=$_POST['supplier_bank'];
     $supplier_branch=$_POST['supplier_branch'];
     $supplier_ifsc_no=$_POST['supplier_ifsc_no'];
+    $sql = "SELECT * FROM inv_supplier WHERE supplier_name = '$supplier_name' AND section_id='$section' AND supplier_status='1'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    if($result->num_rows > 0)
+    {
+        echo"<center><br><br><br><br><br><br>Supplier Already Exists<br><br>";
+        echo"<button onclick='history.go(-1);'>Back </button></center>";
+    }
+    else
+    {
     $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_phone_no,supplier_email,supplier_contact_name,supplier_status,supplier_remarks,supplier_gst_no,supplier_account_no,supplier_bank,supplier_branch,supplier_ifsc_no,section_id)
         VALUES ('$supplier_name','$supplier_address','$supplier_phone_no','$supplier_email','$supplier_contact_name','$supplier_status','$supplier_remarks','$supplier_gst_no','$supplier_account_no','$supplier_bank','$supplier_branch','$supplier_ifsc_no','$section')";
     if ($conn->query($sql) === TRUE) {
@@ -79,6 +89,7 @@ if($validation=="add_supplier")
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+}
 }
 if($validation=="chng_pass")
 {
@@ -410,20 +421,12 @@ if($validation=="edit_supplier")
     $supplier_email=$_POST['supplier_email'];
     $supplier_contact_name=$_POST['supplier_contact_name'];
     $supplier_phone_no=$_POST['supplier_phone_no'];
-    $supplier_mob_no=$_POST['supplier_mob_no'];
     $supplier_remarks=$_POST['supplier_remarks'];
     $supplier_gst_no=$_POST['supplier_gst_no'];
     $supplier_account_no=$_POST['supplier_account_no'];
     $supplier_bank=$_POST['supplier_bank'];
     $supplier_branch=$_POST['supplier_branch'];
     $supplier_ifsc_no=$_POST['supplier_ifsc_no'];
-    $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_email,supplier_contact_name,supplier_mob_no,section_id,supplier_status,supplier_remarks)
-    VALUES ('$supplier_name_new','$supplier_address','$supplier_email','$supplier_contact_name','$supplier_mob_no','$section','1','$supplier_remarks')";
-    $conn->query($sql);
-    $sql="UPDATE inv_supplier
-    SET supplier_id= sl_no
-    WHERE supplier_name='$supplier_name_new' AND section_id='$section' AND supplier_status='1'"; 
-    $conn->query($sql);
     $sql = "SELECT supplier_id FROM inv_supplier
     WHERE supplier_name='$supplier_name' AND section_id='$section' AND supplier_status='1'";
     $result = mysqli_query($conn, $sql);
@@ -435,7 +438,15 @@ if($validation=="edit_supplier")
     $conn->query($sql);
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$supplier_id','inv_supplier','$admin','$section','edited')";
     $conn->query($sql);
-    header("location:add_supplier.php");
+    $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_email,supplier_contact_name,supplier_phone_no,section_id,supplier_status,supplier_remarks)
+    VALUES ('$supplier_name_new','$supplier_address','$supplier_email','$supplier_contact_name','$supplier_phone_no','$section','1','$supplier_remarks')";
+    $conn->query($sql);
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    $sql="UPDATE inv_supplier
+    SET supplier_id=$supplier_id
+    WHERE supplier_name='$supplier_name_new' AND section_id='$section' AND supplier_status='1'"; 
+    $conn->query($sql);
+    header("location:manage_supplier.php");
 }
 if($validation=="item_distribution")
 {
