@@ -45,7 +45,8 @@ echo"
         </tr>
         <tr>
             <td class='bill_title' colspan='6'>
-            Indent No: ".$indent." <br>
+            Indent No : ".$indent." <br>
+            Book No :".$indent."
             <span class='date_txt'>Date: ".$dist_issued_on."</span>
             </td>
         </tr>
@@ -54,7 +55,7 @@ echo"
         </tr>
 
         <tr> 
-        <td colspan='5'>Please sanction the issue of the following materials for use in the ...................................</td>
+        <td colspan='5'>The following materials had recieved for use in the <b>".$dist_issued_to."</b>.</td>
         </tr>
 
         <tr>
@@ -93,7 +94,7 @@ $total=0;
             <td class='item_name'>".$row['item_name']."</td>
             <td class='item_row'>".$row['item_quantity']."</td>
             <td class='item_row'>".$row['item_quantity']."</td>
-            <td class='item_row'>".$dist_remarks."</td>
+            <td class='item_row'>".$row['remarks']."</td>
         </tr>
         <span></span>";
 
@@ -129,19 +130,9 @@ $total=0;
 echo"
 <tr><td colspan='5' class='bill_bottom'><br><br>Name : ".$dist_user_id."</td></tr>
 <tr><td colspan='5' class='bill_bottom'>Designation :".$user_designation."</td></tr>
-<tr><td colspan='5'>Department : ".$user_department."<br><br></td></tr>
-<tr class='bill_bottom'>
-<td class='bill_bottom' colspan='3'>Signature of HOD</td>
-<td class='bill_bottom' colspan='4'>Signature of Principal</td>
-</tr>
-<tr class='bill_bottom'>
-<td class='bill_bottom' colspan='3'>Issued</td>
-<td class='bill_bottom' colspan='3'>Received</td>
-</tr>
-<tr class='bill_bottom'>
-<td class='bill_bottom' colspan='3'>Store Keeper</td>
-<td class='bill_bottom' colspan='3'>Staff Member</td>
-</tr></table>
+<tr><td colspan='3' class='bill_bottom'>Department : ".$user_department."</td>
+<td colspan='2' class='bill_bottom'>Signature</td></tr>
+</table>
 </center>
 </div>
 <input type='button' class='submit_dist' value='Print' onclick='javascript:window.print()'>

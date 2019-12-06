@@ -108,6 +108,10 @@ body{
                 display: none;
             }
 
+            table{
+                width: 90%;
+            }
+
             .img_1{
                 height: 250px;
                 width: 250px;

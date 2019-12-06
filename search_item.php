@@ -57,6 +57,22 @@ if(isset($_POST['validation']))
     }
 
     if($validation==4){
+        $keyword = strval($_POST['query']);
+        $search_param = "{$keyword}%";
+    
+        $sql = $conn->prepare("SELECT DISTINCT branch FROM user_details WHERE  branch LIKE '$search_param'");			
+        $sql->execute();
+        $result = $sql->get_result();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+            $countryResult[] = $row["branch"];
+            }
+            echo json_encode($countryResult);
+        }
+    
+    }
+
+    if($validation==5){
         $user_name=$_POST['query'];
         $sql ="SELECT branch FROM user_details WHERE user_name='$user_name' AND (user_status='working' OR user_status='studying') LIMIT 1";			
         $result = mysqli_query($conn, $sql);

@@ -200,7 +200,7 @@ function show_toast(){
 function update(user_name) {
         $.ajax({
                     url: "search_item.php",
-					data: {query:user_name, validation:4},
+					data: {query:user_name, validation:5},
                     type: "POST",
                     success: function (data,status) {
                         document.getElementById("department_txt").value=data;
