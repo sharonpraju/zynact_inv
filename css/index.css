@@ -79,7 +79,7 @@ box-shadow: none;
 
 .preloader{
   align-items: center;
-  margin-top: 300px;
+  margin-top: 5%;
 }
 #wrapper{
   width: 50%;
@@ -104,5 +104,10 @@ box-shadow: none;
 
 .zynact_title{
   color:#ffffff;
-  margin-top:-100px; 
+  margin-top:-10px; 
+}
+
+.zynact_logo{
+  height: 150px;
+  width: 250px;
 }

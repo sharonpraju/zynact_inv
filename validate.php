@@ -729,7 +729,7 @@ if($validation=='alert_level')
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
     {
-    echo "<br><br><br><br><div class='alert_level_1_div'>Below Alert level 1: <br><br><br><br>";
+    echo "<br><br><br><br><center><div class='alert_level_1_div'>Below Alert level 1: <br><br><br><br>";
     while($row = $result->fetch_assoc()) 
     {
        $item_check=$row['Item_name'];
@@ -740,7 +740,7 @@ if($validation=='alert_level')
             $row1 = $result1->fetch_assoc();
                if($row1['total_units']<$alert_level_1)
                {   
-                 echo $row1['item_name']."<br>";
+                 echo $row1['item_name']." ".$row1['total_units']."<br>";
                }
     }
     echo "</div>";
@@ -759,10 +759,10 @@ if($validation=='alert_level')
             $row1 = $result1->fetch_assoc();
                if($row1['total_units']<$alert_level_2)
                {   
-                 echo $row1['item_name']."<br>";
+                 echo $row1['item_name']." ".$row1['total_units']."<br>";
                }
     }
-    echo"</div>";
+    echo"</div></center>";
     }
 }
 if($validation=='dict_log')
