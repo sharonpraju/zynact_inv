@@ -151,13 +151,14 @@
 <option value="Ml">Ml</option>
 </select>
 <br><br>
-<input type="text" class="input_txt" name="item_price" placeholder=" MRP" data-toggle="tooltip" title="MRP" autocomplete="off">
-<input type="text" class="input_txt" name="item_selling_price" placeholder=" Selling Price" data-toggle="tooltip" title="Selling Price" autocomplete="off">
-<br><br>
+<!--<input type="text" class="input_txt" name="item_price" placeholder=" MRP" data-toggle="tooltip" title="MRP" autocomplete="off">
+<input type="text" class="input_txt" name="item_selling_price" placeholder=" Selling Price" data-toggle="tooltip" title="Selling Price" autocomplete="off">-->
+<input type="text" class="input_txt" name="item_price" placeholder=" Rate" data-toggle="tooltip" title="Rate" autocomplete="off">
 <input type="text" class="input_txt" name="item_tax" placeholder=" Tax Amount" data-toggle="tooltip" title="Tax Amount" autocomplete="off">
-<input type="text" class="input_txt" name="remarks" placeholder=" Remarks" data-toggle="tooltip" title="Remarks" autocomplete="off">
 <br><br>
+<input type="text" class="input_txt" name="remarks" placeholder=" Remarks" data-toggle="tooltip" title="Remarks" autocomplete="off">
 <input type="text" class="input_txt" name="barcode" placeholder=" barcode" data-toggle="tooltip" title="Barcode" autocomplete="off">
+<br><br>
 <input id="item_code" class="input_item_code" type="text" name="item_code"placeholder=" Item Code" autocomplete="off" readonly>
 <br><br>
 </form>

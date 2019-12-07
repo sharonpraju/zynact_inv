@@ -137,7 +137,8 @@ if($validation=="add_stock")
     $_SESSION['total_cost']=$_POST['total_cost'];
     $_SESSION['item_unit']=$_POST['item_unit'];
     $_SESSION['item_price']=$_POST['item_price'];
-    $_SESSION['item_selling_price']=$_POST['item_selling_price'];
+    //$_SESSION['item_selling_price']=$_POST['item_selling_price'];
+    $_SESSION['item_selling_price']=$_POST['item_price'];
     $_SESSION['total_units']=$_POST['total_units'];
     $_SESSION['item_tax']= $_POST['item_tax'];
     $_SESSION['invoice_no']=$_POST['invoice_no'];
@@ -729,7 +730,7 @@ if($validation=='alert_level')
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
     {
-    echo "<br><br><br><br><center><div class='alert_level_1_div'>Below Alert level 1: <br><br><br><br>";
+    echo "<br><br><br><br><div class='alert_level_1_div'><h4>Below Alert level 1</h4>";
     while($row = $result->fetch_assoc()) 
     {
        $item_check=$row['Item_name'];
@@ -749,7 +750,7 @@ if($validation=='alert_level')
     $result = $conn->query($sql);
     if ($result->num_rows > 0)
     {
-    echo "<div class='alert_level_2_div'>Below Alert level 2: <br><br><br><br>";
+    echo "<div class='alert_level_2_div'><h4>Below Alert level 2</h4>";
     while($row = $result->fetch_assoc()) 
     {
        $item_check=$row['Item_name'];
@@ -762,7 +763,7 @@ if($validation=='alert_level')
                  echo $row1['item_name']." ".$row1['total_units']."<br>";
                }
     }
-    echo"</div></center>";
+    echo"</div>";
     }
 }
 if($validation=='dict_log')
