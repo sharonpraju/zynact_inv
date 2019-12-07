@@ -1,5 +1,5 @@
 body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: sans-serif;
     color: #2c3338;
     background: #ffffff;
 }
@@ -62,7 +62,7 @@ button{
 
 .alert_level_1_div{
     float:left;
-    margin-left: 100px;
+    margin-left: 250px;
 }
 
 .alert_level_2_div{
