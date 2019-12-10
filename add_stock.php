@@ -36,14 +36,21 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $current_supplier=$row['supplier'];
+
+        $sql = "SELECT supplier_id FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        $supplier_id=$row['supplier_id'];
+
         echo'<select class="input_txt_top" data-toggle="tooltip" title="Supplier" name="item_supplier" required>
-        <option value="'.$current_supplier.'">'.$current_supplier.'</option>';
+        <option value="'.$supplier_id.'">'.$current_supplier.'</option>';
 
         $sql = "SELECT supplier_name FROM inv_supplier WHERE section_id='$section' AND supplier_status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         while($row=mysqli_fetch_assoc($result)){
-            echo "<option value='".$row['supplier_name']."'>".$row['supplier_name']."</option>";
+            echo "<option value='".$row['supplier_id']."'>".$row['supplier_name']."</option>";
         }
         echo"</select>";
 
@@ -78,10 +85,10 @@
         $row = mysqli_fetch_assoc($result);
         if($row['supplier_name']!=NULL)
         {
-            echo "<option value='".$row['supplier_name']."'>".$row['supplier_name']."</option>";
+            echo "<option value='".$row['supplier_id']."'>".$row['supplier_name']."</option>";
         }
         while($row=mysqli_fetch_assoc($result)){
-            echo "<option value='".$row['supplier_name']."'>".$row['supplier_name']."</option>";
+            echo "<option value='".$row['supplier_id']."'>".$row['supplier_name']."</option>";
         }
         echo"</select>";
 

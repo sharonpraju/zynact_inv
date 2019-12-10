@@ -66,8 +66,8 @@ echo'<link rel="stylesheet" href="css/inv_status.css">
 <form method="post" action="status_stock.php">
         <input class=input_button type="submit" value="Out Of Stock :      '.$out_of_stock.'">
 </form>
-<form method="post" action="validate.php">
-<input type="text" name="validation" value="stock_request" hidden readonly>
+<form method="post" action="stock_request.php">
+<input type="text" name="validation" value="" hidden readonly>
         <input class=input_button type="submit" value="Stock Requests ">
 </form>';
 }

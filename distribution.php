@@ -109,7 +109,7 @@ echo"
         <input type='text' id='".$row['item_code']."' class='bill_txt_remarks' name='remarks' placeholder='Remarks' onchange='change_remarks(this.value,this.id)'>
         <!--<input type='text' id='".$row['item_code']."' class='bill_txt' name='item_mrp' value='".$row['item_mrp']."' onchange='change_mrp(this.value,this.id)' readonly>
         <input type='number' id='".$row['item_code']."' class='bill_txt' name='item_seling_price' ng-model='selling_price".$id."' ng-init='selling_price".$id."=".$row['item_selling_price']."' onchange='change_selling_price(this.value,this.id)'>
-        <input type='number' id='total".$id."' class='bill_txt_total' name='item_total' value='{{selling_price".$id."*quantity".$id."}}'> <input type='button' id='".$row['item_code']."' class='bill_btn' value='X'>-->
+        <input type='number' id='total".$id."' class='bill_txt_total' name='item_total' value='{{selling_price".$id."*quantity".$id."}}'>--> <input type='button' id='".$row['item_code']."' class='bill_btn' value='X'>
         <span></span>";
     }while($row = mysqli_fetch_array($result));
     echo "<input type='text' id='id' name='id' value='".$id."' hidden readonly>";

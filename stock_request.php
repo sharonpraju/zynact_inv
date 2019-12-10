@@ -18,13 +18,14 @@ if ($result = $conn->query("SELECT * FROM inv_stock_request WHERE status='1' and
     
 if ($result->num_rows > 0)
 {
+    $i=1;
     echo "<br><br><center><table border='1' cellpadding='10'>";
 
-echo "<tr><th>Sl</th><th>Item Name</th><th>Added By</th><th>Added On</th><th>Added On</th><th>Remarks</th><th colspan='7'></th></tr>";
+echo "<tr><th>Sl</th><th>Item Name</th><th>Added By</th><th>Added On</th><th>Remarks</th><th colspan='7'></th></tr>";
 while ($row = $result->fetch_object())
 {
 echo "<tr>";
-echo "<td>" . $row->sl_no . "</td>";
+echo "<td>" . $i++ . "</td>";
 echo "<td>" . $row->item_name . "</td>";
 echo "<td>" . $row->added_by . "</td>";
 echo "<td>" . $row->added_on . "</td>";
