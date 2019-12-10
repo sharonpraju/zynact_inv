@@ -21,28 +21,23 @@ if ($result = $conn->query("SELECT * FROM inv_supplier WHERE supplier_id='$id' A
 if ($result->num_rows > 0)
 {
 // display records in a table
-echo '<br><br><h4><center>';
+echo '<br><br><center><table>';
 while ($row = $result->fetch_object())
 {
 // set up a row for each record
-echo 'Supplier Name :<input type="text" class="input_txt" value="'.$row->supplier_name.'">';
-echo 'Contact Name :<input type="text" class="input_txt" value="' . $row->supplier_contact_name.'">';
-echo'<br><br>';
-echo 'Address :<input type="text" class="input_txt" value=" ' . $row->supplier_address.'">';
-echo 'E-mail :<input type="text" class="input_txt" value=" ' . $row->supplier_email.'">';
-echo'<br><br>';
-echo 'Supplier Bank :<input type="text" class="input_txt" value=" ' . $row->supplier_bank.'">';
-echo 'Account No :<input type="text" class="input_txt" value=" ' . $row->supplier_account_no.'">';
-echo'<br><br>';
-echo 'Branch :<input type="text" class="input_txt"value=" ' . $row->supplier_branch.'">';
-echo 'IFSC No :<input type="text" class="input_txt" value=" ' . $row->supplier_ifsc_no.'">';
-echo'<br><br>';
-echo 'Phone No :<input type="text" class="input_txt" value=" ' . $row->supplier_phone_no.'">';
-echo'<br><br>';
-echo 'GST No :<input type="text" class="input_txt" value=" ' . $row->supplier_gst_no.'">';
-echo 'Supplier Remarks :<input type="text" class="input_txt" value=" ' . $row->supplier_remarks.'">';
+echo '<tr><td>Supplier Name :</td><td>'.$row->supplier_name.'</td></tr>';
+echo '<tr><td>Contact Name :</td><td>' . $row->supplier_contact_name.'</td></tr>';
+echo '<tr><td>Address :</td><td> ' . $row->supplier_address.'</td></tr>';
+echo '<tr><td>E-mail :</td><td> ' . $row->supplier_email.'</td></tr>';
+echo '<tr><td>Supplier Bank :</td><td> ' . $row->supplier_bank.'</td></tr>';
+echo '<tr><td>Account No :</td><td> ' . $row->supplier_account_no.'</td></tr>';
+echo '<tr><td>Branch :</td><td>' . $row->supplier_branch.'</td></tr>';
+echo '<tr><td>IFSC No :</td><td> ' . $row->supplier_ifsc_no.'</td></tr>';
+echo '<tr><td>Phone No :</td><td> ' . $row->supplier_phone_no.'</td></tr>';
+echo '<tr><td>GST No :</td><td> ' . $row->supplier_gst_no.'</td></tr>';
+echo '<tr><td>Supplier Remarks :</td><td> ' . $row->supplier_remarks.'</td></tr>';
 }
-echo "</h4></center>";
+echo "</table></center>";
 }
 else
 {

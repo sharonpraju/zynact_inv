@@ -35,27 +35,29 @@ option{
   .input_txt_address{
     height: 50px;
     width: 200px;
-    border: 1px solid #2c3338;
+    border: 0.5px solid #2c3338;
     border-radius: 5px;
     margin-bottom: -20px;
   }
 
 .btn_submit{
     height: 50px;
-    width: 150px;
+    width: 100px;
     background: #ff7510;
     color: #ffffff;
     border: 0px;
+    border-radius: 5px;
     margin-left: 50px;
     font-size: 20px;
   }
 
   .btn_back_input{
     height: 50px;
-    width: 150px;
+    width: 100px;
     background: #ff7510;
     color: #ffffff;
     border: 0px;
+    border-radius: 5px;
     font-size: 20px;
   }
 

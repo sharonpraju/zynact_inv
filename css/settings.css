@@ -178,8 +178,9 @@ option{
 .supplier_txt{
   height: 50px;
   width: 200px;
-  border: 1px solid #2c3338;
+  border: 0.5px solid #2c3338;
   border-radius: 5px;
+  margin-top: 2px;
 }
 
 

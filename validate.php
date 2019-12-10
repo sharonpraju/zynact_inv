@@ -362,7 +362,7 @@ if($validation=="edit_category")
     VALUES ('$edit_name','$edit_description','$edit_remarks','1','$category_type','$section')";
     $conn->query($sql);
     $sql="UPDATE inv_category
-    SET category_id=NULL, reference_no='$edit_category_id', category_status='0'
+    SET reference_no='$edit_category_id', category_status='0'
     WHERE category_id='$edit_category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
     $sql="UPDATE inv_category
@@ -396,7 +396,7 @@ if($validation=="edit_sub_category")
     VALUES ('$edit_name','$edit_description','$edit_remarks','1','$category_type','$section')";
     $conn->query($sql);
     $sql="UPDATE inv_category
-    SET category_id=NULL, reference_no='$edit_category_id', category_status='0'
+    SET reference_no='$edit_category_id', category_status='0'
     WHERE category_id='$edit_category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
     $sql="UPDATE inv_category
@@ -428,26 +428,37 @@ if($validation=="edit_supplier")
     $supplier_bank=$_POST['supplier_bank'];
     $supplier_branch=$_POST['supplier_branch'];
     $supplier_ifsc_no=$_POST['supplier_ifsc_no'];
+    $sql = "SELECT supplier_name FROM inv_supplier
+    WHERE supplier_name='$supplier_name_new' AND section_id='$section' AND supplier_status='1'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    if(($result->num_rows > 0) AND $supplier_name_new!=$supplier_name )
+    {
+        echo"<center><br><br><br><br><br><br>Supplier Already Exists<br><br>";
+        echo"<button onclick='history.go(-1);'>Back </button></center>";
+    }
+    else
+    {
     $sql = "SELECT supplier_id FROM inv_supplier
     WHERE supplier_name='$supplier_name' AND section_id='$section' AND supplier_status='1'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $supplier_id=$row['supplier_id'];
     $sql="UPDATE inv_supplier
-    SET supplier_id=NULL, reference_no='$supplier_id', supplier_status='0'
+    SET reference_no='$supplier_id', supplier_status='0'
     WHERE supplier_name='$supplier_name' AND section_id='$section' AND supplier_status='1'";
     $conn->query($sql);
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$supplier_id','inv_supplier','$admin','$section','edited')";
     $conn->query($sql);
-    $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_email,supplier_contact_name,supplier_phone_no,section_id,supplier_status,supplier_remarks)
-    VALUES ('$supplier_name_new','$supplier_address','$supplier_email','$supplier_contact_name','$supplier_phone_no','$section','1','$supplier_remarks')";
+    $sql="INSERT INTO inv_supplier (supplier_name,supplier_address,supplier_email,supplier_contact_name,supplier_phone_no,supplier_gst_no,supplier_account_no,supplier_bank,supplier_branch,supplier_ifsc_no,section_id,supplier_status,supplier_remarks)
+    VALUES ('$supplier_name_new','$supplier_address','$supplier_email','$supplier_contact_name','$supplier_phone_no','$supplier_gst_no','$supplier_account_no','$supplier_bank','$supplier_branch','$supplier_ifsc_no','$section','1','$supplier_remarks')";
     $conn->query($sql);
-    echo "Error: " . $sql . "<br>" . $conn->error;
     $sql="UPDATE inv_supplier
     SET supplier_id=$supplier_id
     WHERE supplier_name='$supplier_name_new' AND section_id='$section' AND supplier_status='1'"; 
     $conn->query($sql);
     header("location:manage_supplier.php");
+}
 }
 if($validation=="item_distribution")
 {

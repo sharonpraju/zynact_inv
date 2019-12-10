@@ -23,7 +23,7 @@ if($page=='supplier')
     $row = mysqli_fetch_assoc($result);
     $supplier_id=$row['supplier_id'];
     $sql="UPDATE inv_supplier
-    SET supplier_status=0,reference_no='$supplier_id',supplier_id=NULL
+    SET supplier_status='9',reference_no='$supplier_id'
     WHERE supplier_id = '$supplier_id' AND section_id='$section' AND supplier_status='1'";
     $conn->query($sql);
     if ($conn->query($sql) === TRUE) {
@@ -43,7 +43,7 @@ if($page=='category')
     $row = mysqli_fetch_assoc($result);
     $category_id=$row['category_id'];
     $sql="UPDATE inv_category
-    SET category_id=NULL,category_status='0',reference_no='$category_id'
+    SET category_status='9',reference_no='$category_id'
     WHERE category_id = '$category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$category_id','inv_category','$admin','$section','deleted')";
@@ -57,7 +57,7 @@ if($page=='sub_category')
     $row = mysqli_fetch_assoc($result);
     $category_id=$row['category_id'];
     $sql="UPDATE inv_category
-    SET category_id=NULL,category_status='0',reference_no='$category_id'
+    SET category_status='0',reference_no='$category_id'
     WHERE category_id = '$category_id' AND section_id='$section' AND category_status='1'";
     $conn->query($sql);
     $sql="INSERT INTO inv_history (reference_no,changed_from,changed_by,section_id,remarks) VALUES ('$category_id','inv_category','$admin','$section','deleted')";

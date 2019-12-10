@@ -65,19 +65,19 @@ echo "Error: " . $conn->error;
                     <br><br>
                   <input name=supplier_name class="supplier_txt" type="text" placeholder="  Supplier Name">
                   <textarea name=supplier_address class="input_txt_address" placeholder="  Address"></textarea>
-                  <br><br>
+                  <br>
                   <input name=supplier_phone_no class="supplier_txt" type="text" placeholder="  Phone">
                   <input name=supplier_email class="supplier_txt" type="text" placeholder="  Email">
-                  <br><br>
+                  <br>
                   <input name=supplier_contact_name class="supplier_txt" type="text" placeholder="  Contact Person Name">
                   <input name=supplier_gst_no class="supplier_txt" type="text" placeholder="  GST Number">
-                  <br><br>
+                  <br>
                   <input name=supplier_account_no class="supplier_txt" type="text" placeholder="  A/C Number">
                   <input name=supplier_bank class="supplier_txt" type="text" placeholder="  Bank">
-                  <br><br>
+                  <br>
                   <input name=supplier_branch class="supplier_txt" type="text" placeholder="  Branch">
                   <input name=supplier_ifsc_no class="supplier_txt" type="text" placeholder="  IFSC Code">
-                  <br><br>
+                  <br>
                   <input name=supplier_remarks class="supplier_txt" type="text" placeholder="  Remarks">
                   <br><br>
                   <center>
