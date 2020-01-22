@@ -20,31 +20,31 @@ if($page=="supplier")
         $sql="SELECT * FROM inv_supplier WHERE supplier_id='$id' AND section_id='$section' AND supplier_status='1'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
-        echo "<br><br><center><form action=validate.php method=post> 
-        <input type=hidden name=validation value='edit_supplier'>
-        <input type=hidden name=backup value=".$row['supplier_name'].">
-        <input type=hidden name=supplier_phone_no value=".$row['supplier_phone_no'].">
-        Supplier Name: <input type=text name=supplier_name value=".$row['supplier_name'].">
-        Supplier Address: <input name=supplier_address type=text value=".$row['supplier_address'].">
+        echo '<br><br><center><form action=validate.php method=post> 
+        <input type=hidden name=validation value="edit_supplier">
+        <input type=hidden name=backup value="'.$row['supplier_name'].'">
+        <input type=hidden name=supplier_phone_no value="'.$row['supplier_phone_no'].'">
+        Supplier Name: <input type=text name=supplier_name value="'.$row['supplier_name'].'">
+        Supplier Address: <input name=supplier_address type=text value="'.$row['supplier_address'].'">
         <br><br>
-        Supplier Email: <input name=supplier_email type=text value=".$row['supplier_email'].">
-        Supplier Contact Name: <input name=supplier_contact_name type=text value=".$row['supplier_contact_name'].">
+        Supplier Email: <input name=supplier_email type=text value="'.$row['supplier_email'].'">
+        Supplier Contact Name: <input name=supplier_contact_name type=text value="'.$row['supplier_contact_name'].'">
         <br><br>
-        Supplier Phone Number: <input name=supplier_phone_no type=text value=".$row['supplier_phone_no'].">
+        Supplier Phone Number: <input name=supplier_phone_no type=text value="'.$row['supplier_phone_no'].'">
         <br><br>
-        Supplier Remarks: <input name=supplier_remarks type=text value=".$row['supplier_remarks'].">
+        Supplier Remarks: <input name=supplier_remarks type=text value="'.$row['supplier_remarks'].'">
         <br><br>
-        Supplier GST Number: <input name=supplier_gst_no type=text value=".$row['supplier_gst_no'].">
+        Supplier GST Number: <input name=supplier_gst_no type=text value="'.$row['supplier_gst_no'].'">
         <br><br>
-        Supplier Account Number: <input name=supplier_account_no type=text value=".$row['supplier_account_no'].">
+        Supplier Account Number: <input name=supplier_account_no type=text value="'.$row['supplier_account_no'].'">
         <br><br>
-        Supplier Bank: <input name=supplier_bank type=text value=".$row['supplier_bank'].">
+        Supplier Bank: <input name=supplier_bank type=text value="'.$row['supplier_bank'].'">
         <br><br>
-        Supplier Branch: <input name=supplier_branch type=text value=".$row['supplier_branch'].">
+        Supplier Branch: <input name=supplier_branch type=text value="'.$row['supplier_branch'].'">
         <br><br>
-        Supplier IFSC Number: <input name=supplier_ifsc_no type=text value=".$row['supplier_ifsc_no'].">
-        <br><br><input class=chng_submit type=submit class='chng_submit'>
-        </form></center>";
+        Supplier IFSC Number: <input name=supplier_ifsc_no type=text value="'.$row['supplier_ifsc_no'].'">
+        <br><br><input class=chng_submit type=submit class="chng_submit">
+        </form></center>';
 }
 if($page=="category")
 {

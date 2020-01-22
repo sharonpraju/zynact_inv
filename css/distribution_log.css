@@ -3,11 +3,24 @@ body{
     font-family: sans-serif;
 }
 
+form{
+    position: fixed;
+}
 .input_txt
 {
     border: 0.5;
     border-color: #ff7510;
     height: 50px;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.input_txt_1
+{
+    border: 0.5;
+    border-color: #ff7510;
+    height: 50px;
+    margin-top: 10px;
 }
 
 .input_txt_submit{

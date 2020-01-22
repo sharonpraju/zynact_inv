@@ -24,7 +24,7 @@
      else
      {
         $section=$_SESSION['section'];
-        echo " <select class='input_txt' name='sub_type' id='autotype'; onchange=this.form.submit() >
+        echo " <select class='input_txt_1' name='sub_type' id='autotype'; onchange=this.form.submit() >
         <option value=0 >All</option>";
      
                 $sql="SELECT cat_type FROM inv_type WHERE section='$section'";
@@ -42,7 +42,7 @@
     if(isset($_POST['search_bill']))
      {
         $bill_no=$_POST['search_bill'];
-        $sql="SELECT * FROM inv_distribution WHERE dist_bill_no='$bill_no' AND section='$section'";
+        $sql="SELECT * FROM inv_distribution WHERE dist_bill_no='$bill_no' AND section_id='$section'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
                 echo "<table>";
@@ -83,7 +83,7 @@
         $sql="SELECT * FROM inv_distribution WHERE DATE(dist_issued_on)='$search_date' AND section_id='$section'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
-                echo "<table>";
+                echo "<br><br><br><br><table>";
                     echo "<tr>";
                         echo "<th>Sl No</th>";
                         echo "<th>Bill No</th>";
@@ -119,7 +119,7 @@
         $sql="SELECT * FROM inv_distribution WHERE dist_user_id='$user_name' AND section_id='$section'";
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
-                echo "<table>";
+                echo "<br><br><br><br><table>";
                     echo "<tr>";
                         echo "<th>Sl No</th>";
                         echo "<th>Bill No</th>";
@@ -201,7 +201,7 @@
         if($_POST['category_type']==1)
         {
             echo "<form method='post' action='#'>
-            <input  id='bill' class='input_txt' type='text' name='search_bill' placeholder='Bill No'>
+            <input  id='bill' class='input_txt_1' type='text' name='search_bill' placeholder='Bill No'>
             <input type='submit' class='input_txt_submit' value='Submit'>
             <button class='input_txt_submit' onclick='history.go(-1);'>Back </button>
             </form>";
@@ -213,7 +213,7 @@
         if($_POST['category_type']==2)
         {
             echo "<form method='post' action='#'>
-            <input  id='bill' class='input_txt' type='date' name='search_date' placeholder='Date'>
+            <input  id='bill' class='input_txt_1' type='date' name='search_date' placeholder='Date'>
             <input type='submit' class='input_txt_submit' value='Submit'>
             <button class='input_txt_submit' onclick='history.go(-1);'>Back </button>
             </form>";
@@ -224,7 +224,7 @@
         {
             $sql = "SELECT * FROM inv_distribution WHERE section_id='$section' ORDER by 'dist_bill_no'  ";
             echo "<form method='post' action='#'>
-            <input  id='search_name' class='input_txt' type='text' name='user_name' placeholder='Name'>
+            <input  id='search_name' class='input_txt_1' type='text' name='user_name' placeholder='Name'>
             <input type='submit' class='input_txt_submit' value='Submit'>
             <button class='input_txt_submit' onclick='history.go(-1);'>Back </button>
             </form>";
@@ -235,7 +235,7 @@
         {
             $sql = "SELECT * FROM inv_distribution WHERE section_id='$section' ORDER by 'dist_bill_no'  ";
             echo "<form method='post' action='#'>
-            <input  id='search_department' class='input_txt' type='text' name='user_department' placeholder='Department'>
+            <input  id='search_department' class='input_txt_1' type='text' name='user_department' placeholder='Department'>
             <input type='submit' class='input_txt_submit' value='Submit'>
             <button class='input_txt_submit' onclick='history.go(-1);'>Back </button>
             </form>";
